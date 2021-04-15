@@ -4,25 +4,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QRApp.View.MasterPage">
 
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <!--<x:Int32 x:Key="borderRadius">20</x:Int32>-->
-            <!--<Color x:Key="buttonBackgroundColor">Gray</Color>-->
-            
-            <Style x:Key="button" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="Gray"/>
-                <Setter Property="TextColor" Value="White"/>
-                <Setter Property="BorderRadius" Value="20"/>
-                <Setter Property="FontAttributes" Value="Bold"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-    
     <StackLayout Spacing="20" VerticalOptions="Center">
         <Entry Placeholder="Login" />
         <Entry IsPassword="True" Placeholder="Haslo" />
-        <Button Text="Zaloguj" Style="{StaticResource button}" Command="{Binding _LoginUser}"/>
-        <Button Text="Kontynuuj jako gosc" Style="{StaticResource button}"/>
+        <Button Text="Zaloguj" Style="{StaticResource buttonQRapp}" Command="{Binding _GoToModules}"/>
+        <Button Text="Kontynuuj jako gosc" Style="{StaticResource buttonQRapp}"/>
     </StackLayout>
     
 </ContentPage>

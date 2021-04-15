@@ -4,27 +4,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QRApp.View.ModulesPage">
     
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <!--<x:Int32 x:Key="borderRadius">20</x:Int32>-->
-            <!--<Color x:Key="buttonBackgroundColor">Gray</Color>-->
-
-            <Style x:Key="button" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="Gray"/>
-                <Setter Property="TextColor" Value="White"/>
-                <Setter Property="BorderRadius" Value="20"/>
-                <Setter Property="FontAttributes" Value="Bold"/>
-            </Style>
-        </ResourceDictionary>
-    </ContentPage.Resources>
-
     <StackLayout Spacing="20" VerticalOptions="Center">
-        <Button Text="Tworzenie nowego zgloszenia" Style="{StaticResource button}" IsVisible="True"/>
-        <Button Text="Panel administratora" Style="{StaticResource button}" IsVisible="True"/>
-        <Button Text="Historia zgloszen" Style="{StaticResource button}" IsVisible="True"/>
-        <Button Text="Wiki" Style="{StaticResource button}" IsVisible="True"/>
-        <Button Text="Zmiana hasla" Style="{StaticResource button}" IsVisible="True"/>
-
-        <Button Text="Back" Style="{StaticResource button}" IsVisible="True" Clicked="Button_Clicked_1"/>
+        <Button Text="Tworzenie nowego zgloszenia" Style="{StaticResource buttonQRapp}" IsVisible="True"/>
+        <Button Text="Panel administratora" Style="{StaticResource buttonQRapp}" IsVisible="True" Command="{Binding _GoToAdminPanel}"/>
+        <Button Text="Historia zgloszen" Style="{StaticResource buttonQRapp}" IsVisible="True"/>
+        <Button Text="Wiki" Style="{StaticResource buttonQRapp}" IsVisible="True"/>
+        <Button Text="Zmiana hasla" Style="{StaticResource buttonQRapp}" IsVisible="True"/>
     </StackLayout>
 </ContentPage>

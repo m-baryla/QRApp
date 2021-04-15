@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QRApp.View.AdminPanelPage"
+            xmlns:local ="clr-namespace:QRApp.View">
+
+    <NavigationPage Title="New account" IconImageSource="">
+        <x:Arguments>
+            <local:ManagementNewAccountPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Permissions" IconImageSource="">
+        <x:Arguments>
+            <local:ManagementPermissionsPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="Account" IconImageSource="">
+        <x:Arguments>
+            <local:ManagementAccountPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="New email" IconImageSource="">
+        <x:Arguments>
+            <local:ManagementNewEmailPage/>
+        </x:Arguments>
+    </NavigationPage>
+
+</TabbedPage>

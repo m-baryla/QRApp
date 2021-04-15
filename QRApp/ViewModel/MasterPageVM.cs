@@ -8,20 +8,20 @@ using Xamarin.Forms;
 
 namespace QRApp.ViewModel
 {
-    public class MasterPageVM: BaseVM
+    public class MasterPageVM : BaseVM
     {
-        public ICommand _LoginUser { get; private set; }
+        public ICommand _GoToModules { get; private set; }
         private readonly IPageService _pageService;
 
         public MasterPageVM(IPageService pageService)
         {
-            _LoginUser = new Command(_ => LoginUser());
+            _GoToModules = new Command(_ => LoginUser());
             _pageService = pageService;
         }
 
         private async void LoginUser()
         {
-           await _pageService.PushAsync(new ModulesPage());
+           await _pageService.PushModalAsync(new ModulesPage());
         }
     }
 }

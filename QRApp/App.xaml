@@ -3,6 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QRApp.App">
     <Application.Resources>
+            <ResourceDictionary>
+                <!--<x:Int32 x:Key="borderRadius">20</x:Int32>-->
+                <!--<Color x:Key="buttonBackgroundColor">Gray</Color>-->
 
+                <Style x:Key="buttonQRapp" TargetType="Button">
+                    <Setter Property="BackgroundColor" Value="Gray"/>
+                    <Setter Property="TextColor" Value="White"/>
+                    <Setter Property="BorderRadius" Value="20"/>
+                    <Setter Property="FontAttributes" Value="Bold"/>
+                </Style>
+            </ResourceDictionary>
     </Application.Resources>
 </Application>
