@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="View\PlaylistsPage.xaml">
+    <EmbeddedResource Update="View\MasterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>

@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QRApp.View.MasterPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!--<x:Int32 x:Key="borderRadius">20</x:Int32>-->
+            <!--<Color x:Key="buttonBackgroundColor">Gray</Color>-->
+            
+            <Style x:Key="button" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="Gray"/>
+                <Setter Property="TextColor" Value="White"/>
+                <Setter Property="BorderRadius" Value="20"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    
+    <StackLayout Spacing="20" VerticalOptions="Center">
+        <Button Text="Zaloguj" Style="{StaticResource button}"/>
+        <Button Text="Kontynuuj jako gosc" Style="{StaticResource button}"/>
+    </StackLayout>
+</ContentPage>

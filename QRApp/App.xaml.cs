@@ -11,7 +11,7 @@ namespace QRApp
         {
             InitializeComponent();
 
-            MainPage = new PlaylistsPage();
+            MainPage = new MasterPage();
         }
 
         protected override void OnStart()
