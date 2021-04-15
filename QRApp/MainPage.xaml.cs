@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QRApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -12,7 +13,25 @@ namespace QRApp
     {
         public MainPage()
         {
+            ViewModel = new PlaylistsViewModel(new PageService());
+
             InitializeComponent();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+        }
+
+        void OnPlaylistSelected(object sender, Xamarin.Forms.SelectedItemChangedEventArgs e)
+        {
+            ViewModel.SelectPlaylistCommand.Execute(e.SelectedItem);
+        }
+
+        public PlaylistsViewModel ViewModel
+        {
+            get { return BindingContext as PlaylistsViewModel; }
+            set { BindingContext = value; }
         }
     }
 }
