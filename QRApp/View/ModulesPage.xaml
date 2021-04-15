@@ -1,14 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage Title="MASTER PAGE"
+<ContentPage Title="MODULES"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="QRApp.View.MasterPage">
-
+             x:Class="QRApp.View.ModulesPage">
+    
     <ContentPage.Resources>
         <ResourceDictionary>
             <!--<x:Int32 x:Key="borderRadius">20</x:Int32>-->
             <!--<Color x:Key="buttonBackgroundColor">Gray</Color>-->
-            
+
             <Style x:Key="button" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="Gray"/>
                 <Setter Property="TextColor" Value="White"/>
@@ -17,12 +17,14 @@
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
-    
+
     <StackLayout Spacing="20" VerticalOptions="Center">
-        <Entry Placeholder="Login" />
-        <Entry IsPassword="True" Placeholder="Haslo" />
-        <Button Text="Zaloguj" Style="{StaticResource button}" Clicked="Button_Clicked"/>
-        <Button Text="Kontynuuj jako gosc" Style="{StaticResource button}"/>
+        <Button Text="Tworzenie nowego zgloszenia" Style="{StaticResource button}" IsVisible="True"/>
+        <Button Text="Panel administratora" Style="{StaticResource button}" IsVisible="True"/>
+        <Button Text="Historia zgloszen" Style="{StaticResource button}" IsVisible="True"/>
+        <Button Text="Wiki" Style="{StaticResource button}" IsVisible="True"/>
+        <Button Text="Zmiana hasla" Style="{StaticResource button}" IsVisible="True"/>
+
+        <Button Text="Back" Style="{StaticResource button}" IsVisible="True" Clicked="Button_Clicked_1"/>
     </StackLayout>
-    
 </ContentPage>
