@@ -1,23 +1,27 @@
-﻿using System;
+﻿using QRApp.View;
+using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace QRApp.ViewModel
 {
-    public class MasterPageVM
+    public class MasterPageVM: BaseVM
     {
-        public ICommand _TestVoid { get; set; }
+        public ICommand _LoginUser { get; private set; }
+        private readonly IPageService _pageService;
 
-        public MasterPageVM()
+        public MasterPageVM(IPageService pageService)
         {
-            _TestVoid = new Command(_ => TestVoid());
+            _LoginUser = new Command(_ => LoginUser());
+            _pageService = pageService;
         }
 
-        private void TestVoid()
+        private async void LoginUser()
         {
-
+           await _pageService.PushAsync(new ModulesPage());
         }
     }
 }

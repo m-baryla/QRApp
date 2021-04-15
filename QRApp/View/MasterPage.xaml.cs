@@ -1,4 +1,5 @@
-﻿using System;
+﻿using QRApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +14,9 @@ namespace QRApp.View
     {
         public MasterPage()
         {
+            BindingContext = new MasterPageVM(new PageService());
             InitializeComponent();
         }
 
-        async void Button_Clicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new ModulesPage());
-        }
     }
 }

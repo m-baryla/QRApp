@@ -11,7 +11,12 @@ namespace QRApp.ViewModel
 			return await Application.Current.MainPage.DisplayAlert(title, message, ok, cancel);
 		}
 
-		public async Task PushAsync(Page page)
+        public async Task PopAsync()
+        {
+			await Application.Current.MainPage.Navigation.PopAsync();
+		}
+
+        public async Task PushAsync(Page page)
 		{
 			await Application.Current.MainPage.Navigation.PushAsync(page);
 		}
