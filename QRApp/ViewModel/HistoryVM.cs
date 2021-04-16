@@ -14,7 +14,7 @@ namespace QRApp.ViewModel
     {
         private readonly IPageService _pageService;
 
-        private ObservableCollection<HistoryDetail> HistoryDetailsList { get; set; } = new ObservableCollection<HistoryDetail>();
+        public ObservableCollection<HistoryDetail> HistoryDetailsList { get; set; } = new ObservableCollection<HistoryDetail>();
         public ICommand _GoToDetailPage { get; private set; }
 
         private HistoryDetail _selectedHistoryDetail;
@@ -30,6 +30,8 @@ namespace QRApp.ViewModel
             _GoToDetailPage = new Command(_ => GoToDetailPage());
 
             _pageService = pageService;
+
+            ListOfHistoryDetail();
         }
 
         private async void GoToDetailPage()

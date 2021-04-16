@@ -15,7 +15,7 @@ namespace QRApp.ViewModel
     public class WikiVM : BaseVM
     {
         private readonly IPageService _pageService;
-        private ObservableCollection<WikiDetail> WikiDetailsList { get; set; } = new ObservableCollection<WikiDetail>();
+        public ObservableCollection<WikiDetail> WikiDetailsList { get; set; } = new ObservableCollection<WikiDetail>();
 
         public ICommand _GoToDetailPage { get; private set; }
 
@@ -31,6 +31,8 @@ namespace QRApp.ViewModel
             _GoToDetailPage = new Command(_ => GoToDetailPage());
 
             _pageService = pageService;
+
+            ListOfWikiDetail();
         }
 
         private async void GoToDetailPage()

@@ -12,16 +12,13 @@ namespace QRApp.View.UserPanel
 
         public WikiPage()
         {
-            BindingContext = new WikiVM(new PageService());
             InitializeComponent();
-            ListView.ItemsSource = (BindingContext as WikiVM).ListOfWikiDetail();
-
+            BindingContext = new WikiVM(new PageService());
         }
 
         private void ListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             (BindingContext as WikiVM)._GoToDetailPage.Execute(e.SelectedItem);
-
         }
 
         private void Handle_TextChanged(object sender, TextChangedEventArgs e)

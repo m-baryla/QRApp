@@ -7,6 +7,7 @@
         <StackLayout>
             <SearchBar Placeholder="Szukaj..." TextChanged="Handle_TextChanged" Background="White"></SearchBar>
             <ListView x:Name="ListView" 
+                      ItemsSource = "{Binding HistoryDetailsList}"
                       ItemSelected = "ListView_OnItemSelected"
                       SelectedItem = "{Binding SelectedHistoryDetail, Mode=TwoWay}">
                 <ListView.ItemTemplate>

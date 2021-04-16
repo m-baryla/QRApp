@@ -1,4 +1,8 @@
-﻿using Xamarin.Forms;
+﻿using System;
+using System.Collections.ObjectModel;
+using QRApp.Model;
+using QRApp.ViewModel;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace QRApp.View.AdminPanel
@@ -9,6 +13,11 @@ namespace QRApp.View.AdminPanel
         public ManagementNewEmailPage()
         {
             InitializeComponent();
+            BindingContext = new AdressEmailVM(new PageService());
+        }
+        private void Handle_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            ListView.ItemsSource = (BindingContext as AdressEmailVM).ListOfEmailAdress(e.NewTextValue);
         }
     }
 }

@@ -7,6 +7,7 @@
         <StackLayout>
             <SearchBar Placeholder="Szukaj..." TextChanged="Handle_TextChanged" Background="White"></SearchBar>
             <ListView x:Name="ListView" 
+                      ItemsSource = "{Binding WikiDetailsList}"
                       ItemSelected = "ListView_OnItemSelected"
                       SelectedItem = "{Binding SelectedWikiDetail, Mode=TwoWay}">
                 <ListView.ItemTemplate>
