@@ -5,10 +5,8 @@
              x:Class="QRApp.View.ModulesPage">
     
     <StackLayout Spacing="20" VerticalOptions="Center">
-        <Button Text="Tworzenie nowego zgloszenia" Style="{StaticResource buttonQRapp}" IsVisible="True"/>
         <Button Text="Panel administratora" Style="{StaticResource buttonQRapp}" IsVisible="True" Command="{Binding _GoToAdminPanel}"/>
-        <Button Text="Historia zgloszen" Style="{StaticResource buttonQRapp}" IsVisible="True"/>
-        <Button Text="Wiki" Style="{StaticResource buttonQRapp}" IsVisible="True"/>
+        <Button Text="Work Panel" Style="{StaticResource buttonQRapp}" IsVisible="True" Command="{Binding _GoToUserPanel}"/>
         <Button Text="Zmiana hasla" Style="{StaticResource buttonQRapp}" IsVisible="True"/>
     </StackLayout>
 </ContentPage>

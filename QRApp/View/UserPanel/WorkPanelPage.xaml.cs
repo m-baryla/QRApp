@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace QRApp.View
+namespace QRApp.View.UserPanel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ManagementNewEmailPage : ContentPage
+    public partial class WorkPanelPage : TabbedPage
     {
-        public ManagementNewEmailPage()
+        public WorkPanelPage()
         {
             InitializeComponent();
         }

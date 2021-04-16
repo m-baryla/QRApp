@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="QRApp.View.UserPanel.SelectedPage"
+            xmlns:userPanel="clr-namespace:QRApp.View.UserPanel;assembly=QRApp">
+
+    <StackLayout Spacing="20" VerticalOptions="Center" >
+
+        <Picker Title="Lokalizacja">
+            <Picker.Items>
+                <x:String>Lokalizacja_1</x:String>
+                <x:String>Lokalizacja_2</x:String>
+                <x:String>Lokalizacja_3</x:String>
+                <x:String>Lokalizacja_4</x:String>
+                <x:String>Lokalizacja_1</x:String>
+                <x:String>Lokalizacja_2</x:String>
+                <x:String>Lokalizacja_3</x:String>
+                <x:String>Lokalizacja_4</x:String>
+                <x:String>Lokalizacja_1</x:String>
+                <x:String>Lokalizacja_2</x:String>
+                <x:String>Lokalizacja_3</x:String>
+                <x:String>Lokalizacja_4</x:String>
+                <x:String>Lokalizacja_1</x:String>
+                <x:String>Lokalizacja_2</x:String>
+                <x:String>Lokalizacja_3</x:String>
+                <x:String>Lokalizacja_4</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Picker Title="Maszyna">
+            <Picker.Items>
+                <x:String>Maszyna_1</x:String>
+                <x:String>Maszyna_2</x:String>
+                <x:String>Maszyna_3</x:String>
+                <x:String>Maszyna_4</x:String>
+                <x:String>Maszyna_1</x:String>
+                <x:String>Maszyna_2</x:String>
+                <x:String>Maszyna_3</x:String>
+                <x:String>Maszyna_4</x:String>
+                <x:String>Maszyna_1</x:String>
+                <x:String>Maszyna_2</x:String>
+                <x:String>Maszyna_3</x:String>
+                <x:String>Maszyna_4</x:String>
+                <x:String>Maszyna_1</x:String>
+                <x:String>Maszyna_2</x:String>
+                <x:String>Maszyna_3</x:String>
+                <x:String>Maszyna_4</x:String>
+            </Picker.Items>
+        </Picker>
+
+        <Button Text="Zatwierdz z listy" Style="{StaticResource buttonQRapp}" IsVisible="True" Command="{Binding _GoToAction}"/>
+        <Button Text="Zeskanuj kod QR" Style="{StaticResource buttonQRapp}" IsVisible="True" Command="{Binding _}"/>
+    </StackLayout>
+
+</ContentPage>
