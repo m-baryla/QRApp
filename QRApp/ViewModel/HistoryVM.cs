@@ -6,6 +6,7 @@ using QRApp.Model;
 using QRApp.View.UserPanel;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace QRApp.ViewModel
 {
@@ -13,9 +14,10 @@ namespace QRApp.ViewModel
     {
         private readonly IPageService _pageService;
 
-        private HistoryDetail _selectedHistoryDetail;
-        public ObservableCollection<HistoryDetail> HistoryDetailsList { get; private set; } = new ObservableCollection<HistoryDetail>();
+        private ObservableCollection<HistoryDetail> HistoryDetailsList { get; set; } = new ObservableCollection<HistoryDetail>();
         public ICommand _GoToDetailPage { get; private set; }
+
+        private HistoryDetail _selectedHistoryDetail;
 
         public HistoryDetail SelectedHistoryDetail
         {
@@ -28,19 +30,6 @@ namespace QRApp.ViewModel
             _GoToDetailPage = new Command(_ => GoToDetailPage());
 
             _pageService = pageService;
-
-            HistoryDetailsList.Add(new HistoryDetail{ Name = "1", Detail = "detail_test99999999" });
-            HistoryDetailsList.Add(new HistoryDetail{ Name = "2", Detail = "detail_test99999999" });
-            HistoryDetailsList.Add(new HistoryDetail{ Name = "3", Detail = "detail_test99999999" });
-            HistoryDetailsList.Add(new HistoryDetail{ Name = "4", Detail = "detail_test99999999" });
-            HistoryDetailsList.Add(new HistoryDetail{ Name = "5", Detail = "detail_test99999999" });
-            HistoryDetailsList.Add(new HistoryDetail{ Name = "6", Detail = "detail_test99999999" });
-            HistoryDetailsList.Add(new HistoryDetail{ Name = "7", Detail = "detail_test99999999" });
-            HistoryDetailsList.Add(new HistoryDetail{ Name = "7", Detail = "detail_test99999999" });
-            HistoryDetailsList.Add(new HistoryDetail{ Name = "8", Detail = "detail_test99999999" });
-            HistoryDetailsList.Add(new HistoryDetail{ Name = "9", Detail = "detail_test99999999" });
-            HistoryDetailsList.Add(new HistoryDetail { Name = "0", Detail = "detail_test99999999" });
-            HistoryDetailsList.Add(new HistoryDetail { Name = "11", Detail = "detail_test99999999" });
         }
 
         private async void GoToDetailPage()
@@ -51,6 +40,29 @@ namespace QRApp.ViewModel
             await _pageService.PushModalAsync(new HistoryTicketsDetailPage(SelectedHistoryDetail));
 
             SelectedHistoryDetail = null;
+        }
+
+        public IEnumerable<HistoryDetail> ListOfHistoryDetail(string searchString = null)
+        {
+            HistoryDetailsList = new ObservableCollection<HistoryDetail>
+            {
+                new HistoryDetail { Name = "aaa1", Detail = "detail_test99999999" },
+                new HistoryDetail { Name = "bbb2", Detail = "detail_test99999999" },
+                new HistoryDetail { Name = "ccc3", Detail = "detail_test99999999" },
+                new HistoryDetail { Name = "ddd4", Detail = "detail_test99999999" },
+                new HistoryDetail { Name = "abc5", Detail = "detail_test99999999" },
+                new HistoryDetail { Name = "bca6", Detail = "detail_test99999999" },
+                new HistoryDetail { Name = "cab7", Detail = "detail_test99999999" },
+                new HistoryDetail { Name = "c7", Detail = "detail_test99999999" },
+                new HistoryDetail { Name = "a8b", Detail = "detail_test99999999" },
+                new HistoryDetail { Name = "b9a", Detail = "detail_test99999999" },
+                new HistoryDetail { Name = "c0c", Detail = "detail_test99999999" }
+            };
+
+            if (String.IsNullOrWhiteSpace(searchString))
+                return HistoryDetailsList;
+
+            return HistoryDetailsList.Where(c => c.Name.StartsWith(searchString));
         }
     }
 }

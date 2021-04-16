@@ -4,14 +4,23 @@
              x:Class="QRApp.View.UserPanel.WikiPage">
 
     <ContentPage.Content>
-        <ListView ItemsSource="{Binding WikiDetailsList}" 
-                  ItemSelected="ListView_OnItemSelected"
-                  SelectedItem="{Binding SelectedWikiDetail, Mode=TwoWay}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Name}" Detail="{Binding Detail}" />
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
+        <StackLayout>
+            <SearchBar Placeholder="Szukaj..." TextChanged="Handle_TextChanged" Background="White"></SearchBar>
+            <ListView x:Name="ListView" 
+                      ItemSelected = "ListView_OnItemSelected"
+                      SelectedItem = "{Binding SelectedWikiDetail, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ImageCell Text="{Binding Name}" Detail="{Binding Detail}" ImageSource="">
+                            <ImageCell.ContextActions>
+                                <MenuItem Text="test_1" IsDestructive="True"></MenuItem>
+                                <MenuItem Text="test_2"></MenuItem>
+                            </ImageCell.ContextActions>
+                        </ImageCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ContentPage.Content>
+
 </ContentPage>

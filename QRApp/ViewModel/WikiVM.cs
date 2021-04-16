@@ -15,11 +15,11 @@ namespace QRApp.ViewModel
     public class WikiVM : BaseVM
     {
         private readonly IPageService _pageService;
+        private ObservableCollection<WikiDetail> WikiDetailsList { get; set; } = new ObservableCollection<WikiDetail>();
 
-        private WikiDetail _selectedWikiDetail;
-        public ObservableCollection<WikiDetail> WikiDetailsList { get; private set; } = new ObservableCollection<WikiDetail>();
         public ICommand _GoToDetailPage { get; private set; }
 
+        private WikiDetail _selectedWikiDetail;
         public WikiDetail SelectedWikiDetail
         {
             get { return _selectedWikiDetail; }
@@ -31,19 +31,6 @@ namespace QRApp.ViewModel
             _GoToDetailPage = new Command(_ => GoToDetailPage());
 
             _pageService = pageService;
-
-            WikiDetailsList.Add(new WikiDetail { Name = "1", Detail = "detail_test99999999" });
-            WikiDetailsList.Add(new WikiDetail { Name = "2", Detail = "detail_test99999999" });
-            WikiDetailsList.Add(new WikiDetail { Name = "3", Detail = "detail_test99999999" });
-            WikiDetailsList.Add(new WikiDetail { Name = "4", Detail = "detail_test99999999" });
-            WikiDetailsList.Add(new WikiDetail { Name = "5", Detail = "detail_test99999999" });
-            WikiDetailsList.Add(new WikiDetail { Name = "6", Detail = "detail_test99999999" });
-            WikiDetailsList.Add(new WikiDetail { Name = "7", Detail = "detail_test99999999" });
-            WikiDetailsList.Add(new WikiDetail { Name = "7", Detail = "detail_test99999999" });
-            WikiDetailsList.Add(new WikiDetail { Name = "8", Detail = "detail_test99999999" });
-            WikiDetailsList.Add(new WikiDetail { Name = "9", Detail = "detail_test99999999" });
-            WikiDetailsList.Add(new WikiDetail { Name = "0", Detail = "detail_test99999999" });
-            WikiDetailsList.Add(new WikiDetail { Name = "11", Detail = "detail_test99999999" });
         }
 
         private async void GoToDetailPage()
@@ -54,6 +41,30 @@ namespace QRApp.ViewModel
             await _pageService.PushModalAsync(new WikiDetailPage(SelectedWikiDetail));
 
             SelectedWikiDetail = null;
+        }
+
+        public IEnumerable<WikiDetail> ListOfWikiDetail(string searchString = null)
+        {
+            WikiDetailsList = new ObservableCollection<WikiDetail>
+            {
+                new WikiDetail {Name = "aaa1", Detail = "detail_test99999999"},
+                new WikiDetail {Name = "bbb2", Detail = "detail_test99999999"},
+                new WikiDetail {Name = "ccc3", Detail = "detail_test99999999"},
+                new WikiDetail {Name = "ddd4", Detail = "detail_test99999999"},
+                new WikiDetail {Name = "abc5", Detail = "detail_test99999999"},
+                new WikiDetail {Name = "bca6", Detail = "detail_test99999999"},
+                new WikiDetail {Name = "cab7", Detail = "detail_test99999999"},
+                new WikiDetail {Name = "qqq", Detail = "detail_test99999999"},
+                new WikiDetail {Name = "a8b", Detail = "detail_test99999999"},
+                new WikiDetail {Name = "b9a", Detail = "detail_test99999999"},
+                new WikiDetail {Name = "c0c", Detail = "detail_test99999999"}
+            };
+
+            if (String.IsNullOrWhiteSpace(searchString))
+                return WikiDetailsList;
+
+            return WikiDetailsList.Where(c => c.Name.StartsWith(searchString));
+
         }
     }
 }
