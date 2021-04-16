@@ -4,10 +4,13 @@
              x:Class="QRApp.View.UserPanel.HistoryTicketsPage">
 
     <ContentPage.Content>
-        <StackLayout Spacing="20" VerticalOptions="Center">
-            <Label Text="HistoryTicketsPage" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-            <Button Text="Save" Style="{StaticResource buttonQRapp}"/>
-        </StackLayout>
+        <ListView x:Name="listView" ItemSelected="Handle_ItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" Detail="{Binding Detail}" /> >
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </ContentPage.Content>
 
 </ContentPage>
