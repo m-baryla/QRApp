@@ -4,7 +4,9 @@
              x:Class="QRApp.View.UserPanel.WikiPage">
 
     <ContentPage.Content>
-        <ListView x:Name="listView" ItemSelected="Handle_ItemSelected">
+        <ListView ItemsSource="{Binding WikiDetailsList}" 
+                  ItemSelected="ListView_OnItemSelected"
+                  SelectedItem="{Binding SelectedWikiDetail, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Name}" Detail="{Binding Detail}" />

@@ -8,5 +8,7 @@ namespace QRApp.Model
     {
         public string Name { get; set; }
         public string Detail { get; set; }
+
+
     }
 }

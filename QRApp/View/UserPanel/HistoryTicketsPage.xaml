@@ -4,10 +4,12 @@
              x:Class="QRApp.View.UserPanel.HistoryTicketsPage">
 
     <ContentPage.Content>
-        <ListView x:Name="listView" ItemSelected="Handle_ItemSelected">
+        <ListView ItemsSource="{Binding HistoryDetailsList}" 
+                  ItemSelected="ListView_OnItemSelected"
+                  SelectedItem="{Binding SelectedHistoryDetail, Mode=TwoWay}">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Name}" Detail="{Binding Detail}" /> >
+                    <TextCell Text="{Binding Name}" Detail="{Binding Detail}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
