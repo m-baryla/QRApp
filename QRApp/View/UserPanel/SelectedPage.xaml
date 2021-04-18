@@ -6,47 +6,9 @@
 
     <StackLayout Spacing="20" VerticalOptions="Center" >
 
-        <Picker Title="Lokalizacja">
-            <Picker.Items>
-                <x:String>Lokalizacja_1</x:String>
-                <x:String>Lokalizacja_2</x:String>
-                <x:String>Lokalizacja_3</x:String>
-                <x:String>Lokalizacja_4</x:String>
-                <x:String>Lokalizacja_1</x:String>
-                <x:String>Lokalizacja_2</x:String>
-                <x:String>Lokalizacja_3</x:String>
-                <x:String>Lokalizacja_4</x:String>
-                <x:String>Lokalizacja_1</x:String>
-                <x:String>Lokalizacja_2</x:String>
-                <x:String>Lokalizacja_3</x:String>
-                <x:String>Lokalizacja_4</x:String>
-                <x:String>Lokalizacja_1</x:String>
-                <x:String>Lokalizacja_2</x:String>
-                <x:String>Lokalizacja_3</x:String>
-                <x:String>Lokalizacja_4</x:String>
-            </Picker.Items>
-        </Picker>
+        <Picker x:Name="pickerLocation" Title="Lokalizacja" SelectedIndexChanged="PickerLocation_OnSelectedIndexChanged"></Picker>
 
-        <Picker Title="Maszyna">
-            <Picker.Items>
-                <x:String>Maszyna_1</x:String>
-                <x:String>Maszyna_2</x:String>
-                <x:String>Maszyna_3</x:String>
-                <x:String>Maszyna_4</x:String>
-                <x:String>Maszyna_1</x:String>
-                <x:String>Maszyna_2</x:String>
-                <x:String>Maszyna_3</x:String>
-                <x:String>Maszyna_4</x:String>
-                <x:String>Maszyna_1</x:String>
-                <x:String>Maszyna_2</x:String>
-                <x:String>Maszyna_3</x:String>
-                <x:String>Maszyna_4</x:String>
-                <x:String>Maszyna_1</x:String>
-                <x:String>Maszyna_2</x:String>
-                <x:String>Maszyna_3</x:String>
-                <x:String>Maszyna_4</x:String>
-            </Picker.Items>
-        </Picker>
+        <Picker x:Name="pickerMaschine" Title="Maszyna" SelectedIndexChanged="PickerMaschine_OnSelectedIndexChanged"></Picker>
 
         <Button Text="Zatwierdz z listy" Style="{StaticResource buttonQRapp}" IsVisible="True" Command="{Binding _GoToAction}"/>
         <Button Text="Zeskanuj kod QR" Style="{StaticResource buttonQRapp}" IsVisible="True" Command="{Binding _}"/>
