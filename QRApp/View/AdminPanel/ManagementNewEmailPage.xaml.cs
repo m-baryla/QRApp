@@ -19,5 +19,6 @@ namespace QRApp.View.AdminPanel
         {
             ListView.ItemsSource = (BindingContext as AdressEmailVM).ListOfEmailAdress(e.NewTextValue);
         }
+
     }
 }

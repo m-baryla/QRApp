@@ -18,6 +18,7 @@ namespace QRApp.ViewModel
         public ObservableCollection<WikiDetail> WikiDetailsList { get; set; } = new ObservableCollection<WikiDetail>();
 
         public ICommand _GoToDetailPage { get; private set; }
+        public ICommand _GoToNewWikiPage{ get; private set; }
 
         private WikiDetail _selectedWikiDetail;
         public WikiDetail SelectedWikiDetail
@@ -29,12 +30,17 @@ namespace QRApp.ViewModel
         public WikiVM(IPageService pageService)
         {
             _GoToDetailPage = new Command(_ => GoToDetailPage());
+            _GoToNewWikiPage = new Command(_ => GoToNewWikiPage());
 
             _pageService = pageService;
 
             ListOfWikiDetail();
         }
 
+        private async void GoToNewWikiPage()
+        {
+            await _pageService.PushModalAsync(new NewWikiPage());
+        }
         private async void GoToDetailPage()
         {
             if (SelectedWikiDetail == null)

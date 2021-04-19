@@ -13,10 +13,6 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ImageCell Text="{Binding Name}" Detail="{Binding Detail}" ImageSource="">
-                            <ImageCell.ContextActions>
-                                <MenuItem Text="test_1" IsDestructive="True"></MenuItem>
-                                <MenuItem Text="test_2"></MenuItem>
-                            </ImageCell.ContextActions>
                         </ImageCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

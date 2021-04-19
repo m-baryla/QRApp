@@ -3,6 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QRApp.View.UserPanel.WikiPage">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add New Wiki" Command="{Binding _GoToNewWikiPage}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout>
             <SearchBar Placeholder="Szukaj..." TextChanged="Handle_TextChanged" Background="White"></SearchBar>
@@ -13,10 +17,6 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ImageCell Text="{Binding Name}" Detail="{Binding Detail}" ImageSource="">
-                            <ImageCell.ContextActions>
-                                <MenuItem Text="test_1" IsDestructive="True"></MenuItem>
-                                <MenuItem Text="test_2"></MenuItem>
-                            </ImageCell.ContextActions>
                         </ImageCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>

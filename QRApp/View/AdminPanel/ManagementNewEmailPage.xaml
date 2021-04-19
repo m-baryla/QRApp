@@ -11,13 +11,19 @@
     <StackLayout>
         <SearchBar Placeholder="Szukaj..." TextChanged="Handle_TextChanged" Background="White"></SearchBar>
         <ListView x:Name="ListView" 
-            ItemsSource = "{Binding EmailAdressesList}" SelectionMode="None">
+                  ItemsSource = "{Binding EmailAdressesList}" SelectionMode="None">
+
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextCell Text="{Binding Email}"></TextCell>
+                    <TextCell Text="{Binding Email}" Detail="{Binding Email}">
+                        <TextCell.ContextActions>
+                            <MenuItem Text="Delete" IsDestructive="True"></MenuItem>
+                        </TextCell.ContextActions>
+                    </TextCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+
     </StackLayout>
 
 </ContentPage>

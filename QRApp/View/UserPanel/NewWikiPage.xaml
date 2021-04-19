@@ -1,17 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="QRApp.View.UserPanel.NewTicketsPage">
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Send new ticket" Command="{Binding }"></ToolbarItem>
-    </ContentPage.ToolbarItems>
+             x:Class="QRApp.View.UserPanel.NewWikiPage">
 
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="Center">
         <Grid.RowDefinitions>
             <RowDefinition Height="150"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="250"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -20,47 +16,35 @@
 
         <TableView Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <TableSection Title="Info">
-                <TextCell Text="Nowe zgloszenie" Detail="Maszyna : X w Lokalizacji : Y"></TextCell>
+                <TextCell Text="Nowe wiki" Detail="Maszyna : X w Lokalizacji : Y"></TextCell>
                 <TextCell Text="Data: 2021-04-18" Detail="User: mbaryla"></TextCell>
             </TableSection>
         </TableView>
 
         <TableView Grid.Row="1" Grid.Column="0" HasUnevenRows="True">
-            <TableSection Title="Temat / opis zgloszenia">
-                <EntryCell Label="Temat:" Placeholder="temat zgloszenia"/>
+            <TableSection Title="Temat / opis wiki">
+                <EntryCell Label="Temat:" Placeholder="temat wiki"/>
                 <ViewCell>
-                    <Editor Placeholder="Opis zgloszeni" HeightRequest="300" Background="white" TextColor="Black"/>
+                    <Editor Placeholder="Opis wiki" HeightRequest="200" Background="white" TextColor="Black"/>
                 </ViewCell>
             </TableSection>
         </TableView>
 
         <TableView Grid.Row="2" Grid.Column="0">
-            <TableSection Title="Dodaj powiadomienie email">
-                <ViewCell>
-                    <StackLayout>
-                        <Picker Title="Wybierz email z listy">
-                            <Picker.Items>
-                                <x:String>1111@op.pl</x:String>
-                                <x:String>2222@op.pl</x:String>
-                                <x:String>3333@op.pl</x:String>
-                            </Picker.Items>
-                        </Picker>
-                    </StackLayout>
-                </ViewCell>
-            </TableSection>
-
-        </TableView>
-        <TableView Grid.Row="3" Grid.Column="0">
             <TableSection Title="Dodaj zdjecie">
                 <ViewCell>
                     <Button Text="Dodaj zdjecie" Style="{StaticResource buttonQRapp}" />
                 </ViewCell>
             </TableSection>
         </TableView>
+        <TableView Grid.Row="3" Grid.Column="0">
+            <TableSection Title="Save">
+                <ViewCell>
+                    <Button Text="Save" Style="{StaticResource buttonQRapp}" />
+                </ViewCell>
+            </TableSection>
+        </TableView>
 
 
     </Grid>
-
-
-
 </ContentPage>
