@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 using QRApp.Model;
 using QRApp.ViewModel;
 using Xamarin.Forms;
@@ -19,6 +20,11 @@ namespace QRApp.View.AdminPanel
         {
             ListView.ItemsSource = (BindingContext as AdressEmailVM).ListOfEmailAdress(e.NewTextValue);
         }
-
+        private async void RefreshView_OnRefreshing(object sender, EventArgs e)
+        {
+            await Task.Delay(2000);
+            RefreshView.IsRefreshing = false;
+            //update
+        }
     }
 }

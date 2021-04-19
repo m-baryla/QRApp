@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using QRApp.Model;
 using QRApp.ViewModel;
 using Xamarin.Forms;
@@ -24,6 +25,13 @@ namespace QRApp.View.UserPanel
         private void Handle_TextChanged(object sender, TextChangedEventArgs e)
         {
             ListView.ItemsSource = (BindingContext as HistoryVM).ListOfHistoryDetail(e.NewTextValue);
+        }
+
+        private async void RefreshView_OnRefreshing(object sender, EventArgs e)
+        {
+            await Task.Delay(2000);
+            RefreshView.IsRefreshing = false;
+            //update
         }
     }
 }

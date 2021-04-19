@@ -30,5 +30,5 @@ namespace QRApp.ViewModel
 		{
 			await Application.Current.MainPage.Navigation.PushModalAsync(page);
 		}
-	}
+    }
 }

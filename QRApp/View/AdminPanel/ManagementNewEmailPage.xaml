@@ -8,22 +8,23 @@
         <ToolbarItem Text="Add New Email" Command="{Binding _AddNewAdressEmail}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <StackLayout>
-        <SearchBar Placeholder="Szukaj..." TextChanged="Handle_TextChanged" Background="White"></SearchBar>
-        <ListView x:Name="ListView" 
-                  ItemsSource = "{Binding EmailAdressesList}" SelectionMode="None">
-
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding Email}" Detail="{Binding Email}">
-                        <TextCell.ContextActions>
-                            <MenuItem Text="Delete" IsDestructive="True"></MenuItem>
-                        </TextCell.ContextActions>
-                    </TextCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-
-    </StackLayout>
-
+    <RefreshView x:Name="RefreshView" Refreshing="RefreshView_OnRefreshing">
+        <ScrollView>
+            <StackLayout>
+                <SearchBar Placeholder="Szukaj..." TextChanged="Handle_TextChanged" Background="White"></SearchBar>
+                <ListView x:Name="ListView" 
+                          ItemsSource = "{Binding EmailAdressesList}" SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding Email}" Detail="{Binding Email}">
+                                <TextCell.ContextActions>
+                                    <MenuItem Text="Delete" IsDestructive="True"></MenuItem>
+                                </TextCell.ContextActions>
+                            </TextCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>

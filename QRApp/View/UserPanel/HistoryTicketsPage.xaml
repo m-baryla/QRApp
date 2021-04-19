@@ -3,21 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QRApp.View.UserPanel.HistoryTicketsPage">
 
-    <ContentPage.Content>
-        <StackLayout>
-            <SearchBar Placeholder="Szukaj..." TextChanged="Handle_TextChanged" Background="White"></SearchBar>
-            <ListView x:Name="ListView" 
-                      ItemsSource = "{Binding HistoryDetailsList}"
-                      ItemSelected = "ListView_OnItemSelected"
-                      SelectedItem = "{Binding SelectedHistoryDetail, Mode=TwoWay}">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ImageCell Text="{Binding Name}" Detail="{Binding Detail}" ImageSource="">
-                        </ImageCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackLayout>
-    </ContentPage.Content>
-
+    <RefreshView x:Name="RefreshView" Refreshing="RefreshView_OnRefreshing">
+        <ScrollView>
+            <StackLayout>
+                <SearchBar Placeholder="Szukaj..." TextChanged="Handle_TextChanged" Background="White"></SearchBar>
+                    <ListView x:Name="ListView" 
+                              ItemsSource = "{Binding HistoryDetailsList}"
+                              ItemSelected = "ListView_OnItemSelected"
+                              SelectedItem = "{Binding SelectedHistoryDetail, Mode=TwoWay}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ImageCell Text="{Binding Name}" Detail="{Binding Detail}" ImageSource="">
+                                    </ImageCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                    </ListView>
+            </StackLayout>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>
