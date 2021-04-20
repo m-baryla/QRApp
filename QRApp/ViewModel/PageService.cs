@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace QRApp.ViewModel
@@ -30,5 +31,29 @@ namespace QRApp.ViewModel
 		{
 			await Application.Current.MainPage.Navigation.PushModalAsync(page);
 		}
+        public async Task<ImageSource> CreatePhotoAsync()
+        {
+            var result = await MediaPicker.CapturePhotoAsync();
+
+            if (result != null)
+            {
+                var stream = await result.OpenReadAsync(); 
+                var photo = ImageSource.FromStream(() => stream);
+                return photo;
+            }
+            return null;
+        }
+        public async Task<ImageSource> PickPhotoAsync()
+        {
+            var result = await MediaPicker.PickPhotoAsync();
+
+            if (result != null)
+            {
+                var stream = await result.OpenReadAsync();
+                var pic = ImageSource.FromStream(() => stream);
+                return pic;
+            }
+            return null;
+        }
     }
 }
