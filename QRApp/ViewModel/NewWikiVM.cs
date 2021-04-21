@@ -1,26 +1,22 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using QRApp.View;
 using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace QRApp.ViewModel
 {
-    public class NewTicketVM : BaseVM
+    public class NewWikiVM : BaseVM
     {
         private readonly IPageService _pageService;
         public ICommand _CreatePhotoAsync { get; private set; }
 
         private ImageSource _photoSource;
-        public ImageSource PhotoSource { get { return _photoSource;} set { SetValue(ref _photoSource,value);} }
+        public ImageSource PhotoSource { get { return _photoSource; } set { SetValue(ref _photoSource, value); } }
 
-        public NewTicketVM(IPageService pageService)
+        public NewWikiVM(IPageService pageService)
         {
             _CreatePhotoAsync = new Command(async _ => await CreatePhotoAsync());
 

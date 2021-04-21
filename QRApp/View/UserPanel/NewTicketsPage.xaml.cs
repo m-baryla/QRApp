@@ -19,20 +19,18 @@ namespace QRApp.View.UserPanel
         private void MenuItem_OnClicked(object sender, EventArgs e)
         {
             var photo = (BindingContext as NewTicketVM).PhotoSource;
-            var pick = (BindingContext as NewTicketVM).PickSource;
 
             try
             {
                 if (photo != null)
                     resultImage.Source = photo;
-                if (pick != null)
-                    resultImage.Source = pick;
+                else
+                    resultImage.Source = null;
             }
-            catch (Exception )
+            catch (Exception)
             {
                 throw;
             }
-           
         }
 
     }

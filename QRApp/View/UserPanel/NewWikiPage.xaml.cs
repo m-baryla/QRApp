@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using QRApp.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -15,6 +15,24 @@ namespace QRApp.View.UserPanel
         public NewWikiPage()
         {
             InitializeComponent();
+            BindingContext = new NewWikiVM(new PageService());
+
+        }
+        private void MenuItem_OnClicked(object sender, EventArgs e)
+        {
+            var photo = (BindingContext as NewWikiVM).PhotoSource;
+
+            try
+            {
+                if (photo != null)
+                    resultImage.Source = photo;
+                else
+                    resultImage.Source = null;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }
