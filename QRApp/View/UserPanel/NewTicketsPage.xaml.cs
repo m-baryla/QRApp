@@ -12,7 +12,7 @@ namespace QRApp.View.UserPanel
     public partial class NewTicketsPage : ContentPage
     {
         public NewTicketsPage()
-        {
+        {           
             InitializeComponent();
             BindingContext = new NewTicketVM(new CameraService());
         }

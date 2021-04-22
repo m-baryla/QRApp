@@ -49,11 +49,10 @@ namespace QRApp.Service
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     scannerPage.IsScanning = false;
-                    //send resultm media center 
+                    MessagingCenter.Send(this, "ResultScanSender",result.Text);
                     _scanResult = result.Text;
                     await _pageService.PushModalAsync(pushPage);
                     await _dialogService.DisplayAlert("Scan", result.Text, "OK", "Cancel");
-
                 });
             };
         }

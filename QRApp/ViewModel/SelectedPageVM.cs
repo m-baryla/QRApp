@@ -25,9 +25,6 @@ namespace QRApp.ViewModel
         public ICommand _SelectFromList { get; private set; }
         public ICommand _SelectFromQR { get; private set; }
 
-        private string _scanResultLocation;
-        public string ScanResultLocation { get { return _scanResultLocation; } set { SetValue(ref _scanResultLocation, value); } }
-
         public SelectedPageVM(IPageService pageService, IScanService scanService)
         {
             _SelectFromList = new Command(_ => SelectFromList());
