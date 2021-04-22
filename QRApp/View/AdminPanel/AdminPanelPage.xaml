@@ -10,12 +10,6 @@
         </x:Arguments>
     </NavigationPage>
 
-    <NavigationPage Title="Permissions" IconImageSource="">
-        <x:Arguments>
-            <adminPanel:ManagementPermissionsPage/>
-        </x:Arguments>
-    </NavigationPage>
-
     <NavigationPage Title="Account" IconImageSource="">
         <x:Arguments>
             <adminPanel:ManagementAccountPage/>

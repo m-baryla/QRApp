@@ -10,8 +10,8 @@
 
         <Picker x:Name="pickerMaschine" Title="Maszyna" SelectedIndexChanged="PickerMaschine_OnSelectedIndexChanged"></Picker>
 
-        <Button Text="Zatwierdz z listy" Style="{StaticResource buttonQRapp}" IsVisible="True" Command="{Binding _GoToAction}"/>
-        <Button Text="Zeskanuj kod QR" Style="{StaticResource buttonQRapp}" IsVisible="True" Command="{Binding _}"/>
+        <Button Text="Zatwierdz z listy" Style="{StaticResource buttonQRapp}" IsVisible="True" Command="{Binding _SelectFromList}"/>
+        <Button Text="Zeskanuj kod QR" Style="{StaticResource buttonQRapp}" IsVisible="True" Command="{Binding _SelectFromQR}"/>
     </StackLayout>
 
 </ContentPage>

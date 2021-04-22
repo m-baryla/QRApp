@@ -8,6 +8,8 @@ using QRApp.Model;
 using QRApp.View;
 using QRApp.View.UserPanel;
 using Xamarin.Forms;
+using ZXing.Mobile;
+using ZXing.Net.Mobile.Forms;
 
 namespace QRApp.ViewModel
 {
@@ -17,14 +19,20 @@ namespace QRApp.ViewModel
 
         public ObservableCollection<Maschine> Maschines { get; set; } = new ObservableCollection<Maschine>();
 
-
         private readonly IPageService _pageService;
-        public ICommand _GoToAction { get; private set; }
+        private readonly IScanService _scanService;
+        public ICommand _SelectFromList { get; private set; }
+        public ICommand _SelectFromQR { get; private set; }
 
-        public SelectedPageVM(IPageService pageService)
+        private string _scanResultLocation;
+        public string ScanResultLocation { get { return _scanResultLocation; } set { SetValue(ref _scanResultLocation, value); } }
+
+        public SelectedPageVM(IPageService pageService, IScanService scanService)
         {
-            _GoToAction = new Command(_ => GoToAction());
+            _SelectFromList = new Command(_ => SelectFromList());
+            _SelectFromQR = new Command(_ => SelectFromQR());
             _pageService = pageService;
+            _scanService = scanService;
             ListLocations();
             ListMaschines();
         }
@@ -67,11 +75,14 @@ namespace QRApp.ViewModel
 
             return Maschines;
         }
-        private async void GoToAction()
+        private async void SelectFromList()
         {
             await _pageService.PushModalAsync(new WorkPanelPage());
         }
 
-
+        private void SelectFromQR()
+        {
+             _scanService.ScanQR(new WorkPanelPage());
+        }
     }
 }

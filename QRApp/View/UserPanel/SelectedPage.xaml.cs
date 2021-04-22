@@ -16,7 +16,8 @@ namespace QRApp.View.UserPanel
         public SelectedPage()
         {
             InitializeComponent();
-            BindingContext = new SelectedPageVM(new PageService());
+            PageService service = new PageService();
+            BindingContext = new SelectedPageVM(service, new ScanService(service));
 
             foreach (var p in (BindingContext as SelectedPageVM).Locations)
             {
@@ -38,7 +39,6 @@ namespace QRApp.View.UserPanel
         {
             var mach = pickerMaschine.Items[pickerMaschine.SelectedIndex];
             DisplayAlert("Selection", mach, "OK");
-
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xamarin.Essentials;
 using Xamarin.Forms;
@@ -14,7 +16,7 @@ namespace QRApp.ViewModel
 
         public async Task PopAsync()
         {
-			await Application.Current.MainPage.Navigation.PopAsync();
+            await Application.Current.MainPage.Navigation.PopAsync();
 		}
 
         public async Task PushAsync(Page page)
