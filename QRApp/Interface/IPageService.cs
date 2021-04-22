@@ -1,8 +1,7 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Xamarin.Forms;
 
-namespace QRApp.ViewModel
+namespace QRApp.Interface
 {
     public interface IPageService
     {

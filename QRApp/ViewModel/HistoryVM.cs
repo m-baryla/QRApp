@@ -7,6 +7,7 @@ using QRApp.View.UserPanel;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Linq;
+using QRApp.Interface;
 
 namespace QRApp.ViewModel
 {

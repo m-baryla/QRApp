@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using QRApp.Interface;
 using QRApp.Model;
 using QRApp.View;
 using Xamarin.Forms;

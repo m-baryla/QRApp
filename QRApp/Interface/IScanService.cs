@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 
-namespace QRApp.ViewModel
+namespace QRApp.Interface
 {
     public interface IScanService
     {

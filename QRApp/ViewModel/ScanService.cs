@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
+using QRApp.Interface;
 using QRApp.View.UserPanel;
 using Xamarin.Forms;
 using ZXing.Mobile;
@@ -51,9 +52,11 @@ namespace QRApp.ViewModel
                 Device.BeginInvokeOnMainThread(async () =>
                 {
                     scannerPage.IsScanning = false;
+                    //send resultm media center 
                     _scanResult = result.Text;
                     await _pageService.PushModalAsync(pushPage);
                     await _pageService.DisplayAlert("Scan", result.Text, "OK", "Cancel");
+
                 });
             };
         }

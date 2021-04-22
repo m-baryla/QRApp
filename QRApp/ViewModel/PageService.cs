@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using QRApp.Interface;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 

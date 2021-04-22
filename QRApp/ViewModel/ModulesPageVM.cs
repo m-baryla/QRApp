@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
+using QRApp.Interface;
 using QRApp.View.AdminPanel;
 using QRApp.View.UserPanel;
 using Xamarin.Forms;
