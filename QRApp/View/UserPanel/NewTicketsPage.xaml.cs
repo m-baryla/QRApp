@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using QRApp.Service;
 using QRApp.ViewModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;

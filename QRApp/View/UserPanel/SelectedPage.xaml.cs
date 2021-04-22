@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using QRApp.Model;
+using QRApp.Service;
 using QRApp.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,8 +17,9 @@ namespace QRApp.View.UserPanel
         public SelectedPage()
         {
             InitializeComponent();
-            PageService service = new PageService();
-            BindingContext = new SelectedPageVM(service, new ScanService(service));
+            PageService pageService = new PageService();
+            DialogService dialogService = new DialogService();
+            BindingContext = new SelectedPageVM(pageService, new ScanService(pageService, dialogService));
 
             foreach (var p in (BindingContext as SelectedPageVM).Locations)
             {

@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Threading.Tasks;
 using QRApp.Model;
+using QRApp.Service;
 using QRApp.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

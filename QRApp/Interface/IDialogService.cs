@@ -2,7 +2,7 @@
 
 namespace QRApp.Interface
 {
-    interface IDialogService
+    public interface IDialogService
     {
         Task<bool> DisplayAlert(string title, string message, string ok, string cancel);
     }

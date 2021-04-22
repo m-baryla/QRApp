@@ -1,25 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Windows.Input;
-using QRApp.Interface;
-using QRApp.View.UserPanel;
+﻿using QRApp.Interface;
+using QRApp.ViewModel;
 using Xamarin.Forms;
 using ZXing.Mobile;
 using ZXing.Net.Mobile.Forms;
 
-namespace QRApp.ViewModel
+namespace QRApp.Service
 {
     public class ScanService : BaseVM, IScanService
     {
         private ZXingScannerPage scannerPage;
         private readonly IPageService _pageService;
+        private readonly IDialogService _dialogService;
         private string _scanResult;
         public string ScanResult { get { return _scanResult; } set { SetValue(ref _scanResult, value); } }
-        public ScanService(IPageService pageService)
+        public ScanService(IPageService pageService, IDialogService dialogService)
         {
             _pageService = pageService;
+            _dialogService = dialogService;
 
             var options = new MobileBarcodeScanningOptions
             {
@@ -55,7 +52,7 @@ namespace QRApp.ViewModel
                     //send resultm media center 
                     _scanResult = result.Text;
                     await _pageService.PushModalAsync(pushPage);
-                    await _pageService.DisplayAlert("Scan", result.Text, "OK", "Cancel");
+                    await _dialogService.DisplayAlert("Scan", result.Text, "OK", "Cancel");
 
                 });
             };

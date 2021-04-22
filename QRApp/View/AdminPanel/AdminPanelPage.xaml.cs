@@ -1,4 +1,5 @@
-﻿using QRApp.ViewModel;
+﻿using QRApp.Service;
+using QRApp.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

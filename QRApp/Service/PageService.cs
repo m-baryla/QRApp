@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using QRApp.Interface;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
-namespace QRApp.ViewModel
+namespace QRApp.Service
 {
 	public class PageService: IPageService
 	{
-		public async Task<bool> DisplayAlert(string title, string message, string ok, string cancel)
-		{
-			return await Application.Current.MainPage.DisplayAlert(title, message, ok, cancel);
-		}
+		//public async Task<bool> DisplayAlert(string title, string message, string ok, string cancel)
+		//{
+		//	return await Application.Current.MainPage.DisplayAlert(title, message, ok, cancel);
+		//}
 
         public async Task PopAsync()
         {
