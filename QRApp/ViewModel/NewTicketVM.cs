@@ -15,37 +15,20 @@ namespace QRApp.ViewModel
 {
     public class NewTicketVM : BaseVM
     {
-        private readonly IPageService _pageService;
+        private readonly ICameraService _cameraService;
         public ICommand _CreatePhotoAsync { get; private set; }
+        public ImageSource PhotoSource { get { return _cameraService.PhotoSource; } }
 
-        private ImageSource _photoSource;
-        public ImageSource PhotoSource { get { return _photoSource;} set { SetValue(ref _photoSource,value);} }
-
-        public NewTicketVM(IPageService pageService)
+        public NewTicketVM(ICameraService cameraService)
         {
             _CreatePhotoAsync = new Command(async _ => await CreatePhotoAsync());
 
-            _pageService = pageService;
+            _cameraService = cameraService;
         }
 
-        private async Task<ImageSource> CreatePhotoAsync()
+        private Task<ImageSource> CreatePhotoAsync()
         {
-            try
-            {
-                var result = await MediaPicker.CapturePhotoAsync();
-
-                if (result != null)
-                {
-                    var stream = await result.OpenReadAsync();
-                    _photoSource = ImageSource.FromStream(() => stream);
-                    return _photoSource;
-                }
-                return null;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
+            return _cameraService.CreatePhotoAsync();
         }
     }
 }

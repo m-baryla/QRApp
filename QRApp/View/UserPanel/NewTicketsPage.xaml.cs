@@ -14,7 +14,7 @@ namespace QRApp.View.UserPanel
         public NewTicketsPage()
         {
             InitializeComponent();
-            BindingContext = new NewTicketVM(new PageService());
+            BindingContext = new NewTicketVM(new CameraService());
         }
 
         private void MenuItem_OnClicked(object sender, EventArgs e)

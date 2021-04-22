@@ -16,9 +16,9 @@ namespace QRApp.View.UserPanel
         public NewWikiPage()
         {
             InitializeComponent();
-            BindingContext = new NewWikiVM(new PageService());
-
+            BindingContext = new NewWikiVM(new CameraService());
         }
+
         private void MenuItem_OnClicked(object sender, EventArgs e)
         {
             var photo = (BindingContext as NewWikiVM).PhotoSource;
