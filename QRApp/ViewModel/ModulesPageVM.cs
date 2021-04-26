@@ -29,7 +29,7 @@ namespace QRApp.ViewModel
         }
         private async void GoToUserPanel()
         {
-            await _pageService.PushModalAsync(new SelectedPage());
+            await _pageService.PushModalAsync(new WorkPanelPage());
         }
     }
 }

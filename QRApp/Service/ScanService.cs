@@ -1,4 +1,6 @@
-﻿using QRApp.Interface;
+﻿using System;
+using QRApp.Interface;
+using QRApp.View.UserPanel;
 using QRApp.ViewModel;
 using Xamarin.Forms;
 using ZXing.Mobile;
@@ -51,7 +53,9 @@ namespace QRApp.Service
                     scannerPage.IsScanning = false;
                     MessagingCenter.Send(this, "ResultScanSender",result.Text);
                     _scanResult = result.Text;
-                    await _pageService.PushModalAsync(pushPage);
+                    //await _pageService.PushModalAsync(pushPage);
+                    Application.Current.MainPage = new NavigationPage(new WorkPanelPage());
+                    await _pageService.PopAsync();
                     await _dialogService.DisplayAlert("Scan", result.Text, "OK", "Cancel");
                 });
             };

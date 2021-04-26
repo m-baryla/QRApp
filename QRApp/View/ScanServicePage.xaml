@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
+             x:Class="QRApp.View.ScanServicePage">
+    <Grid
+        HorizontalOptions="FillAndExpand"
+        IsVisible="{Binding IsScanning}"
+        VerticalOptions="FillAndExpand">
+        <forms:ZXingScannerView
+            x:Name="zxing"
+            IsAnalyzing="{Binding IsAnalyzing}"
+            IsScanning="{Binding IsScanning}"
+            ScanResultCommand="{Binding OnScanResult}" />
+        <forms:ZXingDefaultOverlay
+            BottomText="Place the red line over the barcode you'd like to scan."
+            HeightRequest="20"
+            TopText="Accepts EAN-8 or EAN-13 barcodes" />
+    </Grid>
+</ContentPage>

@@ -12,9 +12,22 @@ namespace QRApp.View.UserPanel
     public partial class NewTicketsPage : ContentPage
     {
         public NewTicketsPage()
-        {           
+        {
+            PageService pageService = new PageService();
+            DialogService dialogService = new DialogService();
+            ScanService scanService = new ScanService(pageService, dialogService);
+            CameraService cameraService = new CameraService();
             InitializeComponent();
-            BindingContext = new NewTicketVM(new CameraService());
+            BindingContext = new NewTicketVM(pageService, scanService, cameraService);
+
+            foreach (var p in (BindingContext as NewTicketVM).Locations)
+            {
+                pickerLocation.Items.Add(p.LocationName);
+            }
+            foreach (var p in (BindingContext as NewTicketVM).Maschines)
+            {
+                pickerMaschine.Items.Add(p.MaschineName);
+            }
         }
 
         private void MenuItem_OnClicked(object sender, EventArgs e)
@@ -32,6 +45,17 @@ namespace QRApp.View.UserPanel
             {
                 throw;
             }
+        }
+        private void PickerLocation_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var loca = pickerLocation.Items[pickerLocation.SelectedIndex];
+            DisplayAlert("Selection", loca, "OK");
+        }
+
+        private void PickerMaschine_OnSelectedIndexChanged(object sender, EventArgs e)
+        {
+            var mach = pickerMaschine.Items[pickerMaschine.SelectedIndex];
+            DisplayAlert("Selection", mach, "OK");
         }
 
     }
