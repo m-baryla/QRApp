@@ -7,23 +7,32 @@
         <ToolbarItem Text="Add New Wiki" Command="{Binding _GoToNewWikiPage}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <RefreshView x:Name="RefreshView" Refreshing="RefreshView_OnRefreshing">
         <ScrollView>
             <StackLayout>
-                <SearchBar Placeholder="Szukaj..." TextChanged="Handle_TextChanged" Background="White"></SearchBar>
-                    <ListView x:Name="ListView" 
-                              ItemsSource = "{Binding WikiDetailsList}"
-                              ItemSelected = "ListView_OnItemSelected"
-                              SelectedItem = "{Binding SelectedWikiDetail, Mode=TwoWay}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ImageCell Text="{Binding Name}" Detail="{Binding Detail}" ImageSource="">
-                                    </ImageCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                    </ListView>
+                <SearchBar Placeholder="Szukaj..." 
+                           TextChanged="Handle_TextChanged" 
+                           Background="White"
+                           TextColor="Black"></SearchBar>
+                <ListView x:Name="ListView" 
+                                  ItemsSource = "{Binding WikiDetailsList}"
+                                  ItemSelected = "ListView_OnItemSelected"
+                                  SelectedItem = "{Binding SelectedWikiDetail, Mode=TwoWay}"
+                                  HasUnevenRows="True"
+                                  IsPullToRefreshEnabled="True"
+                                  RefreshCommand="{Binding _RefereshWikis}"
+                                  IsRefreshing="{Binding IsRefreshing}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout>
+                                    <Label Text="{Binding Name}"></Label>
+                                    <Label Text="{Binding Detail}"></Label>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
         </ScrollView>
-    </RefreshView>
 
 </ContentPage>

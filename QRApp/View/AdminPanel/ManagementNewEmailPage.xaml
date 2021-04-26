@@ -26,7 +26,7 @@
                             <ViewCell>
                                 <StackLayout>
                                     <Label Text="{Binding Email}"></Label>
-                                </StackLayout>
+                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>

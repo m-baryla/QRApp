@@ -7,6 +7,7 @@ using QRApp.View.UserPanel;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Threading.Tasks;
 using QRApp.Interface;
 
 namespace QRApp.ViewModel
@@ -15,28 +16,27 @@ namespace QRApp.ViewModel
     {
         private readonly IPageService _pageService;
         private readonly IDataService _dataService;
+        private bool _isRefreshing;
+        public bool IsRefreshing { get { return _isRefreshing; } set { SetValue(ref _isRefreshing, value); } }
 
-        public ObservableCollection<HistoryDetail> HistoryDetailsList { get; set; } = new ObservableCollection<HistoryDetail>();
+        private ObservableCollection<HistoryDetail> _historyDetailsList;
+        public ObservableCollection<HistoryDetail> HistoryDetailsList { get { return _historyDetailsList; } set { SetValue(ref _historyDetailsList, value); } }
         public ICommand _GoToDetailPage { get; private set; }
+        public ICommand _RefereshHistoryTickets { get; private set; }
 
         private HistoryDetail _selectedHistoryDetail;
-
-        public HistoryDetail SelectedHistoryDetail
-        {
-            get { return _selectedHistoryDetail; }
-            set { SetValue(ref _selectedHistoryDetail, value); }
-        }
+        public HistoryDetail SelectedHistoryDetail { get { return _selectedHistoryDetail; } set { SetValue(ref _selectedHistoryDetail, value); }}
 
         public HistoryVM(IPageService pageService, IDataService dataService)
         {
             _GoToDetailPage = new Command(_ => GoToDetailPage());
+            _RefereshHistoryTickets = new Command(_ => GetHistoryTickets());
 
             _pageService = pageService;
             _dataService = dataService;
 
-            ListOfHistoryDetail();
+            GetHistoryTickets();
         }
-
         private async void GoToDetailPage()
         {
             if (SelectedHistoryDetail == null)
@@ -46,15 +46,20 @@ namespace QRApp.ViewModel
 
             SelectedHistoryDetail = null;
         }
-
-        public IEnumerable<HistoryDetail> ListOfHistoryDetail(string searchString = null)
+        private async Task GetHistoryTickets()
         {
+            IsRefreshing = true;
             HistoryDetailsList = _dataService.HistoryDetailsList();
+            IsRefreshing = false;
+        }
+        public IEnumerable<HistoryDetail> GetHistoryTicketsSearch(string searchString = null)
+        {
+            _historyDetailsList = _dataService.HistoryDetailsList();
 
             if (String.IsNullOrWhiteSpace(searchString))
-                return HistoryDetailsList;
+                return _historyDetailsList;
 
-            return HistoryDetailsList.Where(c => c.Name.StartsWith(searchString));
+            return _historyDetailsList.Where(c => c.Name.StartsWith(searchString));
         }
     }
 }
