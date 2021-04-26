@@ -1,5 +1,6 @@
 ﻿using QRApp.View;
 using System;
+using QRApp.View.MainPanel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

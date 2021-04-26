@@ -2,7 +2,7 @@
 <ContentPage Title="MASTER PAGE"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="QRApp.View.MasterPage">
+             x:Class="QRApp.View.MainPanel.MasterPage">
 
     <StackLayout Spacing="20" VerticalOptions="Center">
         <Entry Placeholder="Login" />

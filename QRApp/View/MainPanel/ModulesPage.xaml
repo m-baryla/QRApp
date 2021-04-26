@@ -2,7 +2,7 @@
 <ContentPage Title="MODULES"
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="QRApp.View.ModulesPage">
+             x:Class="QRApp.View.MainPanel.ModulesPage">
     
     <StackLayout Spacing="20" VerticalOptions="Center">
         <Button Text="Panel administratora" Style="{StaticResource buttonQRapp}" IsVisible="True" Command="{Binding _GoToAdminPanel}"/>

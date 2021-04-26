@@ -20,7 +20,7 @@
     <EmbeddedResource Update="View\AdminPanel\AdminPanelPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\ScanServicePage.xaml">
+    <EmbeddedResource Update="View\MainPanel\ScanServicePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\UserPanel\HistoryTicketsDetailPage.xaml">
@@ -38,10 +38,10 @@
     <EmbeddedResource Update="View\AdminPanel\ManagementNewEmailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\MasterPage.xaml">
+    <EmbeddedResource Update="View\MainPanel\MasterPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\ModulesPage.xaml">
+    <EmbeddedResource Update="View\MainPanel\ModulesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\UserPanel\NewTicketsPage.xaml">
