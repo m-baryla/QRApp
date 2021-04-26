@@ -45,13 +45,11 @@ namespace QRApp.View.UserPanel
         private void PickerLocation_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             var loca = pickerLocation.Items[pickerLocation.SelectedIndex];
-            DisplayAlert("Selection", loca, "OK");
         }
 
         private void PickerMaschine_OnSelectedIndexChanged(object sender, EventArgs e)
         {
             var mach = pickerMaschine.Items[pickerMaschine.SelectedIndex];
-            DisplayAlert("Selection", mach, "OK");
         }
 
     }

@@ -24,7 +24,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <StackLayout>
+                                <StackLayout Padding="12">
                                     <Label Text="{Binding Name}"></Label>
                                     <Label Text="{Binding Detail}"></Label>
                                 </StackLayout>

@@ -33,7 +33,6 @@ namespace QRApp.ViewModel
         public string ScanResul
         { get { return _scanResul; } set { SetValue(ref _scanResul, value); } }
 
-
         public NewTicketVM(IPageService pageService,ICameraService cameraService, IDataService dataService)
         {
             _CreatePhotoAsync = new Command(async _ => await CreatePhotoAsync());

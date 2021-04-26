@@ -61,6 +61,7 @@
             <TableSection Title="Photo">
                 <ViewCell>
                     <Image x:Name="resultImage" Aspect="Fill" HeightRequest="200"></Image>
+                    <!--<Image BindingContext="{Binding PhotoSource}" Aspect="Fill" HeightRequest="200"></Image>-->
                 </ViewCell>
             </TableSection>
         </TableView>
