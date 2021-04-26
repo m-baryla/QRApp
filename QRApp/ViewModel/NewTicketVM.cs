@@ -24,38 +24,32 @@ namespace QRApp.ViewModel
 
         private readonly ICameraService _cameraService;
         private readonly IPageService _pageService;
-        private readonly IScanService _scanService;
         private readonly IDataService _dataService;
         public ICommand _CreatePhotoAsync { get; private set; }
         public ICommand _SelectFromList { get; private set; }
-        public ICommand _SelectFromQR { get; private set; }
         public ImageSource PhotoSource { get { return _cameraService.PhotoSource; } }
 
-        private string _scanResult;
+        private string _scanResul;
         public string ScanResul
-        {
-            get
-            {
-                return _scanResult;
-            }
-            set
-            {
-                SetValue(ref _scanResult, value);
-            }
-        }
+        { get { return _scanResul; } set { SetValue(ref _scanResul, value); } }
 
-        public NewTicketVM(IPageService pageService, IScanService scanService,ICameraService cameraService, IDataService dataService)
+
+        public NewTicketVM(IPageService pageService,ICameraService cameraService, IDataService dataService)
         {
             _CreatePhotoAsync = new Command(async _ => await CreatePhotoAsync());
             _SelectFromList = new Command(_ => SelectFromList());
-            _SelectFromQR = new Command(_ => SelectFromQR());
+
             _cameraService = cameraService;
             _dataService = dataService;
             _pageService = pageService;
-            _scanService = scanService;
 
             ListLocations();
             ListMaschines();
+
+            MessagingCenter.Subscribe<ScanService, string>(this, "ResultScanSender", (sender, args) =>
+            {
+                ScanResul = args;
+            });
         }
         private IEnumerable<Location> ListLocations()
         {
@@ -75,16 +69,5 @@ namespace QRApp.ViewModel
         {
             await _pageService.PushModalAsync(new WorkPanelPage());
         }
-
-        private async void SelectFromQR()
-        {
-            //_scanService.ScanQR(new WorkPanelPage());
-            await _pageService.PushModalAsync(new ScanServicePage());
-            MessagingCenter.Subscribe<ScanService, string>(this, "ResultScanSender", (sender, args) =>
-            { 
-                _scanResult = args;
-            });
-        }
-
     }
 }

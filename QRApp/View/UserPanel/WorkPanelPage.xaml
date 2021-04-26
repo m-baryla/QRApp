@@ -2,7 +2,14 @@
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:userPanel="clr-namespace:QRApp.View.UserPanel;assembly=QRApp"
+             xmlns:view="clr-namespace:QRApp.View;assembly=QRApp"
              x:Class="QRApp.View.UserPanel.WorkPanelPage">
+
+    <NavigationPage Title="Scan" IconImageSource="">
+        <x:Arguments>
+            <view:ScanServicePage/>
+        </x:Arguments>
+    </NavigationPage>
 
     <NavigationPage Title="New Ticket" IconImageSource="">
         <x:Arguments>

@@ -7,7 +7,6 @@
         <ToolbarItem Text="[Preview]" Clicked="MenuItem_OnClicked"></ToolbarItem>
         <ToolbarItem Text="[Photo]" Command="{Binding _CreatePhotoAsync}"></ToolbarItem>
         <ToolbarItem Text="[Send]"></ToolbarItem>
-        <ToolbarItem Text="[QR_scan]" Command="{Binding _SelectFromQR}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
 
@@ -35,9 +34,9 @@
 
         <TableView Grid.Row="1" Grid.Column="0" HasUnevenRows="True">
             <TableSection Title="Temat / opis zgloszenia">
-                <EntryCell Label="Temat:" Placeholder="temat zgloszenia"/>
+                <EntryCell Label="Temat" Placeholder="temat zgloszenia"/>
                 <ViewCell>
-                    <Editor HeightRequest="200" Background="white" TextColor="Black"/>
+                    <Editor Text="{Binding ScanResul}" HeightRequest="200" Background="white" TextColor="Black"/>
                 </ViewCell>
             </TableSection>
         </TableView>

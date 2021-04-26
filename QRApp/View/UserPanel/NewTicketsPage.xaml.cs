@@ -14,7 +14,7 @@ namespace QRApp.View.UserPanel
         public NewTicketsPage()
         { 
             InitializeComponent();
-            BindingContext = new NewTicketVM(new PageService(),new ScanService(new DialogService(),new PageService()),new CameraService(),new DataService());
+            BindingContext = new NewTicketVM(new PageService(),new CameraService(),new DataService());
 
             foreach (var p in (BindingContext as NewTicketVM).Locations)
             {
