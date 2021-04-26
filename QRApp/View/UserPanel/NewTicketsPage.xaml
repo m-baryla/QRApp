@@ -25,7 +25,7 @@
         <TableView Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <TableSection Title="Wybor lokalizacji / maszyny">
                 <ViewCell>
-                    <Picker x:Name="pickerLocation" Title="{Binding ScanResul}" SelectedIndexChanged="PickerLocation_OnSelectedIndexChanged"></Picker>
+                    <Picker x:Name="pickerLocation" Title="Lokalizacja" SelectedIndexChanged="PickerLocation_OnSelectedIndexChanged"></Picker>
                 </ViewCell>
                 <ViewCell>
                     <Picker x:Name="pickerMaschine" Title="Maszyna" SelectedIndexChanged="PickerMaschine_OnSelectedIndexChanged"></Picker>

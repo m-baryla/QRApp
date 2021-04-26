@@ -3,18 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:forms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
              x:Class="QRApp.View.ScanServicePage">
-    <Grid
-        HorizontalOptions="FillAndExpand"
-        IsVisible="{Binding IsScanning}"
-        VerticalOptions="FillAndExpand">
-        <forms:ZXingScannerView
-            x:Name="zxing"
+
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <forms:ZXingScannerView                                      
+            IsScanning="{Binding IsScanning}" 
             IsAnalyzing="{Binding IsAnalyzing}"
-            IsScanning="{Binding IsScanning}"
-            ScanResultCommand="{Binding OnScanResult}" />
-        <forms:ZXingDefaultOverlay
-            BottomText="Place the red line over the barcode you'd like to scan."
-            HeightRequest="20"
-            TopText="Accepts EAN-8 or EAN-13 barcodes" />
+            Result="{Binding Result, Mode=TwoWay}" 
+            ScanResultCommand="{Binding ScanCommand}" />
+        <forms:ZXingDefaultOverlay               
+            x:Name="scannerOverlay"                                                       
+            BottomText="Place the red line over the barcode you'd like to scan." />
+
     </Grid>
+
 </ContentPage>

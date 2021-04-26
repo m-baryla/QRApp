@@ -16,7 +16,7 @@ namespace QRApp.View.UserPanel
         public WikiPage()
         {
             InitializeComponent();
-            BindingContext = new WikiVM(new PageService());
+            BindingContext = new WikiVM(new PageService(), new DataService());
         }
 
         private void ListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)

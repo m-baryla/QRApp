@@ -14,6 +14,7 @@ namespace QRApp.ViewModel
     public class HistoryVM : BaseVM
     {
         private readonly IPageService _pageService;
+        private readonly IDataService _dataService;
 
         public ObservableCollection<HistoryDetail> HistoryDetailsList { get; set; } = new ObservableCollection<HistoryDetail>();
         public ICommand _GoToDetailPage { get; private set; }
@@ -26,11 +27,12 @@ namespace QRApp.ViewModel
             set { SetValue(ref _selectedHistoryDetail, value); }
         }
 
-        public HistoryVM(IPageService pageService)
+        public HistoryVM(IPageService pageService, IDataService dataService)
         {
             _GoToDetailPage = new Command(_ => GoToDetailPage());
 
             _pageService = pageService;
+            _dataService = dataService;
 
             ListOfHistoryDetail();
         }
@@ -47,20 +49,7 @@ namespace QRApp.ViewModel
 
         public IEnumerable<HistoryDetail> ListOfHistoryDetail(string searchString = null)
         {
-            HistoryDetailsList = new ObservableCollection<HistoryDetail>
-            {
-                new HistoryDetail { Name = "aaa1", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "bbb2", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "ccc3", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "ddd4", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "abc5", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "bca6", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "cab7", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "c7", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "a8b", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "b9a", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "c0c", Detail = "detail_test99999999" }
-            };
+            HistoryDetailsList = _dataService.HistoryDetailsList();
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return HistoryDetailsList;

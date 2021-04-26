@@ -25,20 +25,32 @@ namespace QRApp.ViewModel
         private readonly ICameraService _cameraService;
         private readonly IPageService _pageService;
         private readonly IScanService _scanService;
+        private readonly IDataService _dataService;
         public ICommand _CreatePhotoAsync { get; private set; }
         public ICommand _SelectFromList { get; private set; }
         public ICommand _SelectFromQR { get; private set; }
         public ImageSource PhotoSource { get { return _cameraService.PhotoSource; } }
 
         private string _scanResult;
-        public string ScanResul { get { return _scanResult; } set { SetValue(ref _scanResult, value); } }
+        public string ScanResul
+        {
+            get
+            {
+                return _scanResult;
+            }
+            set
+            {
+                SetValue(ref _scanResult, value);
+            }
+        }
 
-        public NewTicketVM(IPageService pageService, IScanService scanService,ICameraService cameraService)
+        public NewTicketVM(IPageService pageService, IScanService scanService,ICameraService cameraService, IDataService dataService)
         {
             _CreatePhotoAsync = new Command(async _ => await CreatePhotoAsync());
             _SelectFromList = new Command(_ => SelectFromList());
             _SelectFromQR = new Command(_ => SelectFromQR());
             _cameraService = cameraService;
+            _dataService = dataService;
             _pageService = pageService;
             _scanService = scanService;
 
@@ -47,38 +59,12 @@ namespace QRApp.ViewModel
         }
         private IEnumerable<Location> ListLocations()
         {
-            Locations = new ObservableCollection<Location>
-            {
-                new Location { LocationName = "Location1"},
-                new Location { LocationName = "Location2"},
-                new Location { LocationName = "Location3"},
-                new Location { LocationName = "Location4"},
-                new Location { LocationName = "Location5"},
-                new Location { LocationName = "Location6"},
-                new Location { LocationName = "Location7"},
-                new Location { LocationName = "Location8"},
-                new Location { LocationName = "Location9"},
-                new Location { LocationName = "Location10"},
-                new Location { LocationName = "Location11"}
-            };
+            Locations = _dataService.ListLocations();
             return Locations;
         }
         private IEnumerable<Maschine> ListMaschines()
         {
-            Maschines = new ObservableCollection<Maschine>
-            {
-                new Maschine { MaschineName = "Maschine1"},
-                new Maschine { MaschineName = "Maschine2"},
-                new Maschine { MaschineName = "Maschine3"},
-                new Maschine { MaschineName = "Maschine4"},
-                new Maschine { MaschineName = "Maschine5"},
-                new Maschine { MaschineName = "Maschine6"},
-                new Maschine { MaschineName = "Maschine7"},
-                new Maschine { MaschineName = "Maschine8"},
-                new Maschine { MaschineName = "Maschine9"},
-                new Maschine { MaschineName = "Maschine10"},
-                new Maschine { MaschineName = "Maschine11"}
-            };
+            Maschines = _dataService.ListMaschines();
             return Maschines;
         }
         private Task<ImageSource> CreatePhotoAsync()
@@ -90,14 +76,15 @@ namespace QRApp.ViewModel
             await _pageService.PushModalAsync(new WorkPanelPage());
         }
 
-        private void SelectFromQR()
+        private async void SelectFromQR()
         {
-            _scanService.ScanQR(new WorkPanelPage());
-
+            //_scanService.ScanQR(new WorkPanelPage());
+            await _pageService.PushModalAsync(new ScanServicePage());
             MessagingCenter.Subscribe<ScanService, string>(this, "ResultScanSender", (sender, args) =>
-            {
+            { 
                 _scanResult = args;
             });
         }
+
     }
 }

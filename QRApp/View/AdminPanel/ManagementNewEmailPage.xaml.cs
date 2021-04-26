@@ -15,17 +15,12 @@ namespace QRApp.View.AdminPanel
         public ManagementNewEmailPage()
         {
             InitializeComponent();
-            BindingContext = new AdressEmailVM(new PageService());
+            BindingContext = new AdressEmailVM(new DataService());
         }
         private void Handle_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ListView.ItemsSource = (BindingContext as AdressEmailVM).ListOfEmailAdress(e.NewTextValue);
+            ListView.ItemsSource = (BindingContext as AdressEmailVM).GetAdressesEmailsSearch(e.NewTextValue);
         }
-        private async void RefreshView_OnRefreshing(object sender, EventArgs e)
-        {
-            await Task.Delay(2000);
-            RefreshView.IsRefreshing = false;
-            //update
-        }
+
     }
 }

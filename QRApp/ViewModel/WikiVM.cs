@@ -16,10 +16,11 @@ namespace QRApp.ViewModel
     public class WikiVM : BaseVM
     {
         private readonly IPageService _pageService;
+        private readonly IDataService _dataService;
         public ObservableCollection<WikiDetail> WikiDetailsList { get; set; } = new ObservableCollection<WikiDetail>();
 
         public ICommand _GoToDetailPage { get; private set; }
-        public ICommand _GoToNewWikiPage{ get; private set; }
+        public ICommand _GoToNewWikiPage { get; private set; }
 
         private WikiDetail _selectedWikiDetail;
         public WikiDetail SelectedWikiDetail
@@ -28,12 +29,13 @@ namespace QRApp.ViewModel
             set { SetValue(ref _selectedWikiDetail, value); }
         }
 
-        public WikiVM(IPageService pageService)
+        public WikiVM(IPageService pageService, IDataService dataService)
         {
             _GoToDetailPage = new Command(_ => GoToDetailPage());
             _GoToNewWikiPage = new Command(_ => GoToNewWikiPage());
 
             _pageService = pageService;
+            _dataService = dataService;
 
             ListOfWikiDetail();
         }
@@ -54,20 +56,7 @@ namespace QRApp.ViewModel
 
         public IEnumerable<WikiDetail> ListOfWikiDetail(string searchString = null)
         {
-            WikiDetailsList = new ObservableCollection<WikiDetail>
-            {
-                new WikiDetail {Name = "aaa1", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "bbb2", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "ccc3", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "ddd4", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "abc5", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "bca6", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "cab7", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "qqq", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "a8b", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "b9a", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "c0c", Detail = "detail_test99999999"}
-            };
+            WikiDetailsList = _dataService.ListOfWikiDetail();
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return WikiDetailsList;

@@ -14,7 +14,7 @@ namespace QRApp.View
     {
         public ScanServicePage()
         {
-            BindingContext = new ScanService(new PageService(),new DialogService());
+            BindingContext = new ScanService(new DialogService(), new PageService());
 
             InitializeComponent();
         }
