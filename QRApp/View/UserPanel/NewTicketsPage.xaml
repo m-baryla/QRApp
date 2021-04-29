@@ -24,10 +24,18 @@
         <TableView Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <TableSection Title="Wybor lokalizacji / maszyny">
                 <ViewCell>
-                    <Picker x:Name="pickerLocation" Title="Lokalizacja" SelectedIndexChanged="PickerLocation_OnSelectedIndexChanged"></Picker>
+                    <Picker x:Name="pickerLocation" 
+                            Title="Lokalizacja" 
+                            ItemsSource="{Binding Locations}"
+                            ItemDisplayBinding="{Binding LocationName}"
+                            SelectedItem="{Binding _SelectedLocation}"></Picker>
                 </ViewCell>
                 <ViewCell>
-                    <Picker x:Name="pickerMaschine" Title="Maszyna" SelectedIndexChanged="PickerMaschine_OnSelectedIndexChanged"></Picker>
+                    <Picker x:Name="pickerMaschine" 
+                            Title="Maszyna" 
+                            ItemsSource="{Binding Equipments}"
+                            ItemDisplayBinding="{Binding EquipmentName}"
+                            SelectedItem="{Binding _SelectedLocation}"></Picker>
                 </ViewCell>
             </TableSection>
         </TableView>

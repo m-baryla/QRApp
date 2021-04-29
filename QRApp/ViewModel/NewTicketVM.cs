@@ -19,14 +19,18 @@ namespace QRApp.ViewModel
 {
     public class NewTicketVM : BaseVM
     {
-        public ObservableCollection<Location> Locations { get; set; } = new ObservableCollection<Location>();
-        public ObservableCollection<Maschine> Maschines { get; set; } = new ObservableCollection<Maschine>();
+        private List<DictLocation> _locations;
+        public List<DictLocation> Locations { get { return _locations; } set { SetValue(ref _locations, value); } }
+
+        private List<DictEquipment> _euipments;
+        public List<DictEquipment> Equipments { get { return _euipments; } set { SetValue(ref _euipments, value); } }
 
         private readonly ICameraService _cameraService;
         private readonly IPageService _pageService;
         private readonly IDataService _dataService;
         public ICommand _CreatePhotoAsync { get; private set; }
         public ICommand _SelectFromList { get; private set; }
+
         public ImageSource PhotoSource { get { return _cameraService.PhotoSource; } }
 
         private string _scanResul;
@@ -41,25 +45,27 @@ namespace QRApp.ViewModel
             _cameraService = cameraService;
             _dataService = dataService;
             _pageService = pageService;
-
+            
             ListLocations();
-            ListMaschines();
+            ListEquipment();
 
             MessagingCenter.Subscribe<ScanService, string>(this, "ResultScanSender", (sender, args) =>
             {
                 ScanResul = args;
             });
         }
-        private IEnumerable<Location> ListLocations()
+
+        private async Task ListLocations()
         {
-            Locations = _dataService.ListLocations();
-            return Locations;
+            Locations = await _dataService.LocationsList();
         }
-        private IEnumerable<Maschine> ListMaschines()
+
+        private async Task ListEquipment()
         {
-            Maschines = _dataService.ListMaschines();
-            return Maschines;
+            Equipments = await _dataService.EquipmentList();
         }
+
+
         private Task<ImageSource> CreatePhotoAsync()
         {
             return _cameraService.CreatePhotoAsync();

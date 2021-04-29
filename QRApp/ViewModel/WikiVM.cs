@@ -58,12 +58,12 @@ namespace QRApp.ViewModel
         private async Task GetWikis()
         {
             IsRefreshing = true;
-            WikiDetailsList = _dataService.ListOfWikiDetail();
+            WikiDetailsList = _dataService.WikiDetailList();
             IsRefreshing = false;
         }
         public IEnumerable<WikiDetail> GetWikiSearch(string searchString = null)
         {
-            _wikiDetailsList = _dataService.ListOfWikiDetail();
+            _wikiDetailsList = _dataService.WikiDetailList();
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _wikiDetailsList;

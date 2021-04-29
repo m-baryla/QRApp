@@ -11,9 +11,9 @@ namespace QRApp.Interface
     {
         Task<List<DictEmailAdress>> EmailAdressesList();
         ObservableCollection<HistoryDetail> HistoryDetailsList();
-        ObservableCollection<Location> ListLocations();
-        ObservableCollection<Maschine> ListMaschines();
-        ObservableCollection<WikiDetail> ListOfWikiDetail();
+        Task<List<DictLocation>> LocationsList();
+        Task<List<DictEquipment>> EquipmentList();
+        ObservableCollection<WikiDetail> WikiDetailList();
 
     }
 }

@@ -39,44 +39,22 @@ namespace QRApp.Service
             return historys;
         }
 
-        public ObservableCollection<Location> ListLocations()
+        public async Task<List<DictLocation>> LocationsList()
         {
-            var locations = new ObservableCollection<Location>
-            {
-                new Location {LocationName = "Location1"},
-                new Location {LocationName = "Location2"},
-                new Location {LocationName = "Location3"},
-                new Location {LocationName = "Location4"},
-                new Location {LocationName = "Location5"},
-                new Location {LocationName = "Location6"},
-                new Location {LocationName = "Location7"},
-                new Location {LocationName = "Location8"},
-                new Location {LocationName = "Location9"},
-                new Location {LocationName = "Location10"},
-                new Location {LocationName = "Location11"}
-            };
+            var httpClient = new HttpClient();
+            var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/DictLocations/");
+            var locations = JsonConvert.DeserializeObject<List<DictLocation>>(json);
             return locations;
         }
 
-        public ObservableCollection<Maschine> ListMaschines()
+        public async Task<List<DictEquipment>> EquipmentList()
         {
-            var maschines = new ObservableCollection<Maschine>
-            {
-                new Maschine { MaschineName = "Maschine1"},
-                new Maschine { MaschineName = "Maschine2"},
-                new Maschine { MaschineName = "Maschine3"},
-                new Maschine { MaschineName = "Maschine4"},
-                new Maschine { MaschineName = "Maschine5"},
-                new Maschine { MaschineName = "Maschine6"},
-                new Maschine { MaschineName = "Maschine7"},
-                new Maschine { MaschineName = "Maschine8"},
-                new Maschine { MaschineName = "Maschine9"},
-                new Maschine { MaschineName = "Maschine10"},
-                new Maschine { MaschineName = "Maschine11"}
-            };
-            return maschines;
+            var httpClient = new HttpClient();
+            var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/DictEquipments/");
+            var equipments = JsonConvert.DeserializeObject<List<DictEquipment>>(json);
+            return equipments;
         }
-        public ObservableCollection<WikiDetail> ListOfWikiDetail()
+        public ObservableCollection<WikiDetail> WikiDetailList()
         {
             var wikis = new ObservableCollection<WikiDetail>
             {
