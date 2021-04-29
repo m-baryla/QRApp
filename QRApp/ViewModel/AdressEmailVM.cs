@@ -14,8 +14,8 @@ namespace QRApp.ViewModel
 {
     public class AdressEmailVM : BaseVM
     {
-        private ObservableCollection<EmailAdress> _emailAdressesList;
-        public ObservableCollection<EmailAdress> EmailAdressesList {get { return _emailAdressesList; } set { SetValue(ref _emailAdressesList, value); } }
+        private List<DictEmailAdress> _emailAdressesList;
+        public List<DictEmailAdress> EmailAdressesList {get { return _emailAdressesList; } set { SetValue(ref _emailAdressesList, value); } }
 
         private bool _isRefreshing;
         public bool IsRefreshing
@@ -30,8 +30,8 @@ namespace QRApp.ViewModel
         public AdressEmailVM(IDataService dataService)
         {
             _AddNewAdressEmail = new Command(_ => AddNewAdressEmail());
-            _RefereshAdressEmail = new Command(_ => GetAdressEmails());
-            _GetAdressesEmailsSearch = new Command(_ => GetAdressesEmailsSearch());
+            _RefereshAdressEmail = new Command(async _ =>await GetAdressEmails());
+            _GetAdressesEmailsSearch = new Command(async _ =>await GetAdressesEmailsSearch());
 
             _dataService = dataService;
 
@@ -40,24 +40,24 @@ namespace QRApp.ViewModel
 
         private void AddNewAdressEmail()
         {
-            _emailAdressesList.Add(new EmailAdress { Email = "aaaa@op.pl" });
+            _emailAdressesList.Add(new DictEmailAdress { EmailAdressNotify = "aaaa@op.pl" });
         }
 
         private async Task GetAdressEmails()
         {
             IsRefreshing = true;
-            EmailAdressesList =  _dataService.EmailAdressesList();
+            EmailAdressesList =  await _dataService.EmailAdressesList();
             IsRefreshing = false;
         }
 
-        public IEnumerable<EmailAdress> GetAdressesEmailsSearch(string searchString = null)
+        public async Task<IEnumerable<DictEmailAdress>> GetAdressesEmailsSearch(string searchString = null)
         {
-            _emailAdressesList = _dataService.EmailAdressesList();
+            _emailAdressesList = await _dataService.EmailAdressesList();
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _emailAdressesList;
 
-            return _emailAdressesList.Where(c => c.Email.StartsWith(searchString));
+            return _emailAdressesList.Where(c => c.EmailAdressNotify.StartsWith(searchString));
         }
 
     }

@@ -25,7 +25,7 @@
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Padding="12">
-                                    <Label Text="{Binding Email}"></Label>
+                                <Label Text="{Binding EmailAdressNotify}"></Label>
                                  </StackLayout>
                             </ViewCell>
                         </DataTemplate>

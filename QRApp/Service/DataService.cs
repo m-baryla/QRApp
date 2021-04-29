@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
+using Newtonsoft.Json;
 using QRApp.Interface;
 using QRApp.Model;
 
@@ -10,22 +13,11 @@ namespace QRApp.Service
 
     public class DataService : IDataService
     {
-        public ObservableCollection<EmailAdress> EmailAdressesList()
+        public async Task<List<DictEmailAdress>> EmailAdressesList()
         {
-            var emails = new ObservableCollection<EmailAdress>
-            {
-                new EmailAdress {Email = "test@op.pl"},
-                new EmailAdress {Email = "test@op.pl"},
-                new EmailAdress {Email = "test@op.pl"},
-                new EmailAdress {Email = "test@op.pl"},
-                new EmailAdress {Email = "aaaa@op.pl"},
-                new EmailAdress {Email = "aaaa@op.pl"},
-                new EmailAdress {Email = "aaaa@op.pl"},
-                new EmailAdress {Email = "aaaa@op.pl"},
-                new EmailAdress {Email = "test@op.pl"},
-                new EmailAdress {Email = "tesa@op.pl"},
-                new EmailAdress {Email = "tesa@op.pl"}
-            };
+            var httpClient = new HttpClient();
+            var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/DictEmailAdresses/");
+            var emails = JsonConvert.DeserializeObject<List<DictEmailAdress>>(json);
             return emails;
         }
         public ObservableCollection<HistoryDetail> HistoryDetailsList()

@@ -17,9 +17,9 @@ namespace QRApp.View.AdminPanel
             InitializeComponent();
             BindingContext = new AdressEmailVM(new DataService());
         }
-        private void Handle_TextChanged(object sender, TextChangedEventArgs e)
+        private async void Handle_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ListView.ItemsSource = (BindingContext as AdressEmailVM).GetAdressesEmailsSearch(e.NewTextValue);
+            ListView.ItemsSource = await (BindingContext as AdressEmailVM).GetAdressesEmailsSearch(e.NewTextValue);
         }
 
     }
