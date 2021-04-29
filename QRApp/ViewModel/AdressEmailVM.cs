@@ -45,7 +45,6 @@ namespace QRApp.ViewModel
 
         private async Task GetAdressEmails()
         {
-            IsRefreshing = true;
             EmailAdressesList =  await _dataService.EmailAdressesList();
             IsRefreshing = false;
         }
