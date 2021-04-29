@@ -54,22 +54,11 @@ namespace QRApp.Service
             var equipments = JsonConvert.DeserializeObject<List<DictEquipment>>(json);
             return equipments;
         }
-        public ObservableCollection<WikiDetail> WikiDetailList()
+        public async Task<List<Wiki>> WikiDetailList()
         {
-            var wikis = new ObservableCollection<WikiDetail>
-            {
-                new WikiDetail {Name = "aaa1", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "bbb2", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "ccc3", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "ddd4", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "abc5", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "bca6", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "cab7", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "qqq", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "a8b", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "b9a", Detail = "detail_test99999999"},
-                new WikiDetail {Name = "c0c", Detail = "detail_test99999999"}
-            };
+            var httpClient = new HttpClient();
+            var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/Wikis/");
+            var wikis = JsonConvert.DeserializeObject<List<Wiki>>(json);
             return wikis;
         }
 

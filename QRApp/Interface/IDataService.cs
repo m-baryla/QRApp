@@ -13,7 +13,7 @@ namespace QRApp.Interface
         ObservableCollection<HistoryDetail> HistoryDetailsList();
         Task<List<DictLocation>> LocationsList();
         Task<List<DictEquipment>> EquipmentList();
-        ObservableCollection<WikiDetail> WikiDetailList();
+        Task<List<Wiki>> WikiDetailList();
 
     }
 }

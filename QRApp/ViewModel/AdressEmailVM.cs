@@ -23,7 +23,6 @@ namespace QRApp.ViewModel
 
         public ICommand _AddNewAdressEmail { get; private set; }
         public ICommand _RefereshAdressEmail { get; private set; }
-        public ICommand _GetAdressesEmailsSearch { get; private set; }
 
         public readonly IDataService _dataService;
 
@@ -31,7 +30,6 @@ namespace QRApp.ViewModel
         {
             _AddNewAdressEmail = new Command(_ => AddNewAdressEmail());
             _RefereshAdressEmail = new Command(async _ =>await GetAdressEmails());
-            _GetAdressesEmailsSearch = new Command(async _ =>await GetAdressesEmailsSearch());
 
             _dataService = dataService;
 

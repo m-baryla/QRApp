@@ -24,9 +24,9 @@ namespace QRApp.View.UserPanel
             (BindingContext as WikiVM)._GoToDetailPage.Execute(e.SelectedItem);
         }
 
-        private void Handle_TextChanged(object sender, TextChangedEventArgs e)
+        private async void Handle_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ListView.ItemsSource = (BindingContext as WikiVM).GetWikiSearch(e.NewTextValue);
+            ListView.ItemsSource = await (BindingContext as WikiVM).GetWikiSearch(e.NewTextValue);
         }
     }
 }

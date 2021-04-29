@@ -25,6 +25,12 @@ namespace QRApp.ViewModel
         private List<DictEquipment> _euipments;
         public List<DictEquipment> Equipments { get { return _euipments; } set { SetValue(ref _euipments, value); } }
 
+        private DictLocation _selecteDictLocation;
+        public DictLocation SelecteDictLocation { get{ return _selecteDictLocation; } set { SetValue(ref _selecteDictLocation, value); } }
+
+        private DictEquipment _selecteDictEquipments;
+        public DictEquipment SelecteDictEquipments { get { return _selecteDictEquipments; } set { SetValue(ref _selecteDictEquipments, value); } }
+
         private readonly ICameraService _cameraService;
         private readonly IPageService _pageService;
         private readonly IDataService _dataService;
@@ -49,6 +55,8 @@ namespace QRApp.ViewModel
             ListLocations();
             ListEquipment();
 
+            
+
             MessagingCenter.Subscribe<ScanService, string>(this, "ResultScanSender", (sender, args) =>
             {
                 ScanResul = args;
@@ -64,7 +72,6 @@ namespace QRApp.ViewModel
         {
             Equipments = await _dataService.EquipmentList();
         }
-
 
         private Task<ImageSource> CreatePhotoAsync()
         {

@@ -13,8 +13,7 @@
             <SearchBar  Placeholder="Szukaj..." 
                         TextChanged="Handle_TextChanged" 
                         Background="White" 
-                        TextColor="Black"
-                        SearchCommandParameter="{Binding _GetAdressesEmailsSearch}"></SearchBar>
+                        TextColor="Black"></SearchBar>
                 <ListView x:Name="ListView"
                           ItemsSource = "{Binding EmailAdressesList}" 
                           HasUnevenRows="True"

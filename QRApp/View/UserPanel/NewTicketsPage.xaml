@@ -28,14 +28,14 @@
                             Title="Lokalizacja" 
                             ItemsSource="{Binding Locations}"
                             ItemDisplayBinding="{Binding LocationName}"
-                            SelectedItem="{Binding _SelectedLocation}"></Picker>
+                            SelectedItem="{Binding SelecteDictLocation}"></Picker>
                 </ViewCell>
                 <ViewCell>
                     <Picker x:Name="pickerMaschine" 
                             Title="Maszyna" 
                             ItemsSource="{Binding Equipments}"
                             ItemDisplayBinding="{Binding EquipmentName}"
-                            SelectedItem="{Binding _SelectedLocation}"></Picker>
+                            SelectedItem="{Binding SelecteDictEquipments}"></Picker>
                 </ViewCell>
             </TableSection>
         </TableView>
@@ -44,7 +44,7 @@
             <TableSection Title="Temat / opis zgloszenia">
                 <EntryCell Label="Temat" Placeholder="temat zgloszenia"/>
                 <ViewCell>
-                    <Editor Text="{Binding ScanResul}" HeightRequest="200" Background="white" TextColor="Black"/>
+                    <Editor Text="{Binding SelecteDictLocation.LocationName}" HeightRequest="200" Background="white" TextColor="Black"/>
                 </ViewCell>
             </TableSection>
         </TableView>

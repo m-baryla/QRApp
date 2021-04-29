@@ -22,20 +22,20 @@ namespace QRApp.ViewModel
         public bool IsRefreshing
         { get { return _isRefreshing; } set { SetValue(ref _isRefreshing, value); } }
 
-        private ObservableCollection<WikiDetail> _wikiDetailsList;
-        public ObservableCollection<WikiDetail> WikiDetailsList { get { return _wikiDetailsList; } set { SetValue(ref _wikiDetailsList, value); } }
+        private List<Wiki> _wikiDetailsList;
+        public List<Wiki> WikiDetailsList { get { return _wikiDetailsList; } set { SetValue(ref _wikiDetailsList, value); } }
         public ICommand _GoToDetailPage { get; private set; }
         public ICommand _GoToNewWikiPage { get; private set; }
         public ICommand _RefereshWikis { get; private set; }
 
-        private WikiDetail _selectedWikiDetail;
-        public WikiDetail SelectedWikiDetail {get { return _selectedWikiDetail; } set { SetValue(ref _selectedWikiDetail, value); } }
+        private Wiki _selectedWikiDetail;
+        public Wiki SelectedWikiDetail {get { return _selectedWikiDetail; } set { SetValue(ref _selectedWikiDetail, value); } }
 
         public WikiVM(IPageService pageService, IDataService dataService)
         {
             _GoToDetailPage = new Command(_ => GoToDetailPage());
             _GoToNewWikiPage = new Command(_ => GoToNewWikiPage());
-            _RefereshWikis = new Command(_ => GetWikis());
+            _RefereshWikis = new Command(async _ => await GetWikis());
 
             _pageService = pageService;
             _dataService = dataService;
@@ -57,18 +57,17 @@ namespace QRApp.ViewModel
         }
         private async Task GetWikis()
         {
-            IsRefreshing = true;
-            WikiDetailsList = _dataService.WikiDetailList();
+            WikiDetailsList = await _dataService.WikiDetailList();
             IsRefreshing = false;
         }
-        public IEnumerable<WikiDetail> GetWikiSearch(string searchString = null)
+        public async Task<IEnumerable<Wiki>> GetWikiSearch(string searchString = null)
         {
-            _wikiDetailsList = _dataService.WikiDetailList();
+            _wikiDetailsList = await _dataService.WikiDetailList();
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _wikiDetailsList;
 
-            return _wikiDetailsList.Where(c => c.Name.StartsWith(searchString));
+            return _wikiDetailsList.Where(c => c.Topic.StartsWith(searchString));
         }
     }
 }

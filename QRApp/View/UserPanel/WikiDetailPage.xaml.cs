@@ -13,12 +13,12 @@ namespace QRApp.View.UserPanel
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class WikiDetailPage : ContentPage
     {
-		public WikiDetailPage(WikiDetail contact)
+		public WikiDetailPage(Wiki _wikiDetail)
         {
-            if (contact == null)
+            if (_wikiDetail == null)
                 throw new ArgumentNullException();
 
-            BindingContext = contact;
+            BindingContext = _wikiDetail;
 
             InitializeComponent();
         }
