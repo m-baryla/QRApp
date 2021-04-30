@@ -10,8 +10,7 @@ namespace QRApp.Interface
     public interface IDataService
     {
         Task<List<DictEmailAdress>> EmailAdressesList();
-        ObservableCollection<HistoryDetail> HistoryDetailsList();
-        Task<List<DictLocation>> LocationsList();
+        Task<List<TicketsHistory>> HistoryDetailsList();        Task<List<DictLocation>> LocationsList();
         Task<List<DictEquipment>> EquipmentList();
         Task<List<Wiki>> WikiDetailList();
 

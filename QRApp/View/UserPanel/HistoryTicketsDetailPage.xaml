@@ -2,7 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QRApp.View.UserPanel.HistoryTicketsDetailPage">
-    <ContentPage.Content>
-        <Label Text="{Binding Name}" />
-    </ContentPage.Content>
+    <StackLayout>
+        <Label Text="{Binding Topic}" />
+        <Label Text="{Binding Description}" />
+        <Label Text="{Binding LocationName}" />
+        <Label Text="{Binding EquipmentName}" />
+        <Label Text="{Binding UserName}" />
+        <Label Text="{Binding Status}" />
+        <Label Text="{Binding EmailAdress}" />
+        <Label Text="{Binding IsAnonymous}" />
+        <Label Text="{Binding Photo}" />
+    </StackLayout>
 </ContentPage>

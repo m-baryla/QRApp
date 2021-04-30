@@ -19,13 +19,13 @@ namespace QRApp.ViewModel
         private bool _isRefreshing;
         public bool IsRefreshing { get { return _isRefreshing; } set { SetValue(ref _isRefreshing, value); } }
 
-        private ObservableCollection<HistoryDetail> _historyDetailsList;
-        public ObservableCollection<HistoryDetail> HistoryDetailsList { get { return _historyDetailsList; } set { SetValue(ref _historyDetailsList, value); } }
+        private List<TicketsHistory> _historyDetailsList;
+        public List<TicketsHistory> HistoryDetailsList { get { return _historyDetailsList; } set { SetValue(ref _historyDetailsList, value); } }
         public ICommand _GoToDetailPage { get; private set; }
         public ICommand _RefereshHistoryTickets { get; private set; }
 
-        private HistoryDetail _selectedHistoryDetail;
-        public HistoryDetail SelectedHistoryDetail { get { return _selectedHistoryDetail; } set { SetValue(ref _selectedHistoryDetail, value); }}
+        private TicketsHistory _selectedHistoryDetail;
+        public TicketsHistory SelectedHistoryDetail { get { return _selectedHistoryDetail; } set { SetValue(ref _selectedHistoryDetail, value); }}
 
         public HistoryVM(IPageService pageService, IDataService dataService)
         {
@@ -48,18 +48,17 @@ namespace QRApp.ViewModel
         }
         private async Task GetHistoryTickets()
         {
-            IsRefreshing = true;
-            HistoryDetailsList = _dataService.HistoryDetailsList();
+            HistoryDetailsList = await _dataService.HistoryDetailsList();
             IsRefreshing = false;
         }
-        public IEnumerable<HistoryDetail> GetHistoryTicketsSearch(string searchString = null)
+        public async Task<IEnumerable<TicketsHistory>> GetHistoryTicketsSearch(string searchString = null)
         {
-            _historyDetailsList = _dataService.HistoryDetailsList();
+            _historyDetailsList = await _dataService.HistoryDetailsList();
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _historyDetailsList;
 
-            return _historyDetailsList.Where(c => c.Name.StartsWith(searchString));
+            return _historyDetailsList.Where(c => c.Topic.StartsWith(searchString));
         }
     }
 }

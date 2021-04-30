@@ -23,9 +23,9 @@ namespace QRApp.View.UserPanel
             (BindingContext as HistoryVM)._GoToDetailPage.Execute(e.SelectedItem);
         }
 
-        private void Handle_TextChanged(object sender, TextChangedEventArgs e)
+        private async void Handle_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ListView.ItemsSource = (BindingContext as HistoryVM).GetHistoryTicketsSearch(e.NewTextValue);
+            ListView.ItemsSource = await (BindingContext as HistoryVM).GetHistoryTicketsSearch(e.NewTextValue);
         }
     }
 }

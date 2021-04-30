@@ -20,22 +20,11 @@ namespace QRApp.Service
             var emails = JsonConvert.DeserializeObject<List<DictEmailAdress>>(json);
             return emails;
         }
-        public ObservableCollection<HistoryDetail> HistoryDetailsList()
+        public async Task<List<TicketsHistory>> HistoryDetailsList()
         {
-            var historys = new ObservableCollection<HistoryDetail>
-            {
-                new HistoryDetail { Name = "aaa1", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "bbb2", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "ccc3", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "ddd4", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "abc5", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "bca6", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "cab7", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "c7", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "a8b", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "b9a", Detail = "detail_test99999999" },
-                new HistoryDetail { Name = "c0c", Detail = "detail_test99999999" }
-            };
+            var httpClient = new HttpClient();
+            var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/TicketsHistories/TicketsHistoriesDetails/");
+            var historys = JsonConvert.DeserializeObject<List<TicketsHistory>>(json);
             return historys;
         }
 
@@ -57,7 +46,6 @@ namespace QRApp.Service
         public async Task<List<Wiki>> WikiDetailList()
         {
             var httpClient = new HttpClient();
-            //var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/Wikis/");
             var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/Wikis/GetWikiDetail/");
             var wikis = JsonConvert.DeserializeObject<List<Wiki>>(json);
             return wikis;
