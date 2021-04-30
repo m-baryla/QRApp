@@ -8,7 +8,5 @@ namespace QRApp.Model
 
         public int Id { get; set; }
         public string EmailAdressNotify { get; set; }
-
-        public virtual ICollection<Ticket> Tickets { get; set; }
     }
 }

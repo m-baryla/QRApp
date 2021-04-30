@@ -22,11 +22,11 @@ namespace QRApp.Service
             var emails = JsonConvert.DeserializeObject<List<DictEmailAdress>>(json);
             return emails;
         }
-        public async Task<List<TicketsHistory>> GetHistoryDetailsList()
+        public async Task<List<Ticket>> GetTicketHistoryDetailsList()
         {
             var httpClient = new HttpClient();
             var json = await httpClient.GetStringAsync(url + "/api/TicketsHistories/TicketsHistoriesDetails/");
-            var historys = JsonConvert.DeserializeObject<List<TicketsHistory>>(json);
+            var historys = JsonConvert.DeserializeObject<List<Ticket>>(json);
             return historys;
         }
 
@@ -52,7 +52,7 @@ namespace QRApp.Service
             var wikis = JsonConvert.DeserializeObject<List<Wiki>>(json);
             return wikis;
         }
-        public async Task PostNewTicket(TicketsDetails ticketsDetails)
+        public async Task PostNewTicket(Ticket ticketsDetails)
         {
             var httpClient = new HttpClient();
             var json = JsonConvert.SerializeObject(ticketsDetails);

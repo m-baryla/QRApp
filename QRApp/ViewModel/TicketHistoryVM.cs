@@ -12,22 +12,22 @@ using QRApp.Interface;
 
 namespace QRApp.ViewModel
 {
-    public class HistoryVM : BaseVM
+    public class TicketHistoryVM : BaseVM
     {
         private readonly IPageService _pageService;
         private readonly IDataService _dataService;
         private bool _isRefreshing;
         public bool IsRefreshing { get { return _isRefreshing; } set { SetValue(ref _isRefreshing, value); } }
 
-        private List<TicketsHistory> _historyDetailsList;
-        public List<TicketsHistory> HistoryDetailsList { get { return _historyDetailsList; } set { SetValue(ref _historyDetailsList, value); } }
+        private List<Ticket> _historyDetailsList;
+        public List<Ticket> HistoryDetailsList { get { return _historyDetailsList; } set { SetValue(ref _historyDetailsList, value); } }
         public ICommand _GoToDetailPage { get; private set; }
         public ICommand _RefereshHistoryTickets { get; private set; }
 
-        private TicketsHistory _selectedHistoryDetail;
-        public TicketsHistory SelectedHistoryDetail { get { return _selectedHistoryDetail; } set { SetValue(ref _selectedHistoryDetail, value); }}
+        private Ticket _selectedHistoryDetail;
+        public Ticket SelectedHistoryDetail { get { return _selectedHistoryDetail; } set { SetValue(ref _selectedHistoryDetail, value); }}
 
-        public HistoryVM(IPageService pageService, IDataService dataService)
+        public TicketHistoryVM(IPageService pageService, IDataService dataService)
         {
             _GoToDetailPage = new Command(_ => GoToDetailPage());
             _RefereshHistoryTickets = new Command(_ => GetHistoryTickets());
@@ -48,12 +48,12 @@ namespace QRApp.ViewModel
         }
         private async Task GetHistoryTickets()
         {
-            HistoryDetailsList = await _dataService.GetHistoryDetailsList();
+            HistoryDetailsList = await _dataService.GetTicketHistoryDetailsList();
             IsRefreshing = false;
         }
-        public async Task<IEnumerable<TicketsHistory>> GetHistoryTicketsSearch(string searchString = null)
+        public async Task<IEnumerable<Ticket>> GetHistoryTicketsSearch(string searchString = null)
         {
-            _historyDetailsList = await _dataService.GetHistoryDetailsList();
+            _historyDetailsList = await _dataService.GetTicketHistoryDetailsList();
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _historyDetailsList;

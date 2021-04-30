@@ -10,8 +10,5 @@ namespace QRApp.Model
     {
         public int Id { get; set; }
         public string LocationName { get; set; }
-
-        public virtual ICollection<Ticket> Tickets { get; set; }
-        public virtual ICollection<Wiki> Wikis { get; set; }
     }
 }

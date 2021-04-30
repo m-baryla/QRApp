@@ -11,7 +11,5 @@ namespace QRApp.Model
     { 
         public int Id { get; set; }
         public string Permissions { get; set; }
-
-        public virtual ICollection<User> Users { get; set; }
     }
 }

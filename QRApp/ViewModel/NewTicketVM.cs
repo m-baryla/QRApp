@@ -20,8 +20,8 @@ namespace QRApp.ViewModel
     public class NewTicketVM : BaseVM
     {
 
-        private TicketsDetails _ticketsDetails;
-        public TicketsDetails TicketsDetails { get { return _ticketsDetails; } set { SetValue(ref _ticketsDetails, value); } }
+        private Ticket _ticketsDetails;
+        public Ticket TicketsDetails { get { return _ticketsDetails; } set { SetValue(ref _ticketsDetails, value); } }
 
         private List<DictLocation> _locations;
         public List<DictLocation> Locations { get { return _locations; } set { SetValue(ref _locations, value); } }
@@ -63,7 +63,7 @@ namespace QRApp.ViewModel
             _cameraService = cameraService;
             _dataService = dataService;
             _pageService = pageService;
-            _ticketsDetails = new TicketsDetails();
+            _ticketsDetails = new Ticket();
             ListLocations();
             ListEquipment();
             ListEmailAdress();

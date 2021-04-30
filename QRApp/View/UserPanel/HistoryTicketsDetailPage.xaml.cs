@@ -12,7 +12,7 @@ namespace QRApp.View.UserPanel
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class HistoryTicketsDetailPage : ContentPage
     {
-        public HistoryTicketsDetailPage(TicketsHistory _ticketsHistoryDetails)
+        public HistoryTicketsDetailPage(Ticket _ticketsHistoryDetails)
         {
             if (_ticketsHistoryDetails == null)
                 throw new ArgumentNullException();
