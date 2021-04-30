@@ -43,13 +43,13 @@ namespace QRApp.ViewModel
 
         private async Task GetAdressEmails()
         {
-            EmailAdressesList =  await _dataService.EmailAdressesList();
+            EmailAdressesList =  await _dataService.GetEmailAdressesList();
             IsRefreshing = false;
         }
 
         public async Task<IEnumerable<DictEmailAdress>> GetAdressesEmailsSearch(string searchString = null)
         {
-            _emailAdressesList = await _dataService.EmailAdressesList();
+            _emailAdressesList = await _dataService.GetEmailAdressesList();
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _emailAdressesList;

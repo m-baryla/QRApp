@@ -6,7 +6,7 @@
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="[Preview]" Clicked="MenuItem_OnClicked"></ToolbarItem>
         <ToolbarItem Text="[Photo]" Command="{Binding _CreatePhotoAsync}"></ToolbarItem>
-        <ToolbarItem Text="[Send]"></ToolbarItem>
+        <ToolbarItem Text="[Send]" Command="{Binding _SendNewTicket}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
 
@@ -42,9 +42,9 @@
 
         <TableView Grid.Row="1" Grid.Column="0" HasUnevenRows="True">
             <TableSection Title="Temat / opis zgloszenia">
-                <EntryCell Label="Temat" Placeholder="temat zgloszenia"/>
+                <EntryCell Label="Temat" Text="{Binding TicketsDetails.Topic}" Placeholder="temat zgloszenia"/>
                 <ViewCell>
-                    <Editor Text="{Binding SelecteDictLocation.LocationName}" HeightRequest="200" Background="white" TextColor="Black"/>
+                    <Editor Text="{Binding TicketsDetails.Description}" HeightRequest="200" Background="white" TextColor="Black"/>
                 </ViewCell>
             </TableSection>
         </TableView>

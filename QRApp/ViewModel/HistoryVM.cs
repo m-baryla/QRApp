@@ -48,12 +48,12 @@ namespace QRApp.ViewModel
         }
         private async Task GetHistoryTickets()
         {
-            HistoryDetailsList = await _dataService.HistoryDetailsList();
+            HistoryDetailsList = await _dataService.GetHistoryDetailsList();
             IsRefreshing = false;
         }
         public async Task<IEnumerable<TicketsHistory>> GetHistoryTicketsSearch(string searchString = null)
         {
-            _historyDetailsList = await _dataService.HistoryDetailsList();
+            _historyDetailsList = await _dataService.GetHistoryDetailsList();
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _historyDetailsList;

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
@@ -13,43 +14,51 @@ namespace QRApp.Service
 
     public class DataService : IDataService
     {
-        public async Task<List<DictEmailAdress>> EmailAdressesList()
+        private const string url = "http://192.168.1.83:8030";
+        public async Task<List<DictEmailAdress>> GetEmailAdressesList()
         {
             var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/DictEmailAdresses/");
+            var json = await httpClient.GetStringAsync(url + "/api/DictEmailAdresses/");
             var emails = JsonConvert.DeserializeObject<List<DictEmailAdress>>(json);
             return emails;
         }
-        public async Task<List<TicketsHistory>> HistoryDetailsList()
+        public async Task<List<TicketsHistory>> GetHistoryDetailsList()
         {
             var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/TicketsHistories/TicketsHistoriesDetails/");
+            var json = await httpClient.GetStringAsync(url + "/api/TicketsHistories/TicketsHistoriesDetails/");
             var historys = JsonConvert.DeserializeObject<List<TicketsHistory>>(json);
             return historys;
         }
 
-        public async Task<List<DictLocation>> LocationsList()
+        public async Task<List<DictLocation>> GetLocationsList()
         {
             var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/DictLocations/");
+            var json = await httpClient.GetStringAsync(url + "/api/DictLocations/");
             var locations = JsonConvert.DeserializeObject<List<DictLocation>>(json);
             return locations;
         }
 
-        public async Task<List<DictEquipment>> EquipmentList()
+        public async Task<List<DictEquipment>> GetEquipmentList()
         {
             var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/DictEquipments/");
+            var json = await httpClient.GetStringAsync(url + "/api/DictEquipments/");
             var equipments = JsonConvert.DeserializeObject<List<DictEquipment>>(json);
             return equipments;
         }
-        public async Task<List<Wiki>> WikiDetailList()
+        public async Task<List<Wiki>> GetWikiDetailList()
         {
             var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/Wikis/GetWikiDetail/");
+            var json = await httpClient.GetStringAsync(url + "/api/Wikis/GetWikiDetail/");
             var wikis = JsonConvert.DeserializeObject<List<Wiki>>(json);
             return wikis;
         }
-
+        public async Task PostNewTicket(TicketsDetails ticketsDetails)
+        {
+            var httpClient = new HttpClient();
+            var json = JsonConvert.SerializeObject(ticketsDetails);
+            StringContent content = new StringContent(json);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = await httpClient.PostAsync(url + "/api/Tickets/", content);
+        }
     }
 }

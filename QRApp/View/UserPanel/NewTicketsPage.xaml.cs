@@ -36,15 +36,5 @@ namespace QRApp.View.UserPanel
                 throw;
             }
         }
-        private void PickerLocation_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            //var loca = pickerLocation.Items[pickerLocation.SelectedIndex];
-        }
-
-        private void PickerMaschine_OnSelectedIndexChanged(object sender, EventArgs e)
-        {
-            //var mach = pickerMaschine.Items[pickerMaschine.SelectedIndex];
-        }
-
     }
 }
