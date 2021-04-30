@@ -3,11 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QRApp.View.UserPanel.WikiDetailPage">
     <StackLayout>
-        <Label Text="{Binding Id}" />
-        <Label Text="{Binding IdLocation}" />
-        <Label Text="{Binding IdEquipment}" />
         <Label Text="{Binding Topic}" />
         <Label Text="{Binding Description}" />
+        <Label Text="{Binding LocationName}" />
+        <Label Text="{Binding EquipmentName}" />
         <Label Text="{Binding Photo}" />
     </StackLayout>
 </ContentPage>

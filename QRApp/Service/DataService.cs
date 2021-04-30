@@ -57,7 +57,8 @@ namespace QRApp.Service
         public async Task<List<Wiki>> WikiDetailList()
         {
             var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/Wikis/");
+            //var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/Wikis/");
+            var json = await httpClient.GetStringAsync("http://192.168.1.83:8030/api/Wikis/GetWikiDetail/");
             var wikis = JsonConvert.DeserializeObject<List<Wiki>>(json);
             return wikis;
         }
