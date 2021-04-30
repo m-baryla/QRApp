@@ -52,15 +52,10 @@
         <TableView Grid.Row="2" Grid.Column="0">
             <TableSection Title="Dodaj powiadomienie email">
                 <ViewCell>
-                    <StackLayout>
-                        <Picker Title="Wybierz email z listy">
-                            <Picker.Items>
-                                <x:String>1111@op.pl</x:String>
-                                <x:String>2222@op.pl</x:String>
-                                <x:String>3333@op.pl</x:String>
-                            </Picker.Items>
-                        </Picker>
-                    </StackLayout>
+                    <Picker  Title="Wbierz z listy email" 
+                             ItemsSource="{Binding EmailAdresses}"
+                             ItemDisplayBinding="{Binding EmailAdressNotify }"
+                             SelectedItem="{Binding SelecteDictEmailAdress}"></Picker>
                 </ViewCell>
             </TableSection>
 

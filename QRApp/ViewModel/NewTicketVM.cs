@@ -35,9 +35,12 @@ namespace QRApp.ViewModel
         private DictEquipment _selecteDictEquipments = null;
         public DictEquipment SelecteDictEquipments { get { return _selecteDictEquipments; } set { SetValue(ref _selecteDictEquipments, value); } }
 
-        //public string SelecteDictEquipments;
-        //public string SelecteDictLocation;
-
+        private List<DictEmailAdress> _emailAdresses;
+        public List<DictEmailAdress> EmailAdresses { get { return _emailAdresses; } set { SetValue(ref _emailAdresses, value); } }
+        
+        private DictEmailAdress _selecteDictEmailAdress = null;
+        public DictEmailAdress SelecteDictEmailAdress { get { return _selecteDictEmailAdress; } set { SetValue(ref _selecteDictEmailAdress, value); } }
+        
         private readonly ICameraService _cameraService;
         private readonly IPageService _pageService;
         private readonly IDataService _dataService;
@@ -60,21 +63,10 @@ namespace QRApp.ViewModel
             _cameraService = cameraService;
             _dataService = dataService;
             _pageService = pageService;
-            
+            _ticketsDetails = new TicketsDetails();
             ListLocations();
             ListEquipment();
-
-            _ticketsDetails = new TicketsDetails();
-
-            //_ticketsDetails.Topic = "";
-            //_ticketsDetails.Description = "";
-            ////_ticketsDetails.LocationName = SelecteDictEquipments;
-            ////_ticketsDetails.EquipmentName = SelecteDictLocation;
-            //_ticketsDetails.EmailAdress = "test@op.pl";
-            //_ticketsDetails.Status = "Status1";
-            //_ticketsDetails.IsAnonymous = true;
-            //_ticketsDetails.Photo = new byte[1];
-            //_ticketsDetails.UserName = "testlogin";
+            ListEmailAdress();
 
             MessagingCenter.Subscribe<ScanService, string>(this, "ResultScanSender", (sender, args) =>
             {
@@ -91,6 +83,10 @@ namespace QRApp.ViewModel
         {
             Equipments = await _dataService.GetEquipmentList();
         }
+        private async Task ListEmailAdress()
+        {
+            EmailAdresses = await _dataService.GetEmailAdressesList();
+        }
 
         private Task<ImageSource> CreatePhotoAsync()
         {
@@ -105,7 +101,7 @@ namespace QRApp.ViewModel
         {
             _ticketsDetails.LocationName = SelecteDictLocation.LocationName;
             _ticketsDetails.EquipmentName = SelecteDictEquipments.EquipmentName;
-            _ticketsDetails.EmailAdress = "test@op.pl";
+            _ticketsDetails.EmailAdress = SelecteDictEmailAdress.EmailAdressNotify;
             _ticketsDetails.Status = "Status1";
             _ticketsDetails.UserName = "testlogin";
             _ticketsDetails.Photo = new byte[1];
