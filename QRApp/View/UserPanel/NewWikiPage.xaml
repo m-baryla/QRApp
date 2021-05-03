@@ -6,7 +6,7 @@
 
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="Center">
         <Grid.RowDefinitions>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="130"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="200"></RowDefinition>
@@ -16,16 +16,29 @@
         </Grid.ColumnDefinitions>
 
         <TableView Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <TableSection Title="Info">
-                <TextCell Text="Nowe wiki 2021-04-18" Detail="Maszyna : X w Lokalizacji : Y"></TextCell>
+            <TableSection Title="Wybor lokalizacji / maszyny">
+                <ViewCell>
+                    <Picker x:Name="pickerLocation" 
+                            Title="Lokalizacja" 
+                            ItemsSource="{Binding Locations}"
+                            ItemDisplayBinding="{Binding LocationName}"
+                            SelectedItem="{Binding SelecteDictLocation}"></Picker>
+                </ViewCell>
+                <ViewCell>
+                    <Picker x:Name="pickerMaschine" 
+                            Title="Maszyna" 
+                            ItemsSource="{Binding Equipments}"
+                            ItemDisplayBinding="{Binding EquipmentName}"
+                            SelectedItem="{Binding SelecteDictEquipments}"></Picker>
+                </ViewCell>
             </TableSection>
         </TableView>
 
         <TableView Grid.Row="1" Grid.Column="0" HasUnevenRows="True">
             <TableSection Title="Temat / opis wiki">
-                <EntryCell Label="Temat:" Placeholder="temat wiki"/>
+                <EntryCell Label="Temat" Text="{Binding WikisDetails.Topic}" Placeholder="temat zgloszenia"/>
                 <ViewCell>
-                    <Editor Placeholder="Opis wiki" HeightRequest="300" Background="white" TextColor="Black"/>
+                    <Editor Text="{Binding WikisDetails.Description}" HeightRequest="200" Background="white" TextColor="Black"/>
                 </ViewCell>
             </TableSection>
         </TableView>
@@ -33,7 +46,8 @@
         <TableView Grid.Row="2" Grid.Column="0" HasUnevenRows="True">
             <TableSection Title="Photo">
                 <ViewCell>
-                    <Image x:Name="resultImage" Aspect="Fill" HeightRequest="250"></Image>
+                    <Image x:Name="resultImage" Aspect="Fill" HeightRequest="200"></Image>
+                    <!--<Image BindingContext="{Binding PhotoSource}" Aspect="Fill" HeightRequest="200"></Image>-->
                 </ViewCell>
             </TableSection>
         </TableView>
@@ -47,12 +61,10 @@
                     <Button Text="Preview Photo" Style="{StaticResource buttonQRapp}" Clicked="MenuItem_OnClicked"/>
                 </ViewCell>
                 <ViewCell>
-                    <Button Text="Save" Style="{StaticResource buttonQRapp}"/>
+                    <Button Text="Save" Style="{StaticResource buttonQRapp}" Command="{Binding _SendNewWiki}"/>
                 </ViewCell>
             </TableSection>
         </TableView>
-
-
     </Grid>
 
 </ContentPage>

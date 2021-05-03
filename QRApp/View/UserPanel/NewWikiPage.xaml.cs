@@ -16,7 +16,7 @@ namespace QRApp.View.UserPanel
         public NewWikiPage()
         {
             InitializeComponent();
-            BindingContext = new NewWikiVM(new CameraService());
+            BindingContext = new NewWikiVM(new CameraService(),new DataService());
         }
 
         private void MenuItem_OnClicked(object sender, EventArgs e)

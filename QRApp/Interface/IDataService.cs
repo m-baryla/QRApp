@@ -15,7 +15,6 @@ namespace QRApp.Interface
         Task<List<DictEquipment>> GetEquipmentList();
         Task<List<Wiki>> GetWikiDetailList();
         Task PostNewTicket(Ticket ticketsDetails);
-
-        //Task PostNewWiki(Wiki wikiDetails);
+        Task PostNewWiki(Wiki wikiDetails);
     }
 }

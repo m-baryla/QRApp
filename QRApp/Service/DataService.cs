@@ -61,5 +61,14 @@ namespace QRApp.Service
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             var result = await httpClient.PostAsync(url + "/api/Tickets/", content);
         }
+
+        public async Task PostNewWiki(Wiki wikiDetails)
+        {
+            var httpClient = new HttpClient();
+            var json = JsonConvert.SerializeObject(wikiDetails);
+            StringContent content = new StringContent(json);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = await httpClient.PostAsync(url + "/api/Wikis/", content);
+        }
     }
 }
