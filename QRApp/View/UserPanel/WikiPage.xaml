@@ -25,8 +25,8 @@
                         <DataTemplate>
                             <ViewCell>
                                 <StackLayout Padding="12">
-                                    <Label Text="{Binding Topic}"></Label>
-                                    <Label Text="{Binding Description}"></Label>
+                                    <Label Text="{Binding Topic}" FontSize="Title" Padding="5"></Label>
+                                    <Label Text="{Binding Description}" FontSize="Small" Padding="5"></Label>
                                 </StackLayout>
                             </ViewCell>
                         </DataTemplate>
