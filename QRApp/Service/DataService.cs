@@ -14,8 +14,8 @@ namespace QRApp.Service
 
     public class DataService : IDataService
     {
-        //private const string url = "http://192.168.1.83:8030";
-        private const string url = "http://192.168.13.39:8030";
+        private const string url = "http://192.168.1.87:8030";
+        //private const string url = "https://localhost:44337";
         public async Task<List<DictEmailAdress>> GetEmailAdressesList()
         {
             var httpClient = new HttpClient();

@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Plugin.Media;
 using QRApp.Interface;
 using QRApp.Model;
 using Xamarin.Essentials;
@@ -67,7 +71,8 @@ namespace QRApp.ViewModel
         {
             _wikisDetails.LocationName = SelecteDictLocation.LocationName;
             _wikisDetails.EquipmentName = SelecteDictEquipments.EquipmentName;
-            _wikisDetails.Photo = new byte[1];
+
+            _wikisDetails.Photo = _cameraService.PhotoBytes;
 
             return _dataService.PostNewWiki(_wikisDetails);
         }

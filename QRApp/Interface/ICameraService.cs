@@ -10,5 +10,7 @@ namespace QRApp.Interface
     {
         Task<ImageSource> CreatePhotoAsync();
         ImageSource PhotoSource { get; set; }
+         byte[] PhotoBytes { get; set; }
+
     }
 }

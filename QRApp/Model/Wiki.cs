@@ -4,6 +4,8 @@
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
+using System;
+
 namespace QRApp.Model
 {
     public partial class Wiki
@@ -13,6 +15,5 @@ namespace QRApp.Model
         public string Topic { get; set; }
         public string Description { get; set; }
         public byte[] Photo { get; set; }
-
     }
 }
