@@ -26,7 +26,7 @@ namespace QRApp.Service
         public async Task<List<Ticket>> GetTicketHistoryDetailsList()
         {
             var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync(url + "/api/TicketsHistories/TicketsHistoriesDetails/");
+            var json = await httpClient.GetStringAsync(url + "/api/Tickets/TicketsHistoriesDetails/");
             var historys = JsonConvert.DeserializeObject<List<Ticket>>(json);
             return historys;
         }
