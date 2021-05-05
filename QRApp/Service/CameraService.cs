@@ -50,40 +50,6 @@ namespace QRApp.Service
             }
         }
 
-        //public async Task<Image> CreatePhotoAsyncImages()
-        //{
-        //    try
-        //    {
-        //        var result = await MediaPicker.CapturePhotoAsync();
-        //        var ms = new MemoryStream();
-
-        //        if (result != null)
-        //        {
-        //            var stream = await result.OpenReadAsync();
-
-        //            PhotoSource = ImageSource.FromStream(() => stream);
-
-        //            stream.CopyTo(ms);
-        //            PhotoBytes = ms.ToArray();
-
-        //            var returnImage = ByteToImageConvert(Photo, PhotoBytes);
-        //            return returnImage;
-        //        }
-
-        //        return null;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        throw;
-        //    }
-        //}
-
-        //public Image ByteToImageConvert(Image resultImage, byte[] photo)
-        //{
-        //    resultImage.Source = ImageSource.FromStream(() => new MemoryStream(photo));
-        //    return resultImage;
-        //}
-
         private void ImageToByte(Stream stream, out byte[] photoBytes)
         {
             var ms = new MemoryStream();

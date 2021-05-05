@@ -38,7 +38,6 @@ namespace QRApp.ViewModel
         private readonly IDataService _dataService;
 
         public ICommand _CreatePhotoAsync { get; private set; }
-        //public ImageSource PhotoSource { get { return _cameraService.PhotoSource; } }
         public byte[] PhotoBytes { get { return _cameraService.PhotoBytes; } }
 
         public ICommand _SendNewWiki { get; private set; }

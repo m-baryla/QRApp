@@ -48,11 +48,10 @@ namespace QRApp.ViewModel
         public ICommand _SelectFromList { get; private set; }
         public ICommand _SendNewTicket { get; private set; }
 
-        public ImageSource PhotoSource { get { return _cameraService.PhotoSource; } }
-
         private string _scanResul;
-        public string ScanResul
-        { get { return _scanResul; } set { SetValue(ref _scanResul, value); } }
+        public string ScanResul { get { return _scanResul; } set { SetValue(ref _scanResul, value); } }
+
+        public byte[] PhotoBytes { get { return _cameraService.PhotoBytes; } }
 
         public NewTicketVM(IPageService pageService,ICameraService cameraService, IDataService dataService)
         {
@@ -104,7 +103,7 @@ namespace QRApp.ViewModel
             _ticketsDetails.EmailAdress = SelecteDictEmailAdress.EmailAdressNotify;
             _ticketsDetails.Status = "Status1";
             _ticketsDetails.UserName = "testlogin";
-            _ticketsDetails.Photo = new byte[1];
+            _ticketsDetails.Photo = _cameraService.PhotoBytes;
 
 
             if (_ticketsDetails.UserName == null)
