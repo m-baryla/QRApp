@@ -9,8 +9,10 @@ using System.Windows.Input;
 using Plugin.Media;
 using QRApp.Interface;
 using QRApp.Model;
+using QRApp.Service;
 using Xamarin.Essentials;
 using Xamarin.Forms;
+using ZXing;
 
 namespace QRApp.ViewModel
 {
@@ -36,7 +38,8 @@ namespace QRApp.ViewModel
         private readonly IDataService _dataService;
 
         public ICommand _CreatePhotoAsync { get; private set; }
-        public ImageSource PhotoSource { get { return _cameraService.PhotoSource; } }
+        //public ImageSource PhotoSource { get { return _cameraService.PhotoSource; } }
+        public byte[] PhotoBytes { get { return _cameraService.PhotoBytes; } }
 
         public ICommand _SendNewWiki { get; private set; }
 
@@ -71,7 +74,6 @@ namespace QRApp.ViewModel
         {
             _wikisDetails.LocationName = SelecteDictLocation.LocationName;
             _wikisDetails.EquipmentName = SelecteDictEquipments.EquipmentName;
-
             _wikisDetails.Photo = _cameraService.PhotoBytes;
 
             return _dataService.PostNewWiki(_wikisDetails);
