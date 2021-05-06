@@ -19,12 +19,13 @@ namespace QRApp.View.UserPanel
                 throw new ArgumentNullException();
 
             BindingContext = _ticketsHistoryDetails;
-
+            
             InitializeComponent();
 
             var photo = _ticketsHistoryDetails.Photo;
             CameraService cameraService = new CameraService();
             cameraService.ByteToImage(resultImage, photo);
+
         }
     }
 }

@@ -4,9 +4,12 @@
 // If you have enabled NRTs for your project, then un-comment the following line:
 // #nullable disable
 
+using System.Collections.Generic;
+using QRApp.ViewModel;
+
 namespace QRApp.Model
 {
-    public partial class Ticket
+    public partial class Ticket : BaseVM
     {
         public string UserName { get; set; }
         public string Topic { get; set; }
@@ -18,5 +21,10 @@ namespace QRApp.Model
         public string EmailAdress { get; set; }
         public bool? IsAnonymous { get; set; }
 
+        private List<DictStatu> _status;
+        public List<DictStatu> StatusList { get { return _status; } set { SetValue(ref _status, value); } }
+
+        private DictStatu _selecteDictStatu = null;
+        public DictStatu SelecteDictStatu { get { return _selecteDictStatu; } set { SetValue(ref _selecteDictStatu, value); } }
     }
 }

@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using QRApp.Interface;
 using QRApp.Model;
+using QRApp.View.MainPanel;
 
 namespace QRApp.Service
 {
@@ -16,6 +17,13 @@ namespace QRApp.Service
     {
         private const string url = "http://192.168.1.87:8030";
         //private const string url = "https://localhost:44337";
+        public async Task<List<DictStatu>> GetStatusList()
+        {
+            var httpClient = new HttpClient();
+            var json = await httpClient.GetStringAsync(url + "/api/DictStatus/");
+            var status = JsonConvert.DeserializeObject<List<DictStatu>>(json);
+            return status;
+        }
         public async Task<List<DictEmailAdress>> GetEmailAdressesList()
         {
             var httpClient = new HttpClient();
@@ -69,6 +77,23 @@ namespace QRApp.Service
             StringContent content = new StringContent(json);
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             var result = await httpClient.PostAsync(url + "/api/Wikis/", content);
+        }
+
+        public async Task<bool> LoginAuth(User user)
+        {
+            var httpClient = new HttpClient();
+            var auth = string.Format("{0}:{1}", user.Login, Convert.ToBase64String(Encoding.UTF8.GetBytes(user.Password)));
+            var authHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(auth));
+            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeader);
+            var result = await httpClient.GetAsync(url + "/api/Users/GetUser/");
+            if (result.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

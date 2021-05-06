@@ -10,7 +10,7 @@ namespace QRApp.View.MainPanel
     {
         public MasterPage()
         {
-            BindingContext = new MasterPageVM(new PageService());
+            BindingContext = new MasterPageVM(new PageService(),new DataService(),new DialogService());
             InitializeComponent();
         }
 

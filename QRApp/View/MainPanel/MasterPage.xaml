@@ -5,9 +5,9 @@
              x:Class="QRApp.View.MainPanel.MasterPage">
 
     <StackLayout Spacing="20" VerticalOptions="Center">
-        <Entry Placeholder="Login" />
-        <Entry IsPassword="True" Placeholder="Haslo" />
-        <Button Text="Zaloguj" Style="{StaticResource buttonQRapp}" Command="{Binding _GoToModules}"/>
+        <Entry Text="{Binding User.Login}" Placeholder="Login" />
+        <Entry Text="{Binding User.Password}" IsPassword="True" Placeholder="Haslo" />
+        <Button Text="Zaloguj" Style="{StaticResource buttonQRapp}" Command="{Binding _Login}"/>
         <Button Text="Kontynuuj jako gosc" Style="{StaticResource buttonQRapp}"/>
     </StackLayout>
     
