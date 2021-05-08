@@ -7,10 +7,26 @@
         <ToolbarItem Text="Save" Command="{Binding }"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
-    <ContentPage.Content>
-        <StackLayout Spacing="20" VerticalOptions="Center">
-            <Label Text="ManagementAccountPage" VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand" />
-            <Button Text="Save" Style="{StaticResource buttonQRapp}"/>
-        </StackLayout>
-    </ContentPage.Content>
+    <StackLayout Spacing="20" VerticalOptions="Center">
+
+        <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="35">
+            <Entry Text="{Binding User.Login}" Placeholder="Login" />
+        </ContentView>
+
+        <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="35">
+            <Entry Text="{Binding User.Password_1}" IsPassword="True" Placeholder="Password" />
+        </ContentView>
+
+        <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="35">
+            <Entry Text="{Binding User.Password_2}" IsPassword="True" Placeholder="Password" />
+        </ContentView>
+
+        <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="12">
+            <Button Text="Create new account" 
+                    Style="{StaticResource buttonQRapp}" 
+                    Command="{Binding _AddNewAccount}"/>
+        </ContentView>
+
+    </StackLayout>
+
 </ContentPage>

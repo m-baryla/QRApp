@@ -11,5 +11,7 @@ namespace QRApp.Model
         public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public string Password_1 { get; set; }
+        public string Password_2 { get; set; }
     }
 }

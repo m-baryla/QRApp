@@ -126,5 +126,14 @@ namespace QRApp.Service
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             var result = await httpClient.PostAsync(url + "/api/DictEmailAdresses/", content);
         }
+
+        public async Task PostNewAccount(User user)
+        {
+            var httpClient = new HttpClient();
+            var json = JsonConvert.SerializeObject(user);
+            StringContent content = new StringContent(json);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = await httpClient.PostAsync(url + "/api/Users/", content);
+        }
     }
 }

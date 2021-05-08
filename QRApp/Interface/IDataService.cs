@@ -20,5 +20,6 @@ namespace QRApp.Interface
         Task<bool> LoginAuth(User user);
         Task PutTicket(int id, Ticket ticketsDetails);
         Task PostNewEmail(DictEmailAdress emailAdress);
+        Task PostNewAccount(User user);
     }
 }

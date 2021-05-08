@@ -17,6 +17,5 @@ namespace QRApp.View.UserSettingsPanel
         {
             ListView.ItemsSource = await (BindingContext as AdressEmailVM).GetAdressesEmailsSearch(e.NewTextValue);
         }
-
     }
 }

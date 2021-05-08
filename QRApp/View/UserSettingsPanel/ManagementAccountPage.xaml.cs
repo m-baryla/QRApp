@@ -1,4 +1,6 @@
-﻿using Xamarin.Forms;
+﻿using QRApp.Service;
+using QRApp.ViewModel;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace QRApp.View.UserSettingsPanel
@@ -9,6 +11,7 @@ namespace QRApp.View.UserSettingsPanel
         public ManagementAccountPage()
         {
             InitializeComponent();
+            BindingContext = new ManagementAccountVM(new DataService());
         }
     }
 }
