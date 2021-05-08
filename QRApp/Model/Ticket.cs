@@ -20,6 +20,5 @@ namespace QRApp.Model
         public string EquipmentName { get; set; }
         public string Status { get; set; }
         public string EmailAdress { get; set; }
-        public bool? IsAnonymous { get; set; }
     }
 }

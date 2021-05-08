@@ -73,7 +73,6 @@ namespace QRApp.ViewModel
         public NewTicketVM(IPageService pageService,ICameraService cameraService, IDataService dataService)
         {
             _CreatePhotoAsync = new Command(async _ => await CreatePhotoAsync());
-            _TEST = new Command(_ => TEST());
             _SendNewTicket = new Command(_ => SendNewTicket());
 
             _cameraService = cameraService;
@@ -145,9 +144,6 @@ namespace QRApp.ViewModel
         {
             return _cameraService.CreatePhotoAsync();
         }
-        private async void TEST()
-        {
-        }
 
         private Task SendNewTicket()
         {
@@ -175,11 +171,6 @@ namespace QRApp.ViewModel
             _ticketsDetails.UserName = "testlogin";
             _ticketsDetails.Photo = _cameraService.PhotoBytes;
 
-
-            if (_ticketsDetails.UserName == null)
-                _ticketsDetails.IsAnonymous = true;
-            else
-                _ticketsDetails.IsAnonymous = false;
 
             return _dataService.PostNewTicket(_ticketsDetails);
 

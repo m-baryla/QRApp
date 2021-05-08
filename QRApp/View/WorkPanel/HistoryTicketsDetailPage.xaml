@@ -48,9 +48,6 @@
                     <Label Text="{Binding Ticket.UserName}" Padding="12"/>
                 </ViewCell>
                 <ViewCell>
-                    <Label Text="{Binding Ticket.IsAnonymous}" Padding="12"/>
-                </ViewCell>
-                <ViewCell>
                     <Label Text="{Binding Ticket.EmailAdress}" Padding="12"/>
                 </ViewCell>
             </TableSection>

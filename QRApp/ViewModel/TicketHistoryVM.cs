@@ -74,7 +74,6 @@ namespace QRApp.ViewModel
             _putTicket.EquipmentName = Ticket.EquipmentName;
             _putTicket.Status = SelecteDictStatu.Status;
             _putTicket.EmailAdress = Ticket.EmailAdress;
-            _putTicket.IsAnonymous = Ticket.IsAnonymous;
 
             return _dataService.PutTicket(Ticket.Id, _putTicket);
         }

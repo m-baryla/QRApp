@@ -7,7 +7,6 @@
         <ToolbarItem Text="[Preview]" Clicked="MenuItem_OnClicked"></ToolbarItem>
         <ToolbarItem Text="[Photo]" Command="{Binding _CreatePhotoAsync}"></ToolbarItem>
         <ToolbarItem Text="[Send]" Command="{Binding _SendNewTicket}"></ToolbarItem>
-        <ToolbarItem Text="[TEST]" Command="{Binding _TEST}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
 
