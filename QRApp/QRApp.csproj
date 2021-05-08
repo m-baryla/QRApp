@@ -40,7 +40,7 @@
     <EmbeddedResource Update="View\UserSettingsPanel\ManagementAccountPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\UserSettingsPanel\ManagementNewAccountPage.xaml">
+    <EmbeddedResource Update="View\UserSettingsPanel\ManagementNewLocationEquipment.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\UserSettingsPanel\ManagementNewEmailPage.xaml">
@@ -70,6 +70,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Update="View\UserSettingsPanel\ManagementNewLocationEquipment.xaml.cs">
+      <DependentUpon>ManagementNewLocationEquipment.xaml</DependentUpon>
+    </Compile>
     <Compile Update="View\UserSettingsPanel\UserSettingsPanelPage.xaml.cs">
       <DependentUpon>UserSettingsPanelPage.xaml</DependentUpon>
     </Compile>

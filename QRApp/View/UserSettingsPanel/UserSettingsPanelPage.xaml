@@ -4,9 +4,9 @@
              xmlns:userSettingsPanel="clr-namespace:QRApp.View.UserSettingsPanel;assembly=QRApp"
              x:Class="QRApp.View.UserSettingsPanel.UserSettingsPanelPage">
 
-    <NavigationPage Title="New account" IconImageSource="">
+    <NavigationPage Title="New location equipment" IconImageSource="">
         <x:Arguments>
-            <userSettingsPanel:ManagementNewAccountPage/>
+            <userSettingsPanel:ManagementNewLocationEquipment/>
         </x:Arguments>
     </NavigationPage>
 

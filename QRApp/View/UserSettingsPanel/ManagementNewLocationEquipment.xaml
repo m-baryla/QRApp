@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QRApp.View.UserSettingsPanel.ManagementNewLocationEquipment">
+
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TableView Grid.Row="0" Grid.Column="0" HasUnevenRows="True">
+            <TableSection Title="Add new Location">
+                <ViewCell>
+                        <Entry Text="{Binding DictLocation.LocationName}" Placeholder="Location" />
+                </ViewCell>
+                <ViewCell>
+                    <Entry Text="{Binding DictLocation.Description}" Placeholder="Description" HeightRequest="100"/>
+                </ViewCell>
+                <ViewCell>
+                        <Button Text="Save new location" 
+                                Style="{StaticResource buttonQRapp}" 
+                                Command="{Binding _AddNewLocation}"/>
+                </ViewCell>
+            </TableSection>
+        </TableView>
+
+        <TableView Grid.Row="0" Grid.Column="1" HasUnevenRows="True">
+            <TableSection Title="Add new Equipment">
+                <ViewCell>
+                        <Entry Text="{Binding DictEquipments.EquipmentName}" Placeholder="Equipment" />
+                </ViewCell>
+                <ViewCell>
+                    <Entry Text="{Binding DictEquipments.Description}" Placeholder="Description" HeightRequest="100"/>
+                </ViewCell>
+                <ViewCell>
+                        <Button Text="SAve new equipment" 
+                                Style="{StaticResource buttonQRapp}" 
+                                Command="{Binding _AddNewEquipment}"/>
+                </ViewCell>
+            </TableSection>
+        </TableView>
+
+        <TableView Grid.Row="1" Grid.Column="0" HasUnevenRows="True">
+            <TableSection Title="Location List">
+                <ViewCell>
+                    <ScrollView>
+                        <StackLayout>
+                            <ListView ItemsSource = "{Binding Locations}" >
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Padding="12">
+                                                <Label Text="{Binding LocationName}" FontSize="Small" BackgroundColor="DimGray"></Label>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </ScrollView>
+                </ViewCell>
+            </TableSection>
+        </TableView>
+
+        <TableView Grid.Row="1" Grid.Column="1" HasUnevenRows="True">
+            <TableSection Title="Equipment List">
+                <ViewCell>
+                    <ScrollView>
+                        <StackLayout>
+                            <ListView ItemsSource = "{Binding Equipments}">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Padding="12">
+                                                <Label Text="{Binding EquipmentName}" FontSize="Small" BackgroundColor="DimGray"></Label>
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </ScrollView>
+                </ViewCell>
+            </TableSection>
+        </TableView>
+
+    </Grid>
+
+
+</ContentPage>

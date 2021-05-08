@@ -21,5 +21,8 @@ namespace QRApp.Interface
         Task PutTicket(int id, Ticket ticketsDetails);
         Task PostNewEmail(DictEmailAdress emailAdress);
         Task PostNewAccount(User user);
+        Task PostNewLocation(DictLocation location);
+        Task PostNewEquipment(DictEquipment equipment);
+
     }
 }

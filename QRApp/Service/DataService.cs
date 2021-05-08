@@ -135,5 +135,23 @@ namespace QRApp.Service
             content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
             var result = await httpClient.PostAsync(url + "/api/Users/", content);
         }
+
+        public async Task PostNewLocation(DictLocation location)
+        {
+            var httpClient = new HttpClient();
+            var json = JsonConvert.SerializeObject(location);
+            StringContent content = new StringContent(json);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = await httpClient.PostAsync(url + "/api/DictLocations/", content);
+        }
+
+        public async Task PostNewEquipment(DictEquipment equipment)
+        {
+            var httpClient = new HttpClient();
+            var json = JsonConvert.SerializeObject(equipment);
+            StringContent content = new StringContent(json);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = await httpClient.PostAsync(url + "/api/DictEquipments/", content);
+        }
     }
 }

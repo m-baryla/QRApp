@@ -3,9 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QRApp.View.UserSettingsPanel.ManagementAccountPage">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Save" Command="{Binding }"></ToolbarItem>
-    </ContentPage.ToolbarItems>
 
     <StackLayout Spacing="20" VerticalOptions="Center">
 
