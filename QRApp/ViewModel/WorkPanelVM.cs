@@ -4,7 +4,6 @@ using System.Text;
 using System.Windows.Input;
 using QRApp.Interface;
 using QRApp.View;
-using QRApp.View.UserPanel;
 using Xamarin.Forms;
 
 namespace QRApp.ViewModel

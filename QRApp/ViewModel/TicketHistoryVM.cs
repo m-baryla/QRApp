@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Text;
 using System.Windows.Input;
 using QRApp.Model;
-using QRApp.View.UserPanel;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using QRApp.Interface;
 using QRApp.Service;
+using QRApp.View.WorkPanel;
 
 namespace QRApp.ViewModel
 {

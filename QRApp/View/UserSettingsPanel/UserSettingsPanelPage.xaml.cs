@@ -3,14 +3,14 @@ using QRApp.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace QRApp.View.AdminPanel
+namespace QRApp.View.UserSettingsPanel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AdminPanelPage : TabbedPage
+    public partial class UserSettingsPanelPage : TabbedPage
     {
-        public AdminPanelPage()
+        public UserSettingsPanelPage()
         {
-            BindingContext = new AdminPanelVM(new PageService());
+            BindingContext = new UserSettingsPanelVM(new PageService());
             InitializeComponent();
         }
     }

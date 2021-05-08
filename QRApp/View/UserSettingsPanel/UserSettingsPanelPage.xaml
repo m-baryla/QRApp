@@ -1,24 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="QRApp.View.AdminPanel.AdminPanelPage"
-             xmlns:adminPanel="clr-namespace:QRApp.View.AdminPanel;assembly=QRApp">
+             xmlns:userSettingsPanel="clr-namespace:QRApp.View.UserSettingsPanel;assembly=QRApp"
+             x:Class="QRApp.View.UserSettingsPanel.UserSettingsPanelPage">
 
     <NavigationPage Title="New account" IconImageSource="">
         <x:Arguments>
-            <adminPanel:ManagementNewAccountPage/>
+            <userSettingsPanel:ManagementNewAccountPage/>
         </x:Arguments>
     </NavigationPage>
 
     <NavigationPage Title="Account" IconImageSource="">
         <x:Arguments>
-            <adminPanel:ManagementAccountPage/>
+            <userSettingsPanel:ManagementAccountPage/>
         </x:Arguments>
     </NavigationPage>
 
     <NavigationPage Title="New email" IconImageSource="">
         <x:Arguments>
-            <adminPanel:ManagementNewEmailPage/>
+            <userSettingsPanel:ManagementNewEmailPage/>
         </x:Arguments>
     </NavigationPage>
 

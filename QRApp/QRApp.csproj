@@ -25,25 +25,25 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="View\AdminPanel\AdminPanelPage.xaml">
+    <EmbeddedResource Update="View\UserSettingsPanel\UserSettingsPanelPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\MainPanel\ScanServicePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\UserPanel\HistoryTicketsDetailPage.xaml">
+    <EmbeddedResource Update="View\WorkPanel\HistoryTicketsDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\UserPanel\HistoryTicketsPage.xaml">
+    <EmbeddedResource Update="View\WorkPanel\HistoryTicketsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\AdminPanel\ManagementAccountPage.xaml">
+    <EmbeddedResource Update="View\UserSettingsPanel\ManagementAccountPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\AdminPanel\ManagementNewAccountPage.xaml">
+    <EmbeddedResource Update="View\UserSettingsPanel\ManagementNewAccountPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\AdminPanel\ManagementNewEmailPage.xaml">
+    <EmbeddedResource Update="View\UserSettingsPanel\ManagementNewEmailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\MainPanel\MasterPage.xaml">
@@ -52,25 +52,28 @@
     <EmbeddedResource Update="View\MainPanel\ModulesPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\UserPanel\NewTicketsPage.xaml">
+    <EmbeddedResource Update="View\WorkPanel\NewTicketsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\UserPanel\NewWikiPage.xaml">
+    <EmbeddedResource Update="View\WorkPanel\NewWikiPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\UserPanel\WikiDetailPage.xaml">
+    <EmbeddedResource Update="View\WorkPanel\WikiDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\UserPanel\WorkPanelPage.xaml">
+    <EmbeddedResource Update="View\WorkPanel\WorkPanelPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\UserPanel\WikiPage.xaml">
+    <EmbeddedResource Update="View\WorkPanel\WikiPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="View\UserPanel\WorkPanelPage.xaml.cs">
+    <Compile Update="View\UserSettingsPanel\UserSettingsPanelPage.xaml.cs">
+      <DependentUpon>UserSettingsPanelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\WorkPanel\WorkPanelPage.xaml.cs">
       <DependentUpon>WorkPanelPage.xaml</DependentUpon>
     </Compile>
   </ItemGroup>

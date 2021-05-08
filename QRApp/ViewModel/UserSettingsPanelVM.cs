@@ -9,12 +9,12 @@ using Xamarin.Forms;
 
 namespace QRApp.ViewModel
 {
-    public class AdminPanelVM
+    public class UserSettingsPanelVM
     {
         public ICommand _GoToHome { get; private set; }
         private readonly IPageService _pageService;
 
-        public AdminPanelVM(IPageService pageService)
+        public UserSettingsPanelVM(IPageService pageService)
         {
             _GoToHome = new Command(_ => GoToHome());
             _pageService = pageService;

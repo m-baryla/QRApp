@@ -1,27 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using QRApp.Model;
 using QRApp.Service;
 using QRApp.ViewModel;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace QRApp.View.UserPanel
+namespace QRApp.View.WorkPanel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class NewTicketsPage : ContentPage
+    public partial class NewWikiPage : ContentPage
     {
-        public NewTicketsPage()
-        { 
+        public NewWikiPage()
+        {
             InitializeComponent();
-            BindingContext = new NewTicketVM(new PageService(),new CameraService(),new DataService());
+            BindingContext = new NewWikiVM(new CameraService(),new DataService());
         }
 
         private void MenuItem_OnClicked(object sender, EventArgs e)
         {
-            var photo = (BindingContext as NewTicketVM).PhotoBytes;
+            var photo = (BindingContext as NewWikiVM).PhotoBytes;
             CameraService cameraService = new CameraService();
             cameraService.ByteToImage(resultImage, photo);
         }

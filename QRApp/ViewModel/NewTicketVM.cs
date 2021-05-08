@@ -10,7 +10,6 @@ using QRApp.Interface;
 using QRApp.Model;
 using QRApp.Service;
 using QRApp.View;
-using QRApp.View.UserPanel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

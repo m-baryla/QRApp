@@ -8,7 +8,7 @@ using System.Windows.Input;
 using QRApp.Interface;
 using QRApp.Model;
 using QRApp.View;
-using QRApp.View.UserPanel;
+using QRApp.View.WorkPanel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 

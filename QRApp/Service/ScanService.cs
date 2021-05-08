@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using QRApp.Interface;
-using QRApp.View.UserPanel;
 using QRApp.ViewModel;
 using Xamarin.Forms;
 using ZXing;

@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
-using QRApp.Model;
-using QRApp.Service;
+﻿using QRApp.Service;
 using QRApp.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace QRApp.View.AdminPanel
+namespace QRApp.View.UserSettingsPanel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ManagementNewEmailPage : ContentPage
