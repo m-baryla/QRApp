@@ -20,8 +20,6 @@ namespace QRApp.ViewModel
 
         private User _user;
         public User User { get { return _user; } set { SetValue(ref _user, value); } }
-        public string Login { get; set; }
-        public string Password { get; set; }
 
         public MasterPageVM(IPageService pageService,IDataService dataService,IDialogService dialogService)
         {
@@ -30,20 +28,29 @@ namespace QRApp.ViewModel
             _dataService = dataService;
             _dialogService = dialogService;
             User = new User();
+            User.Login = "testlogin";
+            User.Password = "testpasww";
         }
 
         private async void LoginUser()
         {
-            if (await _dataService.LoginAuth(User))
+            try
             {
-                await _dialogService.DisplayAlert("Login info", "Login sucesfull", "OK","Cancel");
-                await _pageService.PushModalAsync(new ModulesPage());
+                if (await _dataService.LoginAuth(User))
+                {
+                    await _dialogService.DisplayAlert("Login info", "Login sucesfull", "OK", "Cancel");
+                    await _pageService.PushModalAsync(new ModulesPage());
+                }
+                else
+                {
+                    await _dialogService.DisplayAlert("Login info", "Login failed", "OK", "Cancel");
+                }
             }
-            else
+            catch (Exception e)
             {
-                await _dialogService.DisplayAlert("Login info", "Login failed", "OK", "Cancel");
+                Console.WriteLine(e);
+                throw;
             }
-
         }
     }
 }

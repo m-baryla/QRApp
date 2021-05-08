@@ -81,19 +81,33 @@ namespace QRApp.Service
 
         public async Task<bool> LoginAuth(User user)
         {
-            var httpClient = new HttpClient();
-            var auth = string.Format("{0}:{1}", user.Login, Convert.ToBase64String(Encoding.UTF8.GetBytes(user.Password)));
-            var authHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(auth));
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeader);
-            var result = await httpClient.GetAsync(url + "/api/Users/GetUser/");
-            if (result.IsSuccessStatusCode)
+            try
             {
-                return true;
-            }
-            else
-            {
+                if (user.Login != null && user.Password != null)
+                {
+                    var httpClient = new HttpClient();
+                    var auth = string.Format("{0}:{1}", user.Login, Convert.ToBase64String(Encoding.UTF8.GetBytes(user.Password)));
+                    var authHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(auth));
+                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeader);
+                    var result = await httpClient.GetAsync(url + "/api/Users/GetUser/");
+                    if (result.IsSuccessStatusCode)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+
                 return false;
             }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+           
         }
     }
 }

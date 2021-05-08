@@ -30,7 +30,7 @@ namespace QRApp.ViewModel
         public List<DictEquipment> Equipments { get { return _euipments; } set { SetValue(ref _euipments, value); } }
 
         private DictLocation _selecteDictLocation = null;
-        public DictLocation SelecteDictLocation { get{ return _selecteDictLocation; } set { SetValue(ref _selecteDictLocation, value); } }
+        public DictLocation SelecteDictLocation { get { return _selecteDictLocation; } set { SetValue(ref _selecteDictLocation, value); } }
 
         private DictEquipment _selecteDictEquipments = null;
         public DictEquipment SelecteDictEquipments { get { return _selecteDictEquipments; } set { SetValue(ref _selecteDictEquipments, value); } }
@@ -40,12 +40,12 @@ namespace QRApp.ViewModel
         
         private DictEmailAdress _selecteDictEmailAdress = null;
         public DictEmailAdress SelecteDictEmailAdress { get { return _selecteDictEmailAdress; } set { SetValue(ref _selecteDictEmailAdress, value); } }
-        
+
         private readonly ICameraService _cameraService;
         private readonly IPageService _pageService;
         private readonly IDataService _dataService;
         public ICommand _CreatePhotoAsync { get; private set; }
-        public ICommand _SelectFromList { get; private set; }
+        public ICommand _TEST { get; private set; }
         public ICommand _SendNewTicket { get; private set; }
 
         private string _scanResul;
@@ -53,24 +53,79 @@ namespace QRApp.ViewModel
 
         public byte[] PhotoBytes { get { return _cameraService.PhotoBytes; } }
 
+        private string _locationValue;
+        public string LocationValue { get { return _locationValue; } set { SetValue(ref _locationValue, value); } }
+
+        private string _equipmentValue;
+        public string EquipmentValue { get { return _equipmentValue; } set { SetValue(ref _equipmentValue, value); } }
+
+        private bool _isEnableLocation;
+        public bool IsEnableLocation { get { return _isEnableLocation; } set { SetValue(ref _isEnableLocation, value); } }
+
+        private bool _isEnableEquippment;
+        public bool IsEnableEquippment { get { return _isEnableEquippment; } set { SetValue(ref _isEnableEquippment, value); } }
+
+         private bool _isVisibleLocation;
+        public bool IsVisibleLocation { get { return _isVisibleLocation; } set { SetValue(ref _isVisibleLocation, value); } }
+
+        private bool _isVisibleEquippment;
+        public bool IsVisibleEquippment { get { return _isVisibleEquippment; } set { SetValue(ref _isVisibleEquippment, value); } }
+
         public NewTicketVM(IPageService pageService,ICameraService cameraService, IDataService dataService)
         {
             _CreatePhotoAsync = new Command(async _ => await CreatePhotoAsync());
-            _SelectFromList = new Command(_ => SelectFromList());
+            _TEST = new Command(_ => TEST());
             _SendNewTicket = new Command(_ => SendNewTicket());
 
             _cameraService = cameraService;
             _dataService = dataService;
             _pageService = pageService;
             _ticketsDetails = new Ticket();
+            SelecteDictEquipments = new DictEquipment();
+            SelecteDictLocation = new DictLocation();
             ListLocations();
             ListEquipment();
             ListEmailAdress();
+            IsEnableLocation = true;
+            IsVisibleLocation = true;
+            IsEnableEquippment = true;
+            IsVisibleEquippment = true;
 
             MessagingCenter.Subscribe<ScanService, string>(this, "ResultScanSender", (sender, args) =>
             {
                 ScanResul = args;
+
+                var SplitResult = ScanResul.Split(':');
+
+                LocationValue = SplitResult[0];
+                EquipmentValue = SplitResult[1];
+
+                if (LocationValue != null)
+                {
+                    IsEnableLocation = false;
+                    IsVisibleLocation = false;
+                }
+                else
+                {
+                    LocationValue = null;
+                    IsEnableLocation = true;
+                    IsVisibleLocation = true;
+                }
+
+                if (EquipmentValue != null)
+                {
+                    IsEnableEquippment = false;
+                    IsVisibleEquippment = false;
+                }
+                else
+                {
+                    EquipmentValue = null;
+                    IsEnableEquippment = true;
+                    IsVisibleEquippment = true;
+                }
+
             });
+
         }
 
         private async Task ListLocations()
@@ -91,15 +146,31 @@ namespace QRApp.ViewModel
         {
             return _cameraService.CreatePhotoAsync();
         }
-        private async void SelectFromList()
+        private async void TEST()
         {
-            await _pageService.PushModalAsync(new WorkPanelPage());
         }
 
         private Task SendNewTicket()
         {
-            _ticketsDetails.LocationName = SelecteDictLocation.LocationName;
-            _ticketsDetails.EquipmentName = SelecteDictEquipments.EquipmentName;
+            if (LocationValue == null)
+            {
+                _ticketsDetails.LocationName = SelecteDictLocation.LocationName;
+            }
+            else
+            {
+                _ticketsDetails.LocationName = LocationValue;
+            }
+
+            if (EquipmentValue == null)
+            {
+                _ticketsDetails.EquipmentName = SelecteDictEquipments.EquipmentName;
+            }
+            else
+            {
+                _ticketsDetails.EquipmentName = EquipmentValue;
+            }
+
+
             _ticketsDetails.EmailAdress = SelecteDictEmailAdress.EmailAdressNotify;
             _ticketsDetails.Status = "Status1";
             _ticketsDetails.UserName = "testlogin";
@@ -112,6 +183,7 @@ namespace QRApp.ViewModel
                 _ticketsDetails.IsAnonymous = false;
 
             return _dataService.PostNewTicket(_ticketsDetails);
+
         }
     }
 }

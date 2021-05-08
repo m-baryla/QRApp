@@ -57,7 +57,7 @@ namespace QRApp.Service
 
                     Device.BeginInvokeOnMainThread(async () =>
                     {
-                        Barcode = Result.Text; 
+                        Barcode = Result.Text;
                         MessagingCenter.Send(this, "ResultScanSender", Barcode);
                         await _dialogService.DisplayAlert("Scanned Item", Result.Text, "Ok","Cancel");
                     });
