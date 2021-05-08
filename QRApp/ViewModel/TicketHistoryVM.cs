@@ -24,6 +24,7 @@ namespace QRApp.ViewModel
         public List<Ticket> HistoryDetailsList { get { return _historyDetailsList; } set { SetValue(ref _historyDetailsList, value); } }
         public ICommand _GoToDetailPage { get; private set; }
         public ICommand _RefereshHistoryTickets { get; private set; }
+        public ICommand _UpdateStatusTicket { get; private set; }
 
         private Ticket _selectedHistoryDetail;
         public Ticket SelectedHistoryDetail { get { return _selectedHistoryDetail; } set { SetValue(ref _selectedHistoryDetail, value); }}
@@ -47,8 +48,11 @@ namespace QRApp.ViewModel
 
             GetHistoryTickets();
         }
+
         public TicketHistoryVM(IDataService dataService,Ticket _ticket)
         {
+            _UpdateStatusTicket = new Command(_ => UpdateStatusTicket());
+
             Ticket = _ticket;
 
             _dataService = dataService;
@@ -56,6 +60,23 @@ namespace QRApp.ViewModel
             PhotoBytes = Ticket.Photo;
 
             ListStatus();
+        }
+
+        private Task UpdateStatusTicket()
+        {
+            var _putTicket = new Ticket();
+            _putTicket.Id = Ticket.Id;
+            _putTicket.UserName = Ticket.UserName;
+            _putTicket.Description = Ticket.Description;
+            _putTicket.Topic = Ticket.Topic;
+            _putTicket.Photo = Ticket.Photo;
+            _putTicket.LocationName = Ticket.LocationName;
+            _putTicket.EquipmentName = Ticket.EquipmentName;
+            _putTicket.Status = SelecteDictStatu.Status;
+            _putTicket.EmailAdress = Ticket.EmailAdress;
+            _putTicket.IsAnonymous = Ticket.IsAnonymous;
+
+            return _dataService.PutTicket(Ticket.Id, _putTicket);
         }
 
         private async void GoToDetailPage()

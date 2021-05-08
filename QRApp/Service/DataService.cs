@@ -107,7 +107,15 @@ namespace QRApp.Service
                 Console.WriteLine(e);
                 throw;
             }
-           
+        }
+
+        public async Task PutTicket(int id,Ticket ticketsDetails)
+        {
+            var httpClient = new HttpClient();
+            var json = JsonConvert.SerializeObject(ticketsDetails);
+            StringContent content = new StringContent(json);
+            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+            var result = await httpClient.PutAsync(url + "/api/Tickets/" + id + "/", content);
         }
     }
 }

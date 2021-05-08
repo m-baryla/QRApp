@@ -59,7 +59,7 @@
         <TableView Grid.Row="2" Grid.Column="1">
             <TableSection Title="Ticket status">
                 <ViewCell>
-                    <Label Text="{Binding Status}" Padding="12"/>
+                    <Label Text="{Binding Ticket.Status}" Padding="12"/>
                 </ViewCell>
                 <ViewCell>
                     <Picker Title="Change status" 
@@ -68,7 +68,7 @@
                             SelectedItem="{Binding SelecteDictStatu}"></Picker>
                 </ViewCell>
                 <ViewCell>
-                    <Button Text="Save status" Style="{StaticResource buttonQRapp}" Command="{Binding _SendNewWiki}"/>
+                    <Button Text="Save status" Style="{StaticResource buttonQRapp}" Command="{Binding _UpdateStatusTicket}"/>
                 </ViewCell>
             </TableSection>
         </TableView>
