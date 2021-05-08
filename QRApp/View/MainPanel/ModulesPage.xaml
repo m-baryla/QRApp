@@ -3,10 +3,24 @@
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QRApp.View.MainPanel.ModulesPage">
-    
-    <StackLayout Spacing="20" VerticalOptions="Center">
-        <Button Text="Panel administratora" Style="{StaticResource buttonQRapp}" IsVisible="True" Command="{Binding _GoToAdminPanel}"/>
-        <Button Text="Work Panel" Style="{StaticResource buttonQRapp}" IsVisible="True" Command="{Binding _GoToUserPanel}"/>
-        <Button Text="User Settings" Style="{StaticResource buttonQRapp}" IsVisible="True"/>
+
+    <StackLayout>
+
+        <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="12">
+            <Button Text="Panel administratora" 
+                    Style="{StaticResource buttonQRapp}" 
+                    IsVisible="True" 
+                    Command="{Binding _GoToAdminPanel}"
+                    VerticalOptions="FillAndExpand" 
+                    HorizontalOptions="FillAndExpand" />
+        </ContentView>
+
+        <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="12">
+            <Button Text="Work Panel" 
+                    Style="{StaticResource buttonQRapp}" 
+                    IsVisible="True" Command="{Binding _GoToUserPanel}"  
+                    VerticalOptions="FillAndExpand" 
+                    HorizontalOptions="FillAndExpand" />
+        </ContentView>
     </StackLayout>
 </ContentPage>
