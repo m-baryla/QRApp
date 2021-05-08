@@ -20,11 +20,5 @@ namespace QRApp.Model
         public string Status { get; set; }
         public string EmailAdress { get; set; }
         public bool? IsAnonymous { get; set; }
-
-        private List<DictStatu> _status;
-        public List<DictStatu> StatusList { get { return _status; } set { SetValue(ref _status, value); } }
-
-        private DictStatu _selecteDictStatu = null;
-        public DictStatu SelecteDictStatu { get { return _selecteDictStatu; } set { SetValue(ref _selecteDictStatu, value); } }
     }
 }

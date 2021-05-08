@@ -9,6 +9,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using QRApp.Interface;
+using QRApp.Service;
 
 namespace QRApp.ViewModel
 {
@@ -27,6 +28,15 @@ namespace QRApp.ViewModel
         private Ticket _selectedHistoryDetail;
         public Ticket SelectedHistoryDetail { get { return _selectedHistoryDetail; } set { SetValue(ref _selectedHistoryDetail, value); }}
 
+        private List<DictStatu> _status;
+        public List<DictStatu> StatusList { get { return _status; } set { SetValue(ref _status, value); } }
+
+        private DictStatu _selecteDictStatu = null;
+        public DictStatu SelecteDictStatu { get { return _selecteDictStatu; } set { SetValue(ref _selecteDictStatu, value); } }
+
+        public Ticket Ticket { get; set; }
+        public byte[] PhotoBytes { get; set; }
+
         public TicketHistoryVM(IPageService pageService, IDataService dataService)
         {
             _GoToDetailPage = new Command(_ => GoToDetailPage());
@@ -37,6 +47,17 @@ namespace QRApp.ViewModel
 
             GetHistoryTickets();
         }
+        public TicketHistoryVM(IDataService dataService,Ticket _ticket)
+        {
+            Ticket = _ticket;
+
+            _dataService = dataService;
+
+            PhotoBytes = Ticket.Photo;
+
+            ListStatus();
+        }
+
         private async void GoToDetailPage()
         {
             if (SelectedHistoryDetail == null)
@@ -50,6 +71,10 @@ namespace QRApp.ViewModel
         {
             HistoryDetailsList = await _dataService.GetTicketHistoryDetailsList();
             IsRefreshing = false;
+        }
+        private async Task ListStatus()
+        {
+            StatusList = await _dataService.GetStatusList();
         }
         public async Task<IEnumerable<Ticket>> GetHistoryTicketsSearch(string searchString = null)
         {

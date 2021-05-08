@@ -20,7 +20,7 @@
         <TableView Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <TableSection Title="Location">
                 <ViewCell>
-                    <Label Text="{Binding LocationName}" Padding="12"/>
+                    <Label Text="{Binding Ticket.LocationName}" Padding="12"/>
                 </ViewCell>
             </TableSection>
         </TableView>
@@ -28,16 +28,16 @@
         <TableView Grid.Row="0" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <TableSection Title="Equipment">
                 <ViewCell>
-                    <Label Text="{Binding EquipmentName}" Padding="12"/>
+                    <Label Text="{Binding Ticket.EquipmentName}" Padding="12"/>
                 </ViewCell>
             </TableSection>
         </TableView>
 
         <TableView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan ="2" HasUnevenRows="True">
             <TableSection Title="Topic / description ticket">
-                <EntryCell Label="Topic" Text="{Binding Topic}" Placeholder="topitc ticet" IsEnabled="False"/>
+                <EntryCell Label="Topic" Text="{Binding Ticket.Topic}" Placeholder="topitc ticet" IsEnabled="False"/>
                 <ViewCell>
-                    <Editor Text="{Binding Description}" HeightRequest="300" Background="white" TextColor="Black" IsEnabled="False"/>
+                    <Editor Text="{Binding Ticket.Description}" HeightRequest="300" Background="white" TextColor="Black"/>
                 </ViewCell>
             </TableSection>
         </TableView>
@@ -45,13 +45,13 @@
         <TableView Grid.Row="2" Grid.Column="0">
             <TableSection Title="User sender info">
                 <ViewCell>
-                    <Label Text="{Binding UserName}" Padding="12"/>
+                    <Label Text="{Binding Ticket.UserName}" Padding="12"/>
                 </ViewCell>
                 <ViewCell>
-                    <Label Text="{Binding IsAnonymous}" Padding="12"/>
+                    <Label Text="{Binding Ticket.IsAnonymous}" Padding="12"/>
                 </ViewCell>
                 <ViewCell>
-                    <Label Text="{Binding EmailAdress}" Padding="12"/>
+                    <Label Text="{Binding Ticket.EmailAdress}" Padding="12"/>
                 </ViewCell>
             </TableSection>
         </TableView>
@@ -62,11 +62,10 @@
                     <Label Text="{Binding Status}" Padding="12"/>
                 </ViewCell>
                 <ViewCell>
-                    <Picker x:Name="pickerMaschine" 
-                            Title="Select new status" 
-                            ItemsSource="{Binding Equipments}"
-                            ItemDisplayBinding="{Binding EquipmentName}"
-                            SelectedItem="{Binding SelecteDictEquipments}"></Picker>
+                    <Picker Title="Change status" 
+                            ItemsSource="{Binding StatusList}"
+                            ItemDisplayBinding="{Binding Status}"
+                            SelectedItem="{Binding SelecteDictStatu}"></Picker>
                 </ViewCell>
                 <ViewCell>
                     <Button Text="Save status" Style="{StaticResource buttonQRapp}" Command="{Binding _SendNewWiki}"/>
@@ -77,7 +76,7 @@
         <TableView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan ="2" HasUnevenRows="True">
             <TableSection Title="Photo">
                 <ViewCell>
-                    <Image x:Name="resultImage" Aspect="Fill" HeightRequest="200"></Image>
+                    <Image x:Name="resultImage" Aspect="Fill" HeightRequest="200" ></Image>
                 </ViewCell>
             </TableSection>
         </TableView>
