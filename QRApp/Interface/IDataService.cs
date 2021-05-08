@@ -19,5 +19,6 @@ namespace QRApp.Interface
         Task PostNewWiki(Wiki wikiDetails);
         Task<bool> LoginAuth(User user);
         Task PutTicket(int id, Ticket ticketsDetails);
+        Task PostNewEmail(DictEmailAdress emailAdress);
     }
 }

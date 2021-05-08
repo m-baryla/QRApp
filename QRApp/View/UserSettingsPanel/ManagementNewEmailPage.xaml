@@ -3,33 +3,59 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QRApp.View.UserSettingsPanel.ManagementNewEmailPage">
 
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="150"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add New Email" Command="{Binding _AddNewAdressEmail}"></ToolbarItem>
-    </ContentPage.ToolbarItems>
+        <TableView Grid.Row="0" Grid.Column="0" Grid.ColumnSpan ="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" HasUnevenRows="True">
+        <TableSection Title="Email list">
+            <ViewCell>
+                <ScrollView>
+                    <StackLayout>
+                        <SearchBar Placeholder="Szukaj..." 
+                                   TextChanged="Handle_TextChanged" 
+                                   Background="White" 
+                                   TextColor="Black"></SearchBar>
+                        <ListView x:Name="ListView"
+                                  ItemsSource = "{Binding EmailAdressesList}" 
+                                  HasUnevenRows="True"
+                                  IsPullToRefreshEnabled="True"
+                                  RefreshCommand="{Binding _RefereshAdressEmail}"
+                                  IsRefreshing="{Binding IsRefreshing}">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <StackLayout Padding="12">
+                                            <Label Text="{Binding EmailAdressNotify}"></Label>
+                                        </StackLayout>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                </ScrollView>
+                </ViewCell>
+        </TableSection>
+        </TableView>
 
-    <ScrollView>
-            <StackLayout>
-            <SearchBar  Placeholder="Szukaj..." 
-                        TextChanged="Handle_TextChanged" 
-                        Background="White" 
-                        TextColor="Black"></SearchBar>
-                <ListView x:Name="ListView"
-                          ItemsSource = "{Binding EmailAdressesList}" 
-                          HasUnevenRows="True"
-                          IsPullToRefreshEnabled="True"
-                          RefreshCommand="{Binding _RefereshAdressEmail}"
-                          IsRefreshing="{Binding IsRefreshing}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
-                                <StackLayout Padding="12">
-                                <Label Text="{Binding EmailAdressNotify}"></Label>
-                                 </StackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
-        </ScrollView>
+
+        <TableView Grid.Row="1" Grid.Column="0">
+            <TableSection Title="Add new emial">
+                <ViewCell>
+                    <Editor Text = "{Binding EmailAdresses.EmailAdressNotify}" Background = "white" TextColor = "Black"/>
+                </ViewCell>
+                <ViewCell>
+                    <Button Text="Save" Style="{StaticResource buttonQRapp}" Command="{Binding _AddNewAdressEmail}"/>
+                </ViewCell>
+            </TableSection>
+        </TableView>
+
+    </Grid>
+
+
 </ContentPage>

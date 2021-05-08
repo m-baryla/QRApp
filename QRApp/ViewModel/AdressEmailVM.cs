@@ -17,9 +17,11 @@ namespace QRApp.ViewModel
         private List<DictEmailAdress> _emailAdressesList;
         public List<DictEmailAdress> EmailAdressesList {get { return _emailAdressesList; } set { SetValue(ref _emailAdressesList, value); } }
 
+        private DictEmailAdress _emailAdresses;
+        public DictEmailAdress EmailAdresses { get { return _emailAdresses; } set { SetValue(ref _emailAdresses, value); } }
+
         private bool _isRefreshing;
-        public bool IsRefreshing
-        { get { return _isRefreshing; } set { SetValue(ref _isRefreshing, value); } }
+        public bool IsRefreshing { get { return _isRefreshing; } set { SetValue(ref _isRefreshing, value); } }
 
         public ICommand _AddNewAdressEmail { get; private set; }
         public ICommand _RefereshAdressEmail { get; private set; }
@@ -32,13 +34,14 @@ namespace QRApp.ViewModel
             _RefereshAdressEmail = new Command(async _ =>await GetAdressEmails());
 
             _dataService = dataService;
+            _emailAdresses = new DictEmailAdress();
 
             GetAdressEmails();
         }
 
-        private void AddNewAdressEmail()
+        private Task AddNewAdressEmail()
         {
-            _emailAdressesList.Add(new DictEmailAdress { EmailAdressNotify = "aaaa@op.pl" });
+            return _dataService.PostNewEmail(_emailAdresses);
         }
 
         private async Task GetAdressEmails()
