@@ -23,9 +23,9 @@
         </Grid.ColumnDefinitions>
 
         <TableView Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <TableSection Title="Wybor lokalizacji">
+            <TableSection Title="Selecet Location">
                 <ViewCell>
-                    <Picker Title="Lokalizacja" 
+                    <Picker Title="Location" 
                             ItemsSource="{Binding Locations}"
                             ItemDisplayBinding="{Binding LocationName}"
                             SelectedItem="{Binding SelecteDictLocation}"
@@ -42,9 +42,9 @@
         </TableView>
 
         <TableView Grid.Row="0" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <TableSection Title="Wybor maszyny">
+            <TableSection Title="Selecet Equipment">
                 <ViewCell>
-                    <Picker  Title="Maszyna" 
+                    <Picker  Title="Equipment" 
                              ItemsSource="{Binding Equipments}"
                              ItemDisplayBinding="{Binding EquipmentName}"
                              SelectedItem="{Binding SelecteDictEquipments}"
@@ -61,9 +61,9 @@
         </TableView>
 
         <TableView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan ="2">
-            <TableSection Title="Dodaj powiadomienie email">
+            <TableSection Title="Add Email Adress Notify">
                 <ViewCell>
-                    <Picker  Title="Wbierz z listy email" 
+                    <Picker  Title="Selecet Email Adress from list" 
                              ItemsSource="{Binding EmailAdresses}"
                              ItemDisplayBinding="{Binding EmailAdressNotify }"
                              SelectedItem="{Binding SelecteDictEmailAdress}"></Picker>
@@ -72,8 +72,8 @@
         </TableView>
 
         <TableView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan ="2" HasUnevenRows="True">
-            <TableSection Title="Temat / opis zgloszenia">
-                <EntryCell Label="Temat" Text="{Binding TicketsDetails.Topic}" Placeholder="temat zgloszenia"/>
+            <TableSection Title="Topic and description">
+                <EntryCell Label="Topic " Text="{Binding TicketsDetails.Topic}" Placeholder="Topic ticket"/>
                 <ViewCell>
                     <Editor Text = "{Binding TicketsDetails.Description}" HeightRequest = "200" Background = "white" TextColor = "Black" />
                 </ViewCell>

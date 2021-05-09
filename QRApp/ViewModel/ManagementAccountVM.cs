@@ -15,7 +15,7 @@ namespace QRApp.ViewModel
         public readonly IDialogService _dialogService;
 
         private User _user;
-        public User User { get { return _user; } set { SetValue(ref _user, value); } }
+        public User User { get => _user; set => SetValue(ref _user, value); }
         public ICommand _AddNewAccount { get; private set; }
 
         public ManagementAccountVM(IDataService dataService,IDialogService dialogService)
@@ -23,6 +23,7 @@ namespace QRApp.ViewModel
             _AddNewAccount = new Command(async _ => await  AddNewAccount());
 
             _dataService = dataService;
+            _dialogService = dialogService;
             _user = new User();
         }
         private async Task AddNewAccount()

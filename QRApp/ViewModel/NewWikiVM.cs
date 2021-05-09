@@ -20,19 +20,19 @@ namespace QRApp.ViewModel
     {
 
         private Wiki _wikisDetails;
-        public Wiki WikisDetails { get { return _wikisDetails; } set { SetValue(ref _wikisDetails, value); } }
+        public Wiki WikisDetails { get { return _wikisDetails; } set => SetValue(ref _wikisDetails, value); }
 
         private List<DictLocation> _locations;
-        public List<DictLocation> Locations { get { return _locations; } set { SetValue(ref _locations, value); } }
+        public List<DictLocation> Locations { get { return _locations; } set => SetValue(ref _locations, value); }
 
         private List<DictEquipment> _euipments;
-        public List<DictEquipment> Equipments { get { return _euipments; } set { SetValue(ref _euipments, value); } }
+        public List<DictEquipment> Equipments { get { return _euipments; } set => SetValue(ref _euipments, value); }
 
         private DictLocation _selecteDictLocation = null;
-        public DictLocation SelecteDictLocation { get { return _selecteDictLocation; } set { SetValue(ref _selecteDictLocation, value); } }
+        public DictLocation SelecteDictLocation { get { return _selecteDictLocation; } set => SetValue(ref _selecteDictLocation, value); }
 
         private DictEquipment _selecteDictEquipments = null;
-        public DictEquipment SelecteDictEquipments { get { return _selecteDictEquipments; } set { SetValue(ref _selecteDictEquipments, value); } }
+        public DictEquipment SelecteDictEquipments { get { return _selecteDictEquipments; } set => SetValue(ref _selecteDictEquipments, value); }
 
         private readonly ICameraService _cameraService;
         private readonly IDataService _dataService;
@@ -53,8 +53,8 @@ namespace QRApp.ViewModel
             _dataService = dataService;
             _wikisDetails = new Wiki();
 
-            ListLocations();
-            ListEquipment();
+            _ = ListLocations();
+            _ = ListEquipment();
         }
 
         private async Task ListLocations()

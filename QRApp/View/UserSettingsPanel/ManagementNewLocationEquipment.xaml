@@ -55,7 +55,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <StackLayout Padding="12">
-                                                <Label Text="{Binding LocationName}" FontSize="Small" BackgroundColor="DimGray"></Label>
+                                                <Label Text="{Binding LocationName}" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Center"></Label>
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>
@@ -77,7 +77,7 @@
                                     <DataTemplate>
                                         <ViewCell>
                                             <StackLayout Padding="12">
-                                                <Label Text="{Binding EquipmentName}" FontSize="Small" BackgroundColor="DimGray"></Label>
+                                                <Label Text="{Binding EquipmentName}" FontSize="Small" VerticalOptions="Center" HorizontalOptions="Center"></Label>
                                             </StackLayout>
                                         </ViewCell>
                                     </DataTemplate>

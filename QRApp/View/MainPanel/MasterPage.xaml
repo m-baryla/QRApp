@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<ContentPage Title="MASTER PAGE"
+<ContentPage Title=""
              xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QRApp.View.MainPanel.MasterPage">
@@ -11,11 +11,11 @@
         </ContentView>
 
         <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="35">
-            <Entry Text="{Binding User.Password}" IsPassword="True" Placeholder="Haslo" />
+            <Entry Text="{Binding User.Password}" IsPassword="True" Placeholder="Password" />
         </ContentView>
 
         <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="12">
-            <Button Text="Zaloguj" 
+            <Button Text="Sign in" 
                     Style="{StaticResource buttonQRapp}" 
                     Command="{Binding _Login}"/>
         </ContentView>

@@ -37,7 +37,7 @@
             <TableSection Title="Topic / description ticket">
                 <EntryCell Label="Topic" Text="{Binding Ticket.Topic}" Placeholder="topitc ticet" IsEnabled="False"/>
                 <ViewCell>
-                    <Editor Text="{Binding Ticket.Description}" HeightRequest="300" Background="white" TextColor="Black"/>
+                    <Editor Text="{Binding Ticket.Description}" HeightRequest="300" IsEnabled="False"/>
                 </ViewCell>
             </TableSection>
         </TableView>

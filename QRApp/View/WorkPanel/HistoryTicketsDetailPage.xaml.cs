@@ -16,7 +16,7 @@ namespace QRApp.View.WorkPanel
             if (_ticketsHistoryDetails == null)
                 throw new ArgumentNullException();
 
-            BindingContext = new TicketHistoryVM(new DataService(),_ticketsHistoryDetails);
+            BindingContext = new TicketHistoryVM(new DataService(),_ticketsHistoryDetails, new DialogService());
 
             InitializeComponent();
 

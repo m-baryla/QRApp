@@ -18,55 +18,59 @@ namespace QRApp.ViewModel
         private readonly IPageService _pageService;
         private readonly IDataService _dataService;
         private readonly IDialogService _dialogService;
-        private bool _isRefreshing;
-        public bool IsRefreshing { get { return _isRefreshing; } set { SetValue(ref _isRefreshing, value); } }
-
-        private List<Ticket> _historyDetailsList;
-        public List<Ticket> HistoryDetailsList { get { return _historyDetailsList; } set { SetValue(ref _historyDetailsList, value); } }
         public ICommand _GoToDetailPage { get; private set; }
         public ICommand _RefereshHistoryTickets { get; private set; }
         public ICommand _UpdateStatusTicket { get; private set; }
-
-        private Ticket _selectedHistoryDetail;
-        public Ticket SelectedHistoryDetail { get { return _selectedHistoryDetail; } set { SetValue(ref _selectedHistoryDetail, value); }}
-
-        private List<DictStatu> _status;
-        public List<DictStatu> StatusList { get { return _status; } set { SetValue(ref _status, value); } }
-
-        private DictStatu _selecteDictStatu = null;
-        public DictStatu SelecteDictStatu { get { return _selecteDictStatu; } set { SetValue(ref _selecteDictStatu, value); } }
-
         public Ticket Ticket { get; set; }
+        private Ticket _putTicket { get; set; }
         public byte[] PhotoBytes { get; set; }
 
-        public TicketHistoryVM(IPageService pageService, IDataService dataService,IDialogService dialogService)
+        private bool _isRefreshing;
+        public bool IsRefreshing { get { return _isRefreshing; } set => SetValue(ref _isRefreshing, value); }
+
+        private List<Ticket> _historyDetailsList;
+        public List<Ticket> HistoryDetailsList { get { return _historyDetailsList; } set => SetValue(ref _historyDetailsList, value); }
+
+        private Ticket _selectedHistoryDetail;
+        public Ticket SelectedHistoryDetail { get { return _selectedHistoryDetail; } set => SetValue(ref _selectedHistoryDetail, value); }
+
+        private List<DictStatu> _status;
+        public List<DictStatu> StatusList { get { return _status; } set => SetValue(ref _status, value); }
+
+        private DictStatu _selecteDictStatu;
+        public DictStatu SelecteDictStatu { get { return _selecteDictStatu; } set => SetValue(ref _selecteDictStatu, value); }
+
+        public TicketHistoryVM(IPageService pageService, IDataService dataService)
         {
             _GoToDetailPage = new Command(_ => GoToDetailPage());
-            _RefereshHistoryTickets = new Command(_ => GetHistoryTickets());
+            _RefereshHistoryTickets = new Command(async _ => await GetHistoryTickets());
 
             _pageService = pageService;
-            _dialogService = dialogService;
             _dataService = dataService;
 
-            GetHistoryTickets();
+            _ = GetHistoryTickets();
         }
 
-        public TicketHistoryVM(IDataService dataService,Ticket _ticket)
+        public TicketHistoryVM(IDataService dataService,Ticket _ticket, IDialogService dialogService)
         {
             _UpdateStatusTicket = new Command(async _ => await UpdateStatusTicket());
+
+            _putTicket = new Ticket();
 
             Ticket = _ticket;
 
             _dataService = dataService;
+            _dialogService = dialogService;
+
+            _selecteDictStatu = new DictStatu();
 
             PhotoBytes = Ticket.Photo;
 
-            ListStatus();
+            _ = ListStatus();
         }
 
         private async Task UpdateStatusTicket()
         {
-            var _putTicket = new Ticket();
             _putTicket.Id = Ticket.Id;
             _putTicket.UserName = Ticket.UserName;
             _putTicket.Description = Ticket.Description;
@@ -87,7 +91,7 @@ namespace QRApp.ViewModel
             }
         }
 
-        private async void GoToDetailPage()
+        private async Task GoToDetailPage()
         {
             if (SelectedHistoryDetail == null)
                 return;

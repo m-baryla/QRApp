@@ -19,11 +19,11 @@ namespace QRApp.ViewModel
         private readonly IDialogService _dialogService;
 
         private User _user;
-        public User User { get { return _user; } set { SetValue(ref _user, value); } }
+        public User User { get { return _user; } set => SetValue(ref _user, value); }
 
         public MasterPageVM(IPageService pageService,IDataService dataService,IDialogService dialogService)
         {
-            _Login = new Command(_ => LoginUser());
+            _Login = new Command(async _ => await LoginUser());
             _pageService = pageService;
             _dataService = dataService;
             _dialogService = dialogService;
@@ -32,7 +32,7 @@ namespace QRApp.ViewModel
             User.Password = "testpasww";
         }
 
-        private async void LoginUser()
+        private async Task LoginUser()
         {
             try
             {

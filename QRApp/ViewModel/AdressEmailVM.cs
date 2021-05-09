@@ -15,13 +15,13 @@ namespace QRApp.ViewModel
     public class AdressEmailVM : BaseVM
     {
         private List<DictEmailAdress> _emailAdressesList;
-        public List<DictEmailAdress> EmailAdressesList {get { return _emailAdressesList; } set { SetValue(ref _emailAdressesList, value); } }
+        public List<DictEmailAdress> EmailAdressesList {get { return _emailAdressesList; } set => SetValue(ref _emailAdressesList, value); }
 
         private DictEmailAdress _emailAdresses;
-        public DictEmailAdress EmailAdresses { get { return _emailAdresses; } set { SetValue(ref _emailAdresses, value); } }
+        public DictEmailAdress EmailAdresses { get { return _emailAdresses; } set => SetValue(ref _emailAdresses, value); }
 
         private bool _isRefreshing;
-        public bool IsRefreshing { get { return _isRefreshing; } set { SetValue(ref _isRefreshing, value); } }
+        public bool IsRefreshing { get { return _isRefreshing; } set => SetValue(ref _isRefreshing, value); }
 
         public ICommand _AddNewAdressEmail { get; private set; }
         public ICommand _RefereshAdressEmail { get; private set; }
@@ -38,7 +38,7 @@ namespace QRApp.ViewModel
             _dataService = dataService;
             _emailAdresses = new DictEmailAdress();
 
-            GetAdressEmails();
+            _ = GetAdressEmails();
         }
 
         private async Task AddNewAdressEmail()

@@ -16,10 +16,10 @@
         <TableView Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <TableSection Title="Location / Equipment">
                 <ViewCell>
-                    <Label Text="{Binding LocationName}" />
+                    <Label Text="{Binding LocationName}" Padding="30,0,0,0" FontSize="Body"/>
                 </ViewCell>
                 <ViewCell>
-                    <Label Text="{Binding EquipmentName}" />
+                    <Label Text="{Binding EquipmentName}" Padding="30,0,0,0" FontSize="Body" />
                 </ViewCell>
             </TableSection>
         </TableView>
@@ -28,7 +28,7 @@
             <TableSection Title="Topic / description ticket">
                 <EntryCell Label="Topic" Text="{Binding Topic}" Placeholder="topitc ticet" IsEnabled="False"/>
                 <ViewCell>
-                    <Editor Text="{Binding Description}" HeightRequest="200" Background="white" TextColor="Black" IsEnabled="False"/>
+                    <Editor Text="{Binding Description}" HeightRequest="200" IsEnabled="False"/>
                 </ViewCell>
             </TableSection>
         </TableView>

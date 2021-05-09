@@ -11,7 +11,7 @@ namespace QRApp.View.WorkPanel
         public HistoryTicketsPage()
         {
             InitializeComponent();
-            BindingContext = new TicketHistoryVM(new PageService(),new DataService(),new DialogService());
+            BindingContext = new TicketHistoryVM(new PageService(),new DataService());
         }
 
         private void ListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
