@@ -27,21 +27,30 @@ namespace QRApp.ViewModel
         public ICommand _RefereshAdressEmail { get; private set; }
 
         public readonly IDataService _dataService;
+        public readonly IDialogService _dialogService;
 
-        public AdressEmailVM(IDataService dataService)
+        public AdressEmailVM(IDataService dataService, IDialogService dialogService)
         {
-            _AddNewAdressEmail = new Command(_ => AddNewAdressEmail());
+            _AddNewAdressEmail = new Command(async _ => await  AddNewAdressEmail());
             _RefereshAdressEmail = new Command(async _ =>await GetAdressEmails());
 
+            _dialogService = dialogService;
             _dataService = dataService;
             _emailAdresses = new DictEmailAdress();
 
             GetAdressEmails();
         }
 
-        private Task AddNewAdressEmail()
+        private async Task AddNewAdressEmail()
         {
-            return _dataService.PostNewEmail(_emailAdresses);
+            if (await _dataService.PostNewEmail(_emailAdresses))
+            {
+                await _dialogService.DisplayAlert("Info", "Add New AdressEmail successful", "OK", "Cancel");
+            }
+            else
+            {
+                await _dialogService.DisplayAlert("Info", "Add New AdressEmail failed", "OK", "Cancel");
+            }
         }
 
         private async Task GetAdressEmails()

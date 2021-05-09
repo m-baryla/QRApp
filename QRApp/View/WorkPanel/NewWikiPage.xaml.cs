@@ -12,7 +12,7 @@ namespace QRApp.View.WorkPanel
         public NewWikiPage()
         {
             InitializeComponent();
-            BindingContext = new NewWikiVM(new CameraService(),new DataService());
+            BindingContext = new NewWikiVM(new CameraService(),new DataService(),new DialogService());
         }
 
         private void MenuItem_OnClicked(object sender, EventArgs e)

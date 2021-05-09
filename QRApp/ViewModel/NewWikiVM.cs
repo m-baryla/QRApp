@@ -36,18 +36,20 @@ namespace QRApp.ViewModel
 
         private readonly ICameraService _cameraService;
         private readonly IDataService _dataService;
+        private readonly IDialogService _dialogService;
 
         public ICommand _CreatePhotoAsync { get; private set; }
         public byte[] PhotoBytes { get { return _cameraService.PhotoBytes; } }
 
         public ICommand _SendNewWiki { get; private set; }
 
-        public NewWikiVM(ICameraService cameraService, IDataService dataService)
+        public NewWikiVM(ICameraService cameraService, IDataService dataService, IDialogService dialogService)
         {
             _CreatePhotoAsync = new Command(async _ => await CreatePhotoAsync());
-            _SendNewWiki = new Command(_ => SendNewWiki());
+            _SendNewWiki = new Command(async _ => await SendNewWiki());
 
             _cameraService = cameraService;
+            _dialogService = dialogService;
             _dataService = dataService;
             _wikisDetails = new Wiki();
 
@@ -69,13 +71,21 @@ namespace QRApp.ViewModel
             return _cameraService.CreatePhotoAsync();
         }
 
-        private Task SendNewWiki()
+        private async Task SendNewWiki()
         {
             _wikisDetails.LocationName = SelecteDictLocation.LocationName;
             _wikisDetails.EquipmentName = SelecteDictEquipments.EquipmentName;
             _wikisDetails.Photo = _cameraService.PhotoBytes;
 
-            return _dataService.PostNewWiki(_wikisDetails);
+            
+            if (await _dataService.PostNewWiki(_wikisDetails))
+            {
+                await _dialogService.DisplayAlert("Info", "Send New Wiki successful", "OK", "Cancel");
+            }
+            else
+            {
+                await _dialogService.DisplayAlert("Info", "Send New Wiki failed", "OK", "Cancel");
+            }
         }
     }
 }

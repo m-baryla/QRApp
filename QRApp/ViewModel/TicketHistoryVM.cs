@@ -17,6 +17,7 @@ namespace QRApp.ViewModel
     {
         private readonly IPageService _pageService;
         private readonly IDataService _dataService;
+        private readonly IDialogService _dialogService;
         private bool _isRefreshing;
         public bool IsRefreshing { get { return _isRefreshing; } set { SetValue(ref _isRefreshing, value); } }
 
@@ -38,12 +39,13 @@ namespace QRApp.ViewModel
         public Ticket Ticket { get; set; }
         public byte[] PhotoBytes { get; set; }
 
-        public TicketHistoryVM(IPageService pageService, IDataService dataService)
+        public TicketHistoryVM(IPageService pageService, IDataService dataService,IDialogService dialogService)
         {
             _GoToDetailPage = new Command(_ => GoToDetailPage());
             _RefereshHistoryTickets = new Command(_ => GetHistoryTickets());
 
             _pageService = pageService;
+            _dialogService = dialogService;
             _dataService = dataService;
 
             GetHistoryTickets();
@@ -51,7 +53,7 @@ namespace QRApp.ViewModel
 
         public TicketHistoryVM(IDataService dataService,Ticket _ticket)
         {
-            _UpdateStatusTicket = new Command(_ => UpdateStatusTicket());
+            _UpdateStatusTicket = new Command(async _ => await UpdateStatusTicket());
 
             Ticket = _ticket;
 
@@ -62,7 +64,7 @@ namespace QRApp.ViewModel
             ListStatus();
         }
 
-        private Task UpdateStatusTicket()
+        private async Task UpdateStatusTicket()
         {
             var _putTicket = new Ticket();
             _putTicket.Id = Ticket.Id;
@@ -75,7 +77,14 @@ namespace QRApp.ViewModel
             _putTicket.Status = SelecteDictStatu.Status;
             _putTicket.EmailAdress = Ticket.EmailAdress;
 
-            return _dataService.PutTicket(Ticket.Id, _putTicket);
+            if (await _dataService.PutTicket(Ticket.Id, _putTicket))
+            {
+                await _dialogService.DisplayAlert("Info", "Update Status successful", "OK", "Cancel");
+            }
+            else
+            {
+                await _dialogService.DisplayAlert("Info", "Update Status failed", "OK", "Cancel");
+            }
         }
 
         private async void GoToDetailPage()

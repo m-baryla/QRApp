@@ -11,7 +11,7 @@ namespace QRApp.View.UserSettingsPanel
         public ManagementAccountPage()
         {
             InitializeComponent();
-            BindingContext = new ManagementAccountVM(new DataService());
+            BindingContext = new ManagementAccountVM(new DataService(),new DialogService());
         }
     }
 }

@@ -19,64 +19,140 @@ namespace QRApp.Service
         //private const string url = "https://localhost:44337";
         public async Task<List<DictStatu>> GetStatusList()
         {
-            var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync(url + "/api/DictStatus/");
-            var status = JsonConvert.DeserializeObject<List<DictStatu>>(json);
-            return status;
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync(url + "/api/DictStatus/");
+                var status = JsonConvert.DeserializeObject<List<DictStatu>>(json);
+                return status;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
         public async Task<List<DictEmailAdress>> GetEmailAdressesList()
         {
-            var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync(url + "/api/DictEmailAdresses/");
-            var emails = JsonConvert.DeserializeObject<List<DictEmailAdress>>(json);
-            return emails;
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync(url + "/api/DictEmailAdresses/");
+                var emails = JsonConvert.DeserializeObject<List<DictEmailAdress>>(json);
+                return emails;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
         public async Task<List<Ticket>> GetTicketHistoryDetailsList()
         {
-            var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync(url + "/api/Tickets/TicketsHistoriesDetails/");
-            var historys = JsonConvert.DeserializeObject<List<Ticket>>(json);
-            return historys;
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync(url + "/api/Tickets/TicketsHistoriesDetails/");
+                var historys = JsonConvert.DeserializeObject<List<Ticket>>(json);
+                return historys;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         public async Task<List<DictLocation>> GetLocationsList()
         {
-            var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync(url + "/api/DictLocations/");
-            var locations = JsonConvert.DeserializeObject<List<DictLocation>>(json);
-            return locations;
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync(url + "/api/DictLocations/");
+                var locations = JsonConvert.DeserializeObject<List<DictLocation>>(json);
+                return locations;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         public async Task<List<DictEquipment>> GetEquipmentList()
         {
-            var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync(url + "/api/DictEquipments/");
-            var equipments = JsonConvert.DeserializeObject<List<DictEquipment>>(json);
-            return equipments;
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync(url + "/api/DictEquipments/");
+                var equipments = JsonConvert.DeserializeObject<List<DictEquipment>>(json);
+                return equipments;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
         public async Task<List<Wiki>> GetWikiDetailList()
         {
-            var httpClient = new HttpClient();
-            var json = await httpClient.GetStringAsync(url + "/api/Wikis/GetWikiDetail/");
-            var wikis = JsonConvert.DeserializeObject<List<Wiki>>(json);
-            return wikis;
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync(url + "/api/Wikis/GetWikiDetail/");
+                var wikis = JsonConvert.DeserializeObject<List<Wiki>>(json);
+                return wikis;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
-        public async Task PostNewTicket(Ticket ticketsDetails)
+        public async Task<bool> PostNewTicket(Ticket ticketsDetails)
         {
-            var httpClient = new HttpClient();
-            var json = JsonConvert.SerializeObject(ticketsDetails);
-            StringContent content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var result = await httpClient.PostAsync(url + "/api/Tickets/", content);
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = JsonConvert.SerializeObject(ticketsDetails);
+                StringContent content = new StringContent(json);
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                var result = await httpClient.PostAsync(url + "/api/Tickets/", content);
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        public async Task PostNewWiki(Wiki wikiDetails)
+        public async Task<bool> PostNewWiki(Wiki wikiDetails)
         {
-            var httpClient = new HttpClient();
-            var json = JsonConvert.SerializeObject(wikiDetails);
-            StringContent content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var result = await httpClient.PostAsync(url + "/api/Wikis/", content);
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = JsonConvert.SerializeObject(wikiDetails);
+                StringContent content = new StringContent(json);
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                var result = await httpClient.PostAsync(url + "/api/Wikis/", content);
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
         public async Task<bool> LoginAuth(User user)
@@ -94,10 +170,8 @@ namespace QRApp.Service
                     {
                         return true;
                     }
-                    else
-                    {
-                        return false;
-                    }
+
+                    return false;
                 }
 
                 return false;
@@ -109,49 +183,118 @@ namespace QRApp.Service
             }
         }
 
-        public async Task PutTicket(int id,Ticket ticketsDetails)
+        public async Task<bool> PutTicket(int id,Ticket ticketsDetails)
         {
-            var httpClient = new HttpClient();
-            var json = JsonConvert.SerializeObject(ticketsDetails);
-            StringContent content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var result = await httpClient.PutAsync(url + "/api/Tickets/" + id + "/", content);
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = JsonConvert.SerializeObject(ticketsDetails);
+                StringContent content = new StringContent(json);
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                var result = await httpClient.PutAsync(url + "/api/Tickets/" + id + "/", content);
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        public async Task PostNewEmail(DictEmailAdress emailAdress)
+        public async Task<bool> PostNewEmail(DictEmailAdress emailAdress)
         {
-            var httpClient = new HttpClient();
-            var json = JsonConvert.SerializeObject(emailAdress);
-            StringContent content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var result = await httpClient.PostAsync(url + "/api/DictEmailAdresses/", content);
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = JsonConvert.SerializeObject(emailAdress);
+                StringContent content = new StringContent(json);
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                var result = await httpClient.PostAsync(url + "/api/DictEmailAdresses/", content);
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        public async Task PostNewAccount(User user)
+        public async Task<bool> PostNewAccount(User user)
         {
-            var httpClient = new HttpClient();
-            var json = JsonConvert.SerializeObject(user);
-            StringContent content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var result = await httpClient.PostAsync(url + "/api/Users/", content);
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = JsonConvert.SerializeObject(user);
+                StringContent content = new StringContent(json);
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                var result = await httpClient.PostAsync(url + "/api/Users/", content);
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        public async Task PostNewLocation(DictLocation location)
+        public async Task<bool> PostNewLocation(DictLocation location)
         {
-            var httpClient = new HttpClient();
-            var json = JsonConvert.SerializeObject(location);
-            StringContent content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var result = await httpClient.PostAsync(url + "/api/DictLocations/", content);
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = JsonConvert.SerializeObject(location);
+                StringContent content = new StringContent(json);
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                var result = await httpClient.PostAsync(url + "/api/DictLocations/", content);
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
 
-        public async Task PostNewEquipment(DictEquipment equipment)
+        public async Task<bool> PostNewEquipment(DictEquipment equipment)
         {
-            var httpClient = new HttpClient();
-            var json = JsonConvert.SerializeObject(equipment);
-            StringContent content = new StringContent(json);
-            content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-            var result = await httpClient.PostAsync(url + "/api/DictEquipments/", content);
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = JsonConvert.SerializeObject(equipment);
+                StringContent content = new StringContent(json);
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                var result = await httpClient.PostAsync(url + "/api/DictEquipments/", content);
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
         }
     }
 }

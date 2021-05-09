@@ -26,14 +26,16 @@ namespace QRApp.ViewModel
         public ICommand _AddNewEquipment { get; private set; }
 
         public readonly IDataService _dataService;
+        public readonly IDialogService _dialogService;
 
 
-        public ManagementNewLocationEquipmentVM(IDataService dataService)
+        public ManagementNewLocationEquipmentVM(IDataService dataService, IDialogService dialogService)
         {
-            _AddNewLocation = new Command(_ => AddNewLocation());
-            _AddNewEquipment = new Command(_ => AddNewEquipment());
+            _AddNewLocation = new Command(async _ => await AddNewLocation());
+            _AddNewEquipment = new Command(async _ => await AddNewEquipment());
 
             _dataService = dataService;
+            _dialogService = dialogService;
             _dictLocation = new DictLocation();
             _dictEquipments = new DictEquipment();
 
@@ -41,14 +43,28 @@ namespace QRApp.ViewModel
             ListEquipment();
         }
 
-        private Task AddNewEquipment()
+        private async Task AddNewEquipment()
         {
-            return _dataService.PostNewEquipment(_dictEquipments);
+            if (await _dataService.PostNewEquipment(_dictEquipments))
+            {
+                await _dialogService.DisplayAlert("Info", "Add New Equipment successful", "OK", "Cancel");
+            }
+            else
+            {
+                await _dialogService.DisplayAlert("Info", "Add New Equipment failed", "OK", "Cancel");
+            }
         }
 
-        private Task AddNewLocation()
+        private async Task AddNewLocation()
         {
-            return _dataService.PostNewLocation(_dictLocation);
+            if (await _dataService.PostNewLocation(_dictLocation))
+            {
+                await _dialogService.DisplayAlert("Info", "Add New Location successful", "OK", "Cancel");
+            }
+            else
+            {
+                await _dialogService.DisplayAlert("Info", "Add New Location failed", "OK", "Cancel");
+            }
         }
 
         private async Task ListLocations()

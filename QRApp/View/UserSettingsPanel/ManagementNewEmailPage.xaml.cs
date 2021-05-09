@@ -11,7 +11,7 @@ namespace QRApp.View.UserSettingsPanel
         public ManagementNewEmailPage()
         {
             InitializeComponent();
-            BindingContext = new AdressEmailVM(new DataService());
+            BindingContext = new AdressEmailVM(new DataService(),new DialogService());
         }
         private async void Handle_TextChanged(object sender, TextChangedEventArgs e)
         {

@@ -11,7 +11,7 @@ namespace QRApp.View.UserSettingsPanel
         public ManagementNewLocationEquipment()
         {
             InitializeComponent();
-            BindingContext = new ManagementNewLocationEquipmentVM(new DataService());
+            BindingContext = new ManagementNewLocationEquipmentVM(new DataService(),new DialogService());
         }
     }
 }

@@ -42,6 +42,7 @@ namespace QRApp.ViewModel
 
         private readonly ICameraService _cameraService;
         private readonly IPageService _pageService;
+        private readonly IDialogService _dialogService;
         private readonly IDataService _dataService;
         public ICommand _CreatePhotoAsync { get; private set; }
         public ICommand _TEST { get; private set; }
@@ -70,13 +71,14 @@ namespace QRApp.ViewModel
         private bool _isVisibleEquippment;
         public bool IsVisibleEquippment { get { return _isVisibleEquippment; } set { SetValue(ref _isVisibleEquippment, value); } }
 
-        public NewTicketVM(IPageService pageService,ICameraService cameraService, IDataService dataService)
+        public NewTicketVM(IPageService pageService,ICameraService cameraService, IDataService dataService, IDialogService dialogService)
         {
             _CreatePhotoAsync = new Command(async _ => await CreatePhotoAsync());
-            _SendNewTicket = new Command(_ => SendNewTicket());
+            _SendNewTicket = new Command(async _=> await SendNewTicket());
 
             _cameraService = cameraService;
             _dataService = dataService;
+            _dialogService = dialogService;
             _pageService = pageService;
             _ticketsDetails = new Ticket();
             SelecteDictEquipments = new DictEquipment();
@@ -145,7 +147,7 @@ namespace QRApp.ViewModel
             return _cameraService.CreatePhotoAsync();
         }
 
-        private Task SendNewTicket()
+        private async Task SendNewTicket()
         {
             if (LocationValue == null)
             {
@@ -172,7 +174,15 @@ namespace QRApp.ViewModel
             _ticketsDetails.Photo = _cameraService.PhotoBytes;
 
 
-            return _dataService.PostNewTicket(_ticketsDetails);
+
+            if (await _dataService.PostNewTicket(_ticketsDetails))
+            {
+                await _dialogService.DisplayAlert("Info", "Send New Ticket successful", "OK", "Cancel");
+            }
+            else
+            {
+                await _dialogService.DisplayAlert("Info", "Send New Ticket  failed", "OK", "Cancel");
+            }
 
         }
     }

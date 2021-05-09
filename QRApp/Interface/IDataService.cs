@@ -15,14 +15,14 @@ namespace QRApp.Interface
         Task<List<DictLocation>> GetLocationsList();
         Task<List<DictEquipment>> GetEquipmentList();
         Task<List<Wiki>> GetWikiDetailList();
-        Task PostNewTicket(Ticket ticketsDetails);
-        Task PostNewWiki(Wiki wikiDetails);
+        Task<bool> PostNewTicket(Ticket ticketsDetails);
+        Task<bool> PostNewWiki(Wiki wikiDetails);
         Task<bool> LoginAuth(User user);
-        Task PutTicket(int id, Ticket ticketsDetails);
-        Task PostNewEmail(DictEmailAdress emailAdress);
-        Task PostNewAccount(User user);
-        Task PostNewLocation(DictLocation location);
-        Task PostNewEquipment(DictEquipment equipment);
+        Task<bool> PutTicket(int id, Ticket ticketsDetails);
+        Task<bool> PostNewEmail(DictEmailAdress emailAdress);
+        Task<bool> PostNewAccount(User user);
+        Task<bool> PostNewLocation(DictLocation location);
+        Task<bool> PostNewEquipment(DictEquipment equipment);
 
     }
 }

@@ -12,23 +12,32 @@ namespace QRApp.ViewModel
     class ManagementAccountVM : BaseVM
     {
         public readonly IDataService _dataService;
+        public readonly IDialogService _dialogService;
 
         private User _user;
         public User User { get { return _user; } set { SetValue(ref _user, value); } }
         public ICommand _AddNewAccount { get; private set; }
 
-        public ManagementAccountVM(IDataService dataService)
+        public ManagementAccountVM(IDataService dataService,IDialogService dialogService)
         {
-            _AddNewAccount = new Command(_ => AddNewAccount());
+            _AddNewAccount = new Command(async _ => await  AddNewAccount());
 
             _dataService = dataService;
             _user = new User();
         }
-        private Task AddNewAccount()
+        private async Task AddNewAccount()
         {
             _user.Password_1 = Convert.ToBase64String(Encoding.UTF8.GetBytes(_user.Password_1));
             _user.Password_2 = Convert.ToBase64String(Encoding.UTF8.GetBytes(_user.Password_2));
-            return _dataService.PostNewAccount(_user);
+
+            if (await _dataService.PostNewAccount(_user))
+            {
+                await _dialogService.DisplayAlert("Info", "Add New Account successful", "OK", "Cancel");
+            }
+            else
+            {
+                await _dialogService.DisplayAlert("Info", "Add New Account failed", "OK", "Cancel");
+            }
         }
     }
 }
