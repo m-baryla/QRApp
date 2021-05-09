@@ -18,6 +18,8 @@ namespace QRApp.ViewModel
 {
     public class NewTicketVM : BaseVM
     {
+        private DictEmailAdress _dictEmailAdressNotify;
+        public DictEmailAdress DictEmailAdressNotify { get { return _dictEmailAdressNotify; } set => SetValue(ref _dictEmailAdressNotify, value); }
 
         private Ticket _ticketsDetails;
         public Ticket TicketsDetails { get { return _ticketsDetails; } set => SetValue(ref _ticketsDetails, value); }
@@ -82,6 +84,7 @@ namespace QRApp.ViewModel
             _ticketsDetails = new Ticket();
             SelecteDictEquipments = new DictEquipment();
             SelecteDictLocation = new DictLocation();
+            _dictEmailAdressNotify = new DictEmailAdress();
             _ = ListLocations();
             _ = ListEquipment();
             _ = ListEmailAdress();
@@ -168,11 +171,16 @@ namespace QRApp.ViewModel
 
 
             _ticketsDetails.EmailAdress = SelecteDictEmailAdress.EmailAdressNotify;
-            _ticketsDetails.Status = "Status1";
+            _ticketsDetails.Status = "Active";
             _ticketsDetails.UserName = "testlogin";
             _ticketsDetails.Photo = _cameraService.PhotoBytes;
 
-
+            
+            _dictEmailAdressNotify.EmailAdressNotify = SelecteDictEmailAdress.EmailAdressNotify;
+            _dictEmailAdressNotify.Subject = _ticketsDetails.Topic;
+            _dictEmailAdressNotify.Content_part1 = "LocationName: " + _ticketsDetails.LocationName;
+            _dictEmailAdressNotify.Content_part2 = "EquipmentName: " + _ticketsDetails.EquipmentName;
+            _dictEmailAdressNotify.Content_part3 = "Description: " + _ticketsDetails.Description;
 
             if (await _dataService.PostNewTicket(_ticketsDetails))
             {
@@ -181,6 +189,15 @@ namespace QRApp.ViewModel
             else
             {
                 await _dialogService.DisplayAlert("Info", "Send New Ticket  failed", "OK", "Cancel");
+            }
+
+            if (await _dataService.PostEmailAdressNotify(_dictEmailAdressNotify))
+            {
+                await _dialogService.DisplayAlert("Info", "Email Adress Notifyt successful", "OK", "Cancel");
+            }
+            else
+            {
+                await _dialogService.DisplayAlert("Info", "Email Adress Notifyt  failed", "OK", "Cancel");
             }
 
         }

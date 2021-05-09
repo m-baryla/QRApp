@@ -23,6 +23,8 @@ namespace QRApp.Interface
         Task<bool> PostNewAccount(User user);
         Task<bool> PostNewLocation(DictLocation location);
         Task<bool> PostNewEquipment(DictEquipment equipment);
+        Task<bool> PostEmailAdressNotify(DictEmailAdress emailAdressNotify);
+
 
     }
 }

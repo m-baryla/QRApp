@@ -296,5 +296,28 @@ namespace QRApp.Service
                 throw;
             }
         }
+
+        public async Task<bool> PostEmailAdressNotify(DictEmailAdress emailAdressNotify)
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = JsonConvert.SerializeObject(emailAdressNotify);
+                StringContent content = new StringContent(json);
+                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                var result = await httpClient.PostAsync(url + "/api/DictEmailAdresses/SendEmail/", content);
+                if (result.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+
+                return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
     }
 }
