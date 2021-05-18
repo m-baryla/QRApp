@@ -10,7 +10,6 @@ namespace QRApp.View.UserSettingsPanel
     {
         public UserSettingsPanelPage()
         {
-            BindingContext = new UserSettingsPanelVM(new PageService());
             InitializeComponent();
         }
     }

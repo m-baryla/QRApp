@@ -10,12 +10,6 @@
         </x:Arguments>
     </NavigationPage>
 
-    <NavigationPage Title="Account" IconImageSource="">
-        <x:Arguments>
-            <userSettingsPanel:ManagementAccountPage/>
-        </x:Arguments>
-    </NavigationPage>
-
     <NavigationPage Title="New email" IconImageSource="">
         <x:Arguments>
             <userSettingsPanel:ManagementNewEmailPage/>

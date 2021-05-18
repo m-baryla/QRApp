@@ -8,6 +8,7 @@ using QRApp.Interface;
 using QRApp.Model;
 using QRApp.View.MainPanel;
 using Xamarin.Forms;
+using Microsoft.Identity.Client;
 
 namespace QRApp.ViewModel
 {
@@ -15,40 +16,28 @@ namespace QRApp.ViewModel
     {
         public ICommand _Login { get; private set; }
         private readonly IPageService _pageService;
-        private readonly IDataService _dataService;
-        private readonly IDialogService _dialogService;
 
-        private User _user;
-        public User User { get { return _user; } set => SetValue(ref _user, value); }
-
-        public MasterPageVM(IPageService pageService,IDataService dataService,IDialogService dialogService)
+        public MasterPageVM(IPageService pageService)
         {
             _Login = new Command(async _ => await LoginUser());
             _pageService = pageService;
-            _dataService = dataService;
-            _dialogService = dialogService;
-            User = new User();
-            User.Login = "testlogin";
-            User.Password = "testpasww";
         }
 
         private async Task LoginUser()
         {
             try
             {
-                if (await _dataService.LoginAuth(User))
-                {
-                    await _dialogService.DisplayAlert("Login info", "Login sucesfull", "OK", "Cancel");
-                    await _pageService.PushModalAsync(new ModulesPage());
-                }
-                else
-                {
-                    await _dialogService.DisplayAlert("Login info", "Login failed", "OK", "Cancel");
-                }
+                var result = await App.AuthenticationClient
+                                      .AcquireTokenInteractive(Constants.Scopes)
+                                      .WithPrompt(Prompt.ForceLogin)
+                                      .WithParentActivityOrWindow(App.UIParent)
+                                      .ExecuteAsync();
+
+                await _pageService.PushAsync(new ModulesPage(result));
             }
-            catch (Exception e)
+            catch (System.Exception)
             {
-                Console.WriteLine(e);
+
                 throw;
             }
         }

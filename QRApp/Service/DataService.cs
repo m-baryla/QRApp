@@ -154,34 +154,6 @@ namespace QRApp.Service
             }
         }
 
-        public async Task<bool> LoginAuth(User user)
-        {
-            try
-            {
-                if (user.Login != null && user.Password != null)
-                {
-                    var httpClient = new HttpClient();
-                    var auth = string.Format("{0}:{1}", user.Login, Convert.ToBase64String(Encoding.UTF8.GetBytes(user.Password)));
-                    var authHeader = Convert.ToBase64String(Encoding.UTF8.GetBytes(auth));
-                    httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Basic", authHeader);
-                    var result = await httpClient.GetAsync(url + "/api/Users/GetUser/");
-                    if (result.IsSuccessStatusCode)
-                    {
-                        return true;
-                    }
-
-                    return false;
-                }
-
-                return false;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        }
-
         public async Task<bool> PutTicket(int id,Ticket ticketsDetails)
         {
             try
@@ -214,29 +186,6 @@ namespace QRApp.Service
                 StringContent content = new StringContent(json);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
                 var result = await httpClient.PostAsync(url + "/api/DictEmailAdresses/", content);
-                if (result.IsSuccessStatusCode)
-                {
-                    return true;
-                }
-
-                return false;
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine(e);
-                throw;
-            }
-        }
-
-        public async Task<bool> PostNewAccount(User user)
-        {
-            try
-            {
-                var httpClient = new HttpClient();
-                var json = JsonConvert.SerializeObject(user);
-                StringContent content = new StringContent(json);
-                content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var result = await httpClient.PostAsync(url + "/api/Users/", content);
                 if (result.IsSuccessStatusCode)
                 {
                     return true;

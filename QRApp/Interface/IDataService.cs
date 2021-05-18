@@ -17,10 +17,8 @@ namespace QRApp.Interface
         Task<List<Wiki>> GetWikiDetailList();
         Task<bool> PostNewTicket(Ticket ticketsDetails);
         Task<bool> PostNewWiki(Wiki wikiDetails);
-        Task<bool> LoginAuth(User user);
         Task<bool> PutTicket(int id, Ticket ticketsDetails);
         Task<bool> PostNewEmail(DictEmailAdress emailAdress);
-        Task<bool> PostNewAccount(User user);
         Task<bool> PostNewLocation(DictLocation location);
         Task<bool> PostNewEquipment(DictEquipment equipment);
         Task<bool> PostEmailAdressNotify(DictEmailAdress emailAdressNotify);

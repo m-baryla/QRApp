@@ -18,7 +18,17 @@
         <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="12">
             <Button Text="Work Panel" 
                     Style="{StaticResource buttonQRapp}" 
-                    IsVisible="True" Command="{Binding _GoToUserPanel}"  
+                    IsVisible="True" 
+                    Command="{Binding _GoToUserPanel}"  
+                    VerticalOptions="FillAndExpand" 
+                    HorizontalOptions="FillAndExpand" />
+        </ContentView>
+
+        <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="12">
+            <Button Text="Sing out" 
+                    Style="{StaticResource buttonQRapp}" 
+                    IsVisible="True" 
+                    Clicked="Button_Clicked"  
                     VerticalOptions="FillAndExpand" 
                     HorizontalOptions="FillAndExpand" />
         </ContentView>

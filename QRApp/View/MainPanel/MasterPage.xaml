@@ -6,20 +6,12 @@
 
     <StackLayout Spacing="20" VerticalOptions="Center">
 
-        <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="35">
-            <Entry Text="{Binding User.Login}" Placeholder="Login" />
-        </ContentView>
-
-        <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="35">
-            <Entry Text="{Binding User.Password}" IsPassword="True" Placeholder="Password" />
-        </ContentView>
-
         <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="12">
-            <Button Text="Sign in" 
+            <Button Text="Sign in Azure AAD" 
                     Style="{StaticResource buttonQRapp}" 
                     Command="{Binding _Login}"/>
         </ContentView>
-        
+
     </StackLayout>
     
 </ContentPage>
