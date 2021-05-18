@@ -15,13 +15,12 @@ namespace QRApp.Service
 
     public class DataService : IDataService
     {
-        private const string url = "https://qrappapi.azurewebsites.net";
         public async Task<List<DictStatu>> GetStatusList()
         {
             try
             {
                 var httpClient = new HttpClient();
-                var json = await httpClient.GetStringAsync(url + "/api/DictStatus/");
+                var json = await httpClient.GetStringAsync(Constants.Url + "/api/DictStatus/");
                 var status = JsonConvert.DeserializeObject<List<DictStatu>>(json);
                 return status;
             }
@@ -36,7 +35,7 @@ namespace QRApp.Service
             try
             {
                 var httpClient = new HttpClient();
-                var json = await httpClient.GetStringAsync(url + "/api/DictEmailAdresses/");
+                var json = await httpClient.GetStringAsync(Constants.Url + "/api/DictEmailAdresses/");
                 var emails = JsonConvert.DeserializeObject<List<DictEmailAdress>>(json);
                 return emails;
             }
@@ -51,7 +50,7 @@ namespace QRApp.Service
             try
             {
                 var httpClient = new HttpClient();
-                var json = await httpClient.GetStringAsync(url + "/api/Tickets/TicketsHistoriesDetails/");
+                var json = await httpClient.GetStringAsync(Constants.Url + "/api/Tickets/TicketsHistoriesDetails/");
                 var historys = JsonConvert.DeserializeObject<List<Ticket>>(json);
                 return historys;
             }
@@ -67,7 +66,7 @@ namespace QRApp.Service
             try
             {
                 var httpClient = new HttpClient();
-                var json = await httpClient.GetStringAsync(url + "/api/DictLocations/");
+                var json = await httpClient.GetStringAsync(Constants.Url + "/api/DictLocations/");
                 var locations = JsonConvert.DeserializeObject<List<DictLocation>>(json);
                 return locations;
             }
@@ -83,7 +82,7 @@ namespace QRApp.Service
             try
             {
                 var httpClient = new HttpClient();
-                var json = await httpClient.GetStringAsync(url + "/api/DictEquipments/");
+                var json = await httpClient.GetStringAsync(Constants.Url + "/api/DictEquipments/");
                 var equipments = JsonConvert.DeserializeObject<List<DictEquipment>>(json);
                 return equipments;
             }
@@ -98,7 +97,7 @@ namespace QRApp.Service
             try
             {
                 var httpClient = new HttpClient();
-                var json = await httpClient.GetStringAsync(url + "/api/Wikis/GetWikiDetail/");
+                var json = await httpClient.GetStringAsync(Constants.Url + "/api/Wikis/GetWikiDetail/");
                 var wikis = JsonConvert.DeserializeObject<List<Wiki>>(json);
                 return wikis;
             }
@@ -116,7 +115,7 @@ namespace QRApp.Service
                 var json = JsonConvert.SerializeObject(ticketsDetails);
                 StringContent content = new StringContent(json);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var result = await httpClient.PostAsync(url + "/api/Tickets/", content);
+                var result = await httpClient.PostAsync(Constants.Url + "/api/Tickets/", content);
                 if (result.IsSuccessStatusCode)
                 {
                     return true;
@@ -139,7 +138,7 @@ namespace QRApp.Service
                 var json = JsonConvert.SerializeObject(wikiDetails);
                 StringContent content = new StringContent(json);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var result = await httpClient.PostAsync(url + "/api/Wikis/", content);
+                var result = await httpClient.PostAsync(Constants.Url + "/api/Wikis/", content);
                 if (result.IsSuccessStatusCode)
                 {
                     return true;
@@ -162,7 +161,7 @@ namespace QRApp.Service
                 var json = JsonConvert.SerializeObject(ticketsDetails);
                 StringContent content = new StringContent(json);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var result = await httpClient.PutAsync(url + "/api/Tickets/" + id + "/", content);
+                var result = await httpClient.PutAsync(Constants.Url + "/api/Tickets/" + id + "/", content);
                 if (result.IsSuccessStatusCode)
                 {
                     return true;
@@ -185,7 +184,7 @@ namespace QRApp.Service
                 var json = JsonConvert.SerializeObject(emailAdress);
                 StringContent content = new StringContent(json);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var result = await httpClient.PostAsync(url + "/api/DictEmailAdresses/", content);
+                var result = await httpClient.PostAsync(Constants.Url + "/api/DictEmailAdresses/", content);
                 if (result.IsSuccessStatusCode)
                 {
                     return true;
@@ -208,7 +207,7 @@ namespace QRApp.Service
                 var json = JsonConvert.SerializeObject(location);
                 StringContent content = new StringContent(json);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var result = await httpClient.PostAsync(url + "/api/DictLocations/", content);
+                var result = await httpClient.PostAsync(Constants.Url + "/api/DictLocations/", content);
                 if (result.IsSuccessStatusCode)
                 {
                     return true;
@@ -231,7 +230,7 @@ namespace QRApp.Service
                 var json = JsonConvert.SerializeObject(equipment);
                 StringContent content = new StringContent(json);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var result = await httpClient.PostAsync(url + "/api/DictEquipments/", content);
+                var result = await httpClient.PostAsync(Constants.Url + "/api/DictEquipments/", content);
                 if (result.IsSuccessStatusCode)
                 {
                     return true;
@@ -253,7 +252,7 @@ namespace QRApp.Service
                 var json = JsonConvert.SerializeObject(emailAdressNotify);
                 StringContent content = new StringContent(json);
                 content.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                var result = await httpClient.PostAsync(url + "/api/DictEmailAdresses/SendEmail/", content);
+                var result = await httpClient.PostAsync(Constants.Url + "/api/DictEmailAdresses/SendEmail/", content);
                 if (result.IsSuccessStatusCode)
                 {
                     return true;

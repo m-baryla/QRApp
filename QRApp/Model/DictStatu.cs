@@ -9,7 +9,6 @@ namespace QRApp.Model
 {
     public partial class DictStatu
     {
-        public int Id { get; set; }
         public string Status { get; set; }
     }
 }

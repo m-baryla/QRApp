@@ -8,7 +8,6 @@ namespace QRApp.Model
 {
     public partial class DictEquipment
     {
-        public int Id { get; set; }
         public string EquipmentName { get; set; }
         public string Description { get; set; }
 

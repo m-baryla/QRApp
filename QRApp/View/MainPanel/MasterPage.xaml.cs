@@ -16,9 +16,8 @@ namespace QRApp.View.MainPanel
         {
             BindingContext = new MasterPageVM(new PageService());
             InitializeComponent();
-
-
         }
+
         protected override async void OnAppearing()
         {
             try
@@ -32,7 +31,7 @@ namespace QRApp.View.MainPanel
                     .ExecuteAsync();
 
                     await Navigation.PushAsync(new ModulesPage(result));
-                } 
+                }
             }
             catch
             {

@@ -9,6 +9,7 @@ using QRApp.Model;
 using QRApp.View.MainPanel;
 using Xamarin.Forms;
 using Microsoft.Identity.Client;
+using System.Linq;
 
 namespace QRApp.ViewModel
 {

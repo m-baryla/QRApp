@@ -23,6 +23,7 @@ namespace QRApp
                             .WithRedirectUri(Constants.RedirectUri)
                             .WithAuthority(AadAuthorityAudience.AzureAdMyOrg)
                             .WithTenantId(Constants.TenantId)
+                            .WithIosKeychainSecurityGroup(Constants.IosKeychainSecurityGroups)
                             .Build();
 
             MainPage = new NavigationPage(new MasterPage());
