@@ -15,8 +15,7 @@ namespace QRApp.Service
 
     public class DataService : IDataService
     {
-        private const string url = "http://192.168.1.87:8030";
-        //private const string url = "https://localhost:44337";
+        private const string url = "https://qrappapi.azurewebsites.net";
         public async Task<List<DictStatu>> GetStatusList()
         {
             try

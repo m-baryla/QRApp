@@ -185,19 +185,19 @@ namespace QRApp.ViewModel
             if (await _dataService.PostNewTicket(_ticketsDetails))
             {
                 await _dialogService.DisplayAlert("Info", "Send New Ticket successful", "OK", "Cancel");
-            }
-            else
-            {
-                await _dialogService.DisplayAlert("Info", "Send New Ticket  failed", "OK", "Cancel");
-            }
 
-            if (await _dataService.PostEmailAdressNotify(_dictEmailAdressNotify))
-            {
-                await _dialogService.DisplayAlert("Info", "Email Adress Notifyt successful", "OK", "Cancel");
+                if (await _dataService.PostEmailAdressNotify(_dictEmailAdressNotify))
+                {
+                    await _dialogService.DisplayAlert("Info", "Email Adress Notifyt successful", "OK", "Cancel");
+                }
+                else
+                {
+                    await _dialogService.DisplayAlert("Info", "Email Adress Notifyt failed", "OK", "Cancel");
+                }
             }
             else
             {
-                await _dialogService.DisplayAlert("Info", "Email Adress Notifyt  failed", "OK", "Cancel");
+                await _dialogService.DisplayAlert("Info", "Send New Ticket failed", "OK", "Cancel");
             }
 
         }
