@@ -10,6 +10,6 @@ namespace QRApp.Interface
         string Login { get; set; }
         string Password { get; set; }
         string Password_1 { get; set; }
-        string Password_2 { get; set; }
+        string Password_2 { get; set; }                                    
     }
 }
