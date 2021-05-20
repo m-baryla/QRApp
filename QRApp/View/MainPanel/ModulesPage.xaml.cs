@@ -2,6 +2,7 @@
 using QRApp.Service;
 using QRApp.ViewModel;
 using System.IdentityModel.Tokens.Jwt;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,6 +15,11 @@ namespace QRApp.View.MainPanel
         public ModulesPage(AuthenticationResult _authenticatioResult)
         {
             authenticatioResult = _authenticatioResult;
+
+            var userName = authenticatioResult.Account.Username;
+
+            Application.Current.Properties["userName"] = userName;
+            Application.Current.SavePropertiesAsync();
 
             BindingContext = new ModulesPageVM(new PageService());
             InitializeComponent();

@@ -10,6 +10,8 @@ using QRApp.Interface;
 using QRApp.Model;
 using QRApp.Service;
 using QRApp.View;
+using QRApp.View.MainPanel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -172,7 +174,9 @@ namespace QRApp.ViewModel
 
             _ticketsDetails.EmailAdress = SelecteDictEmailAdress.EmailAdressNotify;
             _ticketsDetails.Status = "Active";
-            _ticketsDetails.UserName = "testlogin";
+
+            _ticketsDetails.UserName = Application.Current.Properties["userName"].ToString();
+
             _ticketsDetails.Photo = _cameraService.PhotoBytes;
 
             
@@ -181,6 +185,7 @@ namespace QRApp.ViewModel
             _dictEmailAdressNotify.Content_part1 = "LocationName: " + _ticketsDetails.LocationName;
             _dictEmailAdressNotify.Content_part2 = "EquipmentName: " + _ticketsDetails.EquipmentName;
             _dictEmailAdressNotify.Content_part3 = "Description: " + _ticketsDetails.Description;
+            _dictEmailAdressNotify.UserSender = "UserSender: " + _ticketsDetails.UserName;
 
             if (await _dataService.PostNewTicket(_ticketsDetails))
             {

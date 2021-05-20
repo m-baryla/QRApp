@@ -72,7 +72,7 @@ namespace QRApp.ViewModel
         private async Task UpdateStatusTicket()
         {
             _putTicket.Id = Ticket.Id;
-            _putTicket.UserName = Ticket.UserName;
+            _putTicket.UserName = Application.Current.Properties["userName"].ToString();
             _putTicket.Description = Ticket.Description;
             _putTicket.Topic = Ticket.Topic;
             _putTicket.Photo = Ticket.Photo;
