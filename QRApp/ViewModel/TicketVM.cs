@@ -13,12 +13,13 @@ using QRApp.View.WorkPanel;
 
 namespace QRApp.ViewModel
 {
-    public class TicketHistoryVM : BaseVM
+    public class TicketVM : BaseVM
     {
         private readonly IPageService _pageService;
         private readonly IDataService _dataService;
         private readonly IDialogService _dialogService;
         public ICommand _GoToDetailPage { get; private set; }
+        public ICommand _GoToNewTicketsPage { get; private set; }
         public ICommand _RefereshHistoryTickets { get; private set; }
         public ICommand _UpdateStatusTicket { get; private set; }
         public Ticket Ticket { get; set; }
@@ -40,9 +41,10 @@ namespace QRApp.ViewModel
         private DictStatu _selecteDictStatu;
         public DictStatu SelecteDictStatu { get { return _selecteDictStatu; } set => SetValue(ref _selecteDictStatu, value); }
 
-        public TicketHistoryVM(IPageService pageService, IDataService dataService)
+        public TicketVM(IPageService pageService, IDataService dataService)
         {
             _GoToDetailPage = new Command(_ => GoToDetailPage());
+            _GoToNewTicketsPage = new Command(_ => GoToNewTicketsPage());
             _RefereshHistoryTickets = new Command(async _ => await GetHistoryTickets());
 
             _pageService = pageService;
@@ -51,7 +53,7 @@ namespace QRApp.ViewModel
             _ = GetHistoryTickets();
         }
 
-        public TicketHistoryVM(IDataService dataService,Ticket _ticket, IDialogService dialogService)
+        public TicketVM(IDataService dataService,Ticket _ticket, IDialogService dialogService)
         {
             _UpdateStatusTicket = new Command(async _ => await UpdateStatusTicket());
 
@@ -89,6 +91,12 @@ namespace QRApp.ViewModel
             {
                 await _dialogService.DisplayAlert("Info", "Update Status failed", "OK", "Cancel");
             }
+        }
+
+        private async Task GoToNewTicketsPage()
+        {
+
+            await _pageService.PushModalAsync(new TicketsCreate());
         }
 
         private async Task GoToDetailPage()

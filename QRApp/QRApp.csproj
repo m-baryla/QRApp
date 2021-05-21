@@ -31,13 +31,16 @@
     <EmbeddedResource Update="View\UserSettingsPanel\UserSettingsPanelPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\MainPanel\ScanServicePage.xaml">
+    <EmbeddedResource Update="View\WorkPanel\ScanServicePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\WorkPanel\HistoryTicketsDetailPage.xaml">
+    <EmbeddedResource Update="View\WorkPanel\TicketsCreate.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\WorkPanel\HistoryTicketsPage.xaml">
+    <EmbeddedResource Update="View\WorkPanel\TicketsDetailPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\WorkPanel\TicketsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\UserSettingsPanel\ManagementNewLocationEquipment.xaml">
@@ -61,6 +64,9 @@
     <EmbeddedResource Update="View\WorkPanel\WikiDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="View\WorkPanel\WikisCreate.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\WorkPanel\WorkPanelPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -75,6 +81,12 @@
     </Compile>
     <Compile Update="View\UserSettingsPanel\UserSettingsPanelPage.xaml.cs">
       <DependentUpon>UserSettingsPanelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\WorkPanel\TicketsDetailPage.xaml.cs">
+      <DependentUpon>TicketsDetailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\WorkPanel\TicketsPage.xaml.cs">
+      <DependentUpon>TicketsPage.xaml</DependentUpon>
     </Compile>
     <Compile Update="View\WorkPanel\WorkPanelPage.xaml.cs">
       <DependentUpon>WorkPanelPage.xaml</DependentUpon>

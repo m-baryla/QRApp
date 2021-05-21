@@ -11,17 +11,17 @@ namespace QRApp.View.WorkPanel
         public HistoryTicketsPage()
         {
             InitializeComponent();
-            BindingContext = new TicketHistoryVM(new PageService(),new DataService());
+            BindingContext = new TicketVM(new PageService(),new DataService());
         }
 
         private void ListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            (BindingContext as TicketHistoryVM)._GoToDetailPage.Execute(e.SelectedItem);
+            (BindingContext as TicketVM)._GoToDetailPage.Execute(e.SelectedItem);
         }
 
         private async void Handle_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ListView.ItemsSource = await (BindingContext as TicketHistoryVM).GetHistoryTicketsSearch(e.NewTextValue);
+            ListView.ItemsSource = await (BindingContext as TicketVM).GetHistoryTicketsSearch(e.NewTextValue);
         }
     }
 }

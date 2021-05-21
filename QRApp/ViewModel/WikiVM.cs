@@ -33,8 +33,8 @@ namespace QRApp.ViewModel
 
         public WikiVM(IPageService pageService, IDataService dataService)
         {
-            _GoToDetailPage = new Command(_ => GoToDetailPage());
-            _GoToNewWikiPage = new Command(_ => GoToNewWikiPage());
+            _GoToDetailPage = new Command(async _ => await GoToDetailPage());
+            _GoToNewWikiPage = new Command(async _ => await GoToNewWikiPage());
             _RefereshWikis = new Command(async _ => await GetWikis());
 
             _pageService = pageService;
@@ -44,7 +44,7 @@ namespace QRApp.ViewModel
         }
         private async Task GoToNewWikiPage()
         {
-            await _pageService.PushModalAsync(new NewWikiPage());
+            await _pageService.PushModalAsync(new WikisCreate());
         }
         private async Task GoToDetailPage()
         {
