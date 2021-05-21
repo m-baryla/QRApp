@@ -45,7 +45,13 @@
         <TableView Grid.Row="2" Grid.Column="0">
             <TableSection Title="User sender info">
                 <ViewCell>
+                    <Label Text="UserName" Padding="12" FontSize="Medium" TextColor="CornflowerBlue"></Label>
+                </ViewCell>
+                <ViewCell>
                     <Label Text="{Binding Ticket.UserName}" Padding="12"/>
+                </ViewCell>
+                <ViewCell>
+                    <Label Text="Notified e-mail" Padding="12" FontSize="Medium" TextColor="CornflowerBlue"></Label>
                 </ViewCell>
                 <ViewCell>
                     <Label Text="{Binding Ticket.EmailAdress}" Padding="12"/>
@@ -53,8 +59,12 @@
             </TableSection>
         </TableView>
 
+
         <TableView Grid.Row="2" Grid.Column="1">
             <TableSection Title="Ticket status">
+                <ViewCell>
+                    <Label Text="Status" Padding="12" FontSize="Medium" TextColor="CornflowerBlue"></Label>
+                </ViewCell>
                 <ViewCell>
                     <Label Text="{Binding Ticket.Status}" Padding="12"/>
                 </ViewCell>

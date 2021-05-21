@@ -67,7 +67,10 @@ namespace QRApp.ViewModel
             if (String.IsNullOrWhiteSpace(searchString))
                 return _wikiDetailsList;
 
-            return _wikiDetailsList.Where(c => c.Topic.StartsWith(searchString));
+            return _wikiDetailsList.Where(c => c.Topic.StartsWith(searchString) ||
+                                                c.LocationName.StartsWith(searchString) ||
+                                                c.EquipmentName.StartsWith(searchString) ||
+                                                c.Description.StartsWith(searchString));
         }
     }
 }

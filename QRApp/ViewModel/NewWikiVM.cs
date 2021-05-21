@@ -77,7 +77,6 @@ namespace QRApp.ViewModel
             _wikisDetails.EquipmentName = SelecteDictEquipments.EquipmentName;
             _wikisDetails.Photo = _cameraService.PhotoBytes;
 
-            
             if (await _dataService.PostNewWiki(_wikisDetails))
             {
                 await _dialogService.DisplayAlert("Info", "Send New Wiki successful", "OK", "Cancel");
