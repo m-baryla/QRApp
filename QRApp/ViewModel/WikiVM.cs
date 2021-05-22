@@ -27,7 +27,6 @@ namespace QRApp.ViewModel
         public List<Wiki> WikiDetailsList { get => _wikiDetailsList;
             set => SetValue(ref _wikiDetailsList, value); }
         public ICommand _GoToDetailPage { get; private set; }
-        public ICommand _GoToNewWikiPage { get; private set; }
         public ICommand _RefereshWikis { get; private set; }
 
         private Wiki _selectedWikiDetail;
@@ -37,7 +36,6 @@ namespace QRApp.ViewModel
         public WikiVM(IPageService pageService, IDataService dataService)
         {
             _GoToDetailPage = new Command(async _ => await GoToDetailPage());
-            _GoToNewWikiPage = new Command(async _ => await GoToNewWikiPage());
             _RefereshWikis = new Command(async _ => await GetWikis());
 
             _pageService = pageService;
@@ -45,10 +43,7 @@ namespace QRApp.ViewModel
 
             _ = GetWikis();
         }
-        private async Task GoToNewWikiPage()
-        {
-            await _pageService.PushModalAsync(new CreateFromScan());
-        }
+       
         private async Task GoToDetailPage()
         {
             if (SelectedWikiDetail == null)

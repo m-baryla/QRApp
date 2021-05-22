@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="QRApp.View.MainPanel.MasterPage">
 
-    <StackLayout Spacing="20" VerticalOptions="Center">
+    <StackLayout>
 
         <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="12">
             <Button Text="Sign In" 

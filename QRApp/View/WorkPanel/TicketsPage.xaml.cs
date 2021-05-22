@@ -1,6 +1,8 @@
 ﻿using QRApp.Service;
 using QRApp.ViewModel;
+using SkiaSharp;
 using Xamarin.Forms;
+using Microcharts;
 using Xamarin.Forms.Xaml;
 
 namespace QRApp.View.WorkPanel
@@ -13,6 +15,7 @@ namespace QRApp.View.WorkPanel
             InitializeComponent();
             BindingContext = new TicketVM(new PageService(),new DataService());
         }
+
 
         private void ListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {

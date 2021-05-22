@@ -7,9 +7,11 @@ using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using Microcharts;
 using QRApp.Interface;
 using QRApp.Service;
 using QRApp.View.WorkPanel;
+using SkiaSharp;
 
 namespace QRApp.ViewModel
 {
@@ -19,7 +21,6 @@ namespace QRApp.ViewModel
         private readonly IDataService _dataService;
         private readonly IDialogService _dialogService;
         public ICommand _GoToDetailPage { get; private set; }
-        public ICommand _GoToNewTicketsPage { get; private set; }
         public ICommand _RefereshHistoryTickets { get; private set; }
         public ICommand _UpdateStatusTicket { get; private set; }
         public Ticket Ticket { get; set; }
@@ -49,7 +50,6 @@ namespace QRApp.ViewModel
         public TicketVM(IPageService pageService, IDataService dataService)
         {
             _GoToDetailPage = new Command(async _ => await GoToDetailPage());
-            _GoToNewTicketsPage = new Command(async _ => await GoToNewTicketsPage());
             _RefereshHistoryTickets = new Command(async _ => await GetHistoryTickets());
 
             _pageService = pageService;
@@ -98,11 +98,6 @@ namespace QRApp.ViewModel
             }
         }
 
-        private async Task GoToNewTicketsPage()
-        {
-
-            await _pageService.PushModalAsync(new CreateFromScan());
-        }
 
         private async Task GoToDetailPage()
         {

@@ -4,6 +4,12 @@
             xmlns:workPanel="clr-namespace:QRApp.View.WorkPanel;assembly=QRApp"
              x:Class="QRApp.View.WorkPanel.WorkPanelPage">
 
+    <NavigationPage Title="New" IconImageSource="">
+        <x:Arguments>
+            <workPanel:HomeWorkPanel/>
+        </x:Arguments>
+    </NavigationPage>
+
     <NavigationPage Title="Tickets" IconImageSource="">
         <x:Arguments>
             <workPanel:TicketsPage/>

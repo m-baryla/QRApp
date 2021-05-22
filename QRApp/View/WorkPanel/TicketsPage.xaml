@@ -1,27 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
              x:Class="QRApp.View.WorkPanel.TicketsPage">
-
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add New" Command="{Binding _GoToNewTicketsPage}"></ToolbarItem>
-    </ContentPage.ToolbarItems>
 
 
     <ScrollView>
-            <StackLayout>
+        <StackLayout>
 
-                <StackLayout>
-                    <forms:ChartView x:Name="chartViewBar" HeightRequest="300" />
-                 </StackLayout>
-
-                <SearchBar Placeholder="Szukaj..." 
+            <SearchBar Placeholder="Szukaj..." 
                                    TextChanged="Handle_TextChanged" 
                                    Background="White"
                                    TextColor="Black">
-                </SearchBar>
-                <ListView x:Name="ListView" 
+            </SearchBar>
+            <ListView x:Name="ListView" 
                                   ItemsSource = "{Binding TicketDetailsList}"
                                   ItemSelected = "ListView_OnItemSelected"
                                   SelectedItem = "{Binding SelectedTicketDetail, Mode=TwoWay}"
@@ -29,9 +20,9 @@
                                   IsPullToRefreshEnabled="True"
                                   RefreshCommand="{Binding _RefereshHistoryTickets}"
                                   IsRefreshing="{Binding IsRefreshing}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell>
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
                             <StackLayout Padding="12">
                                 <Label Text="Ticket" TextColor="Gray"></Label>
                                 <Label Text="{Binding Topic}" FontSize="Title" Padding="10" TextColor="CornflowerBlue"></Label>
@@ -41,10 +32,10 @@
                                 <Label Text="{Binding Status}" FontSize="Small" Padding="20,0,0,0" TextColor="CornflowerBlue"></Label>
                             </StackLayout>
                         </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </StackLayout>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
     </ScrollView>
-
 </ContentPage>
+

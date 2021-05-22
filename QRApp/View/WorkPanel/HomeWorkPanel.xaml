@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:forms="clr-namespace:Microcharts.Forms;assembly=Microcharts.Forms"
+             x:Class="QRApp.View.WorkPanel.HomeWorkPanel">
+
+
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <ScrollView>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Label Text="Breakdowns" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
+                    <forms:ChartView x:Name="Breakdowns" HeightRequest="100" Grid.Row="0" Grid.Column="0" Margin="15"/>
+
+                    <Label Text="Repairs" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
+                    <forms:ChartView x:Name="Repairs" HeightRequest="100" Grid.Row="0" Grid.Column="1" Margin="15"/>
+
+                    <Label Text="Maintenance" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
+                    <forms:ChartView x:Name="Maintenance" HeightRequest="100" Grid.Row="0" Grid.Column="2" Margin="15"/>
+
+                    <Label Text="Inspection" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
+                    <forms:ChartView x:Name="Inspection" HeightRequest="100" Grid.Row="1" Grid.Column="0" Margin="15"/>
+
+                    <Label Text="Cleaning" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
+                    <forms:ChartView x:Name="Cleaning" HeightRequest="100" Grid.Row="1" Grid.Column="1" Margin="15"/>
+
+                    <Label Text="All" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
+                    <forms:ChartView x:Name="All" HeightRequest="100" Grid.Row="1" Grid.Column="2" Margin="15"/>
+
+
+                    <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan ="3">
+                        <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="12">
+                            <Button Text="Create new" 
+                                    Style="{StaticResource buttonQRapp}" 
+                                    IsVisible="True" 
+                                    VerticalOptions="FillAndExpand" 
+                                    Command="{Binding _GoToNew}"
+                                    HorizontalOptions="FillAndExpand" />
+                        </ContentView>
+                    </StackLayout>
+                </Grid>
+            </ScrollView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
