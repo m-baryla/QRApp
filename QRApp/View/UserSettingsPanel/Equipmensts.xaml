@@ -4,15 +4,35 @@
              x:Class="QRApp.View.UserSettingsPanel.Equipmensts">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add New Equipments" Command="{Binding _GoToNewTicketsPage}"></ToolbarItem>
+        <ToolbarItem Text="Add New EquipmentsList" Command="{Binding _GoToNewEquipmentsPage}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
 
-    <ContentPage.Content>
+    <ScrollView>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <SearchBar Placeholder="Szukaj..." 
+                       TextChanged="Handle_TextChanged" 
+                       Background="White"
+                       TextColor="Black"></SearchBar>
+            <ListView x:Name="ListView" 
+                      ItemsSource = "{Binding EquipmentsList}"
+                      HasUnevenRows="True"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding _RefereshEquipments}"
+                      IsRefreshing="{Binding IsRefreshing}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="12">
+                                <Label Text="Equipment" TextColor="Gray"></Label>
+                                <Label Text="{Binding EquipmentName}" FontSize="Title" Padding="10" TextColor="CornflowerBlue"></Label>
+                                <Label Text="{Binding Description}" FontSize="Small" Padding="20,0,0,0" TextColor="CornflowerBlue"></Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
-    </ContentPage.Content>
+    </ScrollView>
+
 </ContentPage>

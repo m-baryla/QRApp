@@ -4,12 +4,29 @@
              x:Class="QRApp.View.UserSettingsPanel.NewLocationPage">
 
 
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
 
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+        <TableView Grid.Row="0" HasUnevenRows="True">
+            <TableSection Title="Add new Location">
+                <ViewCell>
+                    <Entry Text="{Binding DictLocation.LocationName}" Placeholder="Location" />
+                </ViewCell>
+                <ViewCell>
+                    <Entry Text="{Binding DictLocation.Description}" Placeholder="Description" HeightRequest="100"/>
+                </ViewCell>
+                <ViewCell>
+                    <Button Text="Save new location" 
+                                Style="{StaticResource buttonQRapp}" 
+                                Command="{Binding _AddNewLocation}"/>
+                </ViewCell>
+            </TableSection>
+        </TableView>
+    </Grid>
+
 </ContentPage>

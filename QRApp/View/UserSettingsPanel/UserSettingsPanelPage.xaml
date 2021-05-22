@@ -10,7 +10,7 @@
         </x:Arguments>
     </NavigationPage>
 
-    <NavigationPage Title="LocationsList" IconImageSource="">
+    <NavigationPage Title="Locations" IconImageSource="">
         <x:Arguments>
             <userSettingsPanel:Locations/>
         </x:Arguments>

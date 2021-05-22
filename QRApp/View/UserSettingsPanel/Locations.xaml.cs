@@ -17,12 +17,11 @@ namespace QRApp.View.UserSettingsPanel
         {
             InitializeComponent();
             BindingContext = new LocationVM(new DataService(),new DialogService(),new PageService());
-
         }
 
         private async void Handle_TextChanged(object sender, TextChangedEventArgs e)
         {
-            ListView.ItemsSource = await (BindingContext as LocationVM).GetHistoryTicketsSearch(e.NewTextValue);
+            ListView.ItemsSource = await (BindingContext as LocationVM).GetLocationsSearch(e.NewTextValue);
         }
     }
 }

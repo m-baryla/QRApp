@@ -17,13 +17,13 @@
                                   ItemsSource = "{Binding LocationsList}"
                                   HasUnevenRows="True"
                                   IsPullToRefreshEnabled="True"
-                                  RefreshCommand="{Binding _GetLocationsList}"
+                                  RefreshCommand="{Binding _RefereshLocations}"
                                   IsRefreshing="{Binding IsRefreshing}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Padding="12">
-                                <Label Text="Ticket" TextColor="Gray"></Label>
+                                <Label Text="Location" TextColor="Gray"></Label>
                                 <Label Text="{Binding LocationName}" FontSize="Title" Padding="10" TextColor="CornflowerBlue"></Label>
                                 <Label Text="{Binding Description}" FontSize="Small" Padding="20,0,0,0" TextColor="CornflowerBlue"></Label>
                             </StackLayout>
