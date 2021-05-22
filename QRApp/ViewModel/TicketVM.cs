@@ -29,11 +29,11 @@ namespace QRApp.ViewModel
         private bool _isRefreshing;
         public bool IsRefreshing { get { return _isRefreshing; } set => SetValue(ref _isRefreshing, value); }
 
-        private List<Ticket> _historyDetailsList;
-        public List<Ticket> HistoryDetailsList { get { return _historyDetailsList; } set => SetValue(ref _historyDetailsList, value); }
+        private List<Ticket> _ticketDetailsList;
+        public List<Ticket> TicketDetailsList { get { return _ticketDetailsList; } set => SetValue(ref _ticketDetailsList, value); }
 
-        private Ticket _selectedHistoryDetail;
-        public Ticket SelectedHistoryDetail { get { return _selectedHistoryDetail; } set => SetValue(ref _selectedHistoryDetail, value); }
+        private Ticket _selectedTicketDetail;
+        public Ticket SelectedTicketDetail { get { return _selectedTicketDetail; } set => SetValue(ref _selectedTicketDetail, value); }
 
         private List<DictStatu> _status;
         public List<DictStatu> StatusList { get { return _status; } set => SetValue(ref _status, value); }
@@ -43,8 +43,8 @@ namespace QRApp.ViewModel
 
         public TicketVM(IPageService pageService, IDataService dataService)
         {
-            _GoToDetailPage = new Command(_ => GoToDetailPage());
-            _GoToNewTicketsPage = new Command(_ => GoToNewTicketsPage());
+            _GoToDetailPage = new Command(async _ => await GoToDetailPage());
+            _GoToNewTicketsPage = new Command(async _ => await GoToNewTicketsPage());
             _RefereshHistoryTickets = new Command(async _ => await GetHistoryTickets());
 
             _pageService = pageService;
@@ -101,16 +101,16 @@ namespace QRApp.ViewModel
 
         private async Task GoToDetailPage()
         {
-            if (SelectedHistoryDetail == null)
+            if (SelectedTicketDetail == null)
                 return;
 
-            await _pageService.PushModalAsync(new HistoryTicketsDetailPage(SelectedHistoryDetail));
+            await _pageService.PushModalAsync(new TicketsDetailPage(SelectedTicketDetail));
 
-            SelectedHistoryDetail = null;
+            SelectedTicketDetail = null;
         }
         private async Task GetHistoryTickets()
         {
-            HistoryDetailsList = await _dataService.GetTicketHistoryDetailsList();
+            TicketDetailsList = await _dataService.GetTicketHistoryDetailsList();
             IsRefreshing = false;
         }
         private async Task ListStatus()
@@ -119,12 +119,12 @@ namespace QRApp.ViewModel
         }
         public async Task<IEnumerable<Ticket>> GetHistoryTicketsSearch(string searchString = null)
         {
-            _historyDetailsList = await _dataService.GetTicketHistoryDetailsList();
+            _ticketDetailsList = await _dataService.GetTicketHistoryDetailsList();
 
             if (String.IsNullOrWhiteSpace(searchString))
-                return _historyDetailsList;
+                return _ticketDetailsList;
 
-            return _historyDetailsList.Where(c => c.Topic.StartsWith(searchString) || 
+            return _ticketDetailsList.Where(c => c.Topic.StartsWith(searchString) || 
                                                   c.LocationName.StartsWith(searchString) || 
                                                   c.EquipmentName.StartsWith(searchString) ||
                                                   c.Status.StartsWith(searchString));

@@ -6,7 +6,7 @@
 
     <NavigationPage Title="Tickets" IconImageSource="">
         <x:Arguments>
-            <workPanel:HistoryTicketsPage/>
+            <workPanel:TicketsPage/>
         </x:Arguments>
     </NavigationPage>
 

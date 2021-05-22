@@ -6,9 +6,9 @@ using Xamarin.Forms.Xaml;
 namespace QRApp.View.WorkPanel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HistoryTicketsPage : ContentPage
+    public partial class TicketsPage : ContentPage
     {
-        public HistoryTicketsPage()
+        public TicketsPage()
         {
             InitializeComponent();
             BindingContext = new TicketVM(new PageService(),new DataService());

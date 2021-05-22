@@ -8,9 +8,9 @@ using Xamarin.Forms.Xaml;
 namespace QRApp.View.WorkPanel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HistoryTicketsDetailPage : ContentPage
+    public partial class TicketsDetailPage : ContentPage
     {
-        public HistoryTicketsDetailPage(Ticket _ticketsHistoryDetails)
+        public TicketsDetailPage(Ticket _ticketsHistoryDetails)
         {
 
             if (_ticketsHistoryDetails == null)

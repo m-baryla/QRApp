@@ -4,15 +4,21 @@
              xmlns:userSettingsPanel="clr-namespace:QRApp.View.UserSettingsPanel;assembly=QRApp"
              x:Class="QRApp.View.UserSettingsPanel.UserSettingsPanelPage">
 
-    <NavigationPage Title="New location equipment" IconImageSource="">
+    <NavigationPage Title="Equipments" IconImageSource="">
         <x:Arguments>
-            <userSettingsPanel:ManagementNewLocationEquipment/>
+            <userSettingsPanel:Equipmensts/>
+        </x:Arguments>
+    </NavigationPage>
+
+    <NavigationPage Title="LocationsList" IconImageSource="">
+        <x:Arguments>
+            <userSettingsPanel:Locations/>
         </x:Arguments>
     </NavigationPage>
 
     <NavigationPage Title="New email" IconImageSource="">
         <x:Arguments>
-            <userSettingsPanel:ManagementNewEmailPage/>
+            <userSettingsPanel:NewEmailPage/>
         </x:Arguments>
     </NavigationPage>
 

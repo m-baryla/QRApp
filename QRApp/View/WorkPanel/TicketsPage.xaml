@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="QRApp.View.WorkPanel.HistoryTicketsPage">
+             x:Class="QRApp.View.WorkPanel.TicketsPage">
 
 
     <ContentPage.ToolbarItems>
@@ -15,9 +15,9 @@
                            Background="White"
                            TextColor="Black"></SearchBar>
                 <ListView x:Name="ListView" 
-                                  ItemsSource = "{Binding HistoryDetailsList}"
+                                  ItemsSource = "{Binding TicketDetailsList}"
                                   ItemSelected = "ListView_OnItemSelected"
-                                  SelectedItem = "{Binding SelectedHistoryDetail, Mode=TwoWay}"
+                                  SelectedItem = "{Binding SelectedTicketDetail, Mode=TwoWay}"
                                   HasUnevenRows="True"
                                   IsPullToRefreshEnabled="True"
                                   RefreshCommand="{Binding _RefereshHistoryTickets}"
@@ -37,11 +37,7 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-
-
-
-
-        </StackLayout>
+            </StackLayout>
         </ScrollView>
 
 </ContentPage>

@@ -6,9 +6,9 @@ using Xamarin.Forms.Xaml;
 namespace QRApp.View.UserSettingsPanel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ManagementNewEmailPage : ContentPage
+    public partial class NewEmailPage : ContentPage
     {
-        public ManagementNewEmailPage()
+        public NewEmailPage()
         {
             InitializeComponent();
             BindingContext = new AdressEmailVM(new DataService(),new DialogService());

@@ -28,6 +28,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Update="View\UserSettingsPanel\Equipmensts.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\UserSettingsPanel\Locations.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="View\UserSettingsPanel\NewLocationPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="View\UserSettingsPanel\UserSettingsPanelPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -43,10 +52,10 @@
     <EmbeddedResource Update="View\WorkPanel\TicketsPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\UserSettingsPanel\ManagementNewLocationEquipment.xaml">
+    <EmbeddedResource Update="View\UserSettingsPanel\NewEquipment.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\UserSettingsPanel\ManagementNewEmailPage.xaml">
+    <EmbeddedResource Update="View\UserSettingsPanel\NewEmailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\MainPanel\MasterPage.xaml">
@@ -76,8 +85,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="View\UserSettingsPanel\ManagementNewLocationEquipment.xaml.cs">
-      <DependentUpon>ManagementNewLocationEquipment.xaml</DependentUpon>
+    <Compile Update="View\UserSettingsPanel\NewLocationPage.xaml.cs">
+      <DependentUpon>NewLocationPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\UserSettingsPanel\NewEmailPage.xaml.cs">
+      <DependentUpon>NewEmailPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\UserSettingsPanel\NewEquipment.xaml.cs">
+      <DependentUpon>NewEquipment.xaml</DependentUpon>
     </Compile>
     <Compile Update="View\UserSettingsPanel\UserSettingsPanelPage.xaml.cs">
       <DependentUpon>UserSettingsPanelPage.xaml</DependentUpon>

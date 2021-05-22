@@ -6,12 +6,12 @@ using Xamarin.Forms.Xaml;
 namespace QRApp.View.UserSettingsPanel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ManagementNewLocationEquipment : ContentPage
+    public partial class NewEquipment : ContentPage
     {
-        public ManagementNewLocationEquipment()
+        public NewEquipment()
         {
             InitializeComponent();
-            BindingContext = new ManagementNewLocationEquipmentVM(new DataService(),new DialogService());
+            //BindingContext = new LocationVM(new DataService(),new DialogService());
         }
     }
 }

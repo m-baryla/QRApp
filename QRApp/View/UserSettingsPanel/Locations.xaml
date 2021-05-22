@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="QRApp.View.UserSettingsPanel.Locations">
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add New Location" Command="{Binding _GoToNewLocationPage}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout>
+            <SearchBar Placeholder="Szukaj..." 
+                           TextChanged="Handle_TextChanged" 
+                           Background="White"
+                           TextColor="Black"></SearchBar>
+            <ListView x:Name="ListView" 
+                                  ItemsSource = "{Binding LocationsList}"
+                                  HasUnevenRows="True"
+                                  IsPullToRefreshEnabled="True"
+                                  RefreshCommand="{Binding _GetLocationsList}"
+                                  IsRefreshing="{Binding IsRefreshing}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="12">
+                                <Label Text="Ticket" TextColor="Gray"></Label>
+                                <Label Text="{Binding LocationName}" FontSize="Title" Padding="10" TextColor="CornflowerBlue"></Label>
+                                <Label Text="{Binding Description}" FontSize="Small" Padding="20,0,0,0" TextColor="CornflowerBlue"></Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
