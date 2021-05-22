@@ -3,27 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              x:Class="QRApp.View.WorkPanel.NewTicketsPage">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="[Preview]" Clicked="MenuItem_OnClicked"></ToolbarItem>
-        <ToolbarItem Text="[Photo]" Command="{Binding _CreatePhotoAsync}"></ToolbarItem>
-        <ToolbarItem Text="[Send]" Command="{Binding _SendNewTicket}"></ToolbarItem>
-    </ContentPage.ToolbarItems>
 
-
-    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="Center">
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="Center" Padding="15">
         <Grid.RowDefinitions>
-            <RowDefinition Height="170"></RowDefinition>
+            <RowDefinition Height="190"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
+            <RowDefinition Height="110"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
+
         <TableView Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <TableSection Title="Selecet Location">
+            <TableSection Title="Type">
+                <ViewCell>
+                    <Picker Title="Type" 
+                            ItemsSource="{Binding Locations}"
+                            ItemDisplayBinding="{Binding LocationName}"
+                            SelectedItem="{Binding SelecteDictLocation}"
+                            IsEnabled="{Binding IsEnableLocation}"
+                            IsVisible="{Binding IsVisibleLocation}"></Picker>
+                </ViewCell>
+                <ViewCell>
+                    <Label Text="{Binding SelecteDictLocation.LocationName}" IsVisible="{Binding IsVisibleLocation}"></Label>
+                </ViewCell>
+            </TableSection>
+        </TableView>
+
+        <TableView Grid.Row="0" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <TableSection Title="Location">
                 <ViewCell>
                     <Picker Title="Location" 
                             ItemsSource="{Binding Locations}"
@@ -41,8 +54,8 @@
             </TableSection>
         </TableView>
 
-        <TableView Grid.Row="0" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <TableSection Title="Selecet Equipment">
+        <TableView Grid.Row="0" Grid.Column="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <TableSection Title="Equipment">
                 <ViewCell>
                     <Picker  Title="Equipment" 
                              ItemsSource="{Binding Equipments}"
@@ -60,10 +73,20 @@
             </TableSection>
         </TableView>
 
-        <TableView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan ="2">
-            <TableSection Title="Add Email Adress Notify">
+        <TableView Grid.Row="1" Grid.Column="0" >
+            <TableSection Title="Priority">
                 <ViewCell>
-                    <Picker  Title="Selecet Email Adress from list" 
+                    <Picker  Title="Priority" 
+                             ItemsSource="{Binding EmailAdresses}"
+                             ItemDisplayBinding="{Binding EmailAdressNotify }"
+                             SelectedItem="{Binding SelecteDictEmailAdress}"></Picker>
+                </ViewCell>
+            </TableSection>
+        </TableView>
+        <TableView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan ="3">
+            <TableSection Title="Email Adress Notify">
+                <ViewCell>
+                    <Picker  Title="Email Adress Notify" 
                              ItemsSource="{Binding EmailAdresses}"
                              ItemDisplayBinding="{Binding EmailAdressNotify }"
                              SelectedItem="{Binding SelecteDictEmailAdress}"></Picker>
@@ -71,27 +94,48 @@
             </TableSection>
         </TableView>
 
-        <TableView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan ="2" HasUnevenRows="True">
+        <TableView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan ="3" HasUnevenRows="True">
             <TableSection Title="Topic and description">
                 <EntryCell Label="Topic " Text="{Binding TicketsDetails.Topic}" Placeholder="Topic ticket"/>
                 <ViewCell>
-                    <Editor Text = "{Binding TicketsDetails.Description}" HeightRequest = "200" Background = "white" TextColor = "Black" />
+                    <Editor Text = "{Binding TicketsDetails.Description}" HeightRequest = "200" BackgroundColor="AliceBlue" Placeholder="Description ticket" />
                 </ViewCell>
             </TableSection>
         </TableView>
 
 
-
-        <TableView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan ="2" HasUnevenRows="True">
+        <TableView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan ="3" HasUnevenRows="True">
             <TableSection Title="Photo">
                 <ViewCell>
                     <Image x:Name="resultImage" Aspect="Fill" HeightRequest="200"></Image>
-                    <!--<Image BindingContext="{Binding PhotoSource}" Aspect="Fill" HeightRequest="200"></Image>-->
                 </ViewCell>
             </TableSection>
         </TableView>
 
 
+        <TableView Grid.Row="4" Grid.Column="0" HasUnevenRows="True">
+            <TableSection Title="Create Photo">
+                <ViewCell>
+                    <Button Text="Create Photo" Style="{StaticResource buttonQRapp}" Command="{Binding _CreatePhotoAsync}"></Button>
+                </ViewCell>
+            </TableSection>
+        </TableView>
+
+        <TableView Grid.Row="4" Grid.Column="1" HasUnevenRows="True">
+            <TableSection Title="Preview Photo">
+                <ViewCell>
+                    <Button Text="Preview Photo" Style="{StaticResource buttonQRapp}"  Clicked="MenuItem_OnClicked"></Button>
+                </ViewCell>
+            </TableSection>
+        </TableView>
+
+        <TableView Grid.Row="4" Grid.Column="2" HasUnevenRows="True">
+            <TableSection Title="Send Ticket">
+                <ViewCell>
+                    <Button Text="Send New Ticket" Style="{StaticResource buttonQRapp}" Command="{Binding _SendNewTicket}" ></Button>
+                </ViewCell>
+            </TableSection>
+        </TableView>
     </Grid>
 
 

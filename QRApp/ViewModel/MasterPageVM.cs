@@ -32,6 +32,7 @@ namespace QRApp.ViewModel
                                       .AcquireTokenInteractive(Constants.Scopes)
                                       .WithPrompt(Prompt.ForceLogin)
                                       .WithParentActivityOrWindow(App.UIParent)
+                                      .WithUseEmbeddedWebView(true)
                                       .ExecuteAsync();
 
                 await _pageService.PushAsync(new ModulesPage(result));

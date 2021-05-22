@@ -25,7 +25,7 @@
         </ContentView>
 
         <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="12">
-            <Button Text="Sing out" 
+            <Button Text="Log out" 
                     Style="{StaticResource buttonQRapp}" 
                     IsVisible="True" 
                     Clicked="Button_Clicked"  

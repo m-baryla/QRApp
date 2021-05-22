@@ -4,21 +4,22 @@
              x:Class="QRApp.View.WorkPanel.NewWikiPage">
 
 
-    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="Center">
+    <Grid VerticalOptions="FillAndExpand" HorizontalOptions="Center" Padding="15">
         <Grid.RowDefinitions>
-            <RowDefinition Height="130"></RowDefinition>
+            <RowDefinition Height="190"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="200"></RowDefinition>
+            <RowDefinition Height="110"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
 
         </Grid.ColumnDefinitions>
 
         <TableView Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <TableSection Title="Wybor lokalizacji">
+            <TableSection Title="Location">
                 <ViewCell>
                     <Picker  Title="Location" 
                             ItemsSource="{Binding Locations}"
@@ -35,8 +36,9 @@
                 </ViewCell>
             </TableSection>
         </TableView>
-        <TableView Grid.Row="0" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
-            <TableSection Title="Wybor maszyny">
+
+        <TableView Grid.Row="0" Grid.Column="1" Grid.ColumnSpan ="3" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <TableSection Title="Equipment">
                 <ViewCell>
                     <Picker Title="Equipment" 
                             ItemsSource="{Binding Equipments}"
@@ -54,7 +56,7 @@
             </TableSection>
         </TableView>
 
-        <TableView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan ="2" HasUnevenRows="True">
+        <TableView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan ="3" HasUnevenRows="True">
             <TableSection Title="Temat / opis wiki">
                 <EntryCell Label="Temat" Text="{Binding WikisDetails.Topic}" Placeholder="temat zgloszenia"/>
                 <ViewCell>
@@ -63,7 +65,7 @@
             </TableSection>
         </TableView>
 
-        <TableView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan ="2" HasUnevenRows="True">
+        <TableView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan ="3" HasUnevenRows="True">
             <TableSection Title="Photo">
                 <ViewCell>
                     <Image x:Name="resultImage" Aspect="Fill" HeightRequest="200"></Image>
@@ -72,14 +74,26 @@
             </TableSection>
         </TableView>
 
-        <TableView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan ="2" HasUnevenRows="True">
-            <TableSection Title="Photo">
+       
+
+        <TableView Grid.Row="3" Grid.Column="0" HasUnevenRows="True">
+            <TableSection Title="Create Photo">
                 <ViewCell>
                     <Button Text="Photo" Style="{StaticResource buttonQRapp}" Command="{Binding _CreatePhotoAsync}"/>
                 </ViewCell>
+            </TableSection>
+        </TableView>
+
+        <TableView Grid.Row="3" Grid.Column="1" HasUnevenRows="True">
+            <TableSection Title="Preview Photo">
                 <ViewCell>
                     <Button Text="Preview Photo" Style="{StaticResource buttonQRapp}" Clicked="MenuItem_OnClicked"/>
                 </ViewCell>
+            </TableSection>
+        </TableView>
+
+        <TableView Grid.Row="3" Grid.Column="2" HasUnevenRows="True">
+            <TableSection Title="Send Ticket">
                 <ViewCell>
                     <Button Text="Save" Style="{StaticResource buttonQRapp}" Command="{Binding _SendNewWiki}"/>
                 </ViewCell>

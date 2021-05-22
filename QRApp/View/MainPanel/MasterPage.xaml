@@ -7,7 +7,7 @@
     <StackLayout Spacing="20" VerticalOptions="Center">
 
         <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="12">
-            <Button Text="Sign in Azure AAD" 
+            <Button Text="Sign In" 
                     Style="{StaticResource buttonQRapp}" 
                     Command="{Binding _Login}"/>
         </ContentView>
