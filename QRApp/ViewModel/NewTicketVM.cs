@@ -21,28 +21,36 @@ namespace QRApp.ViewModel
     public class NewTicketVM : BaseVM
     {
         private DictEmailAdress _dictEmailAdressNotify;
-        public DictEmailAdress DictEmailAdressNotify { get { return _dictEmailAdressNotify; } set => SetValue(ref _dictEmailAdressNotify, value); }
+        public DictEmailAdress DictEmailAdressNotify { get => _dictEmailAdressNotify;
+            set => SetValue(ref _dictEmailAdressNotify, value); }
 
         private Ticket _ticketsDetails;
-        public Ticket TicketsDetails { get { return _ticketsDetails; } set => SetValue(ref _ticketsDetails, value); }
+        public Ticket TicketsDetails { get => _ticketsDetails;
+            set => SetValue(ref _ticketsDetails, value); }
 
         private List<DictLocation> _locations;
-        public List<DictLocation> Locations { get { return _locations; } set => SetValue(ref _locations, value); }
+        public List<DictLocation> Locations { get => _locations;
+            set => SetValue(ref _locations, value); }
 
         private List<DictEquipment> _euipments;
-        public List<DictEquipment> Equipments { get { return _euipments; } set => SetValue(ref _euipments, value); }
+        public List<DictEquipment> Equipments { get => _euipments;
+            set => SetValue(ref _euipments, value); }
 
         private DictLocation _selecteDictLocation = null;
-        public DictLocation SelecteDictLocation { get { return _selecteDictLocation; } set => SetValue(ref _selecteDictLocation, value); }
+        public DictLocation SelecteDictLocation { get => _selecteDictLocation;
+            set => SetValue(ref _selecteDictLocation, value); }
 
         private DictEquipment _selecteDictEquipments = null;
-        public DictEquipment SelecteDictEquipments { get { return _selecteDictEquipments; } set => SetValue(ref _selecteDictEquipments, value); }
+        public DictEquipment SelecteDictEquipments { get => _selecteDictEquipments;
+            set => SetValue(ref _selecteDictEquipments, value); }
 
         private List<DictEmailAdress> _emailAdresses;
-        public List<DictEmailAdress> EmailAdresses { get { return _emailAdresses; } set => SetValue(ref _emailAdresses, value); }
+        public List<DictEmailAdress> EmailAdresses { get => _emailAdresses;
+            set => SetValue(ref _emailAdresses, value); }
         
         private DictEmailAdress _selecteDictEmailAdress = null;
-        public DictEmailAdress SelecteDictEmailAdress { get { return _selecteDictEmailAdress; } set => SetValue(ref _selecteDictEmailAdress, value); }
+        public DictEmailAdress SelecteDictEmailAdress { get => _selecteDictEmailAdress;
+            set => SetValue(ref _selecteDictEmailAdress, value); }
 
         private readonly ICameraService _cameraService;
         private readonly IPageService _pageService;
@@ -52,27 +60,34 @@ namespace QRApp.ViewModel
         public ICommand _SendNewTicket { get; private set; }
 
         private string _scanResul;
-        public string ScanResul { get { return _scanResul; } set => SetValue(ref _scanResul, value); }
+        public string ScanResul { get => _scanResul;
+            set => SetValue(ref _scanResul, value); }
 
-        public byte[] PhotoBytes { get { return _cameraService.PhotoBytes; } }
+        public byte[] PhotoBytes => _cameraService.PhotoBytes;
 
         private string _locationValue;
-        public string LocationValue { get { return _locationValue; } set => SetValue(ref _locationValue, value); }
+        public string LocationValue { get => _locationValue;
+            set => SetValue(ref _locationValue, value); }
 
         private string _equipmentValue;
-        public string EquipmentValue { get { return _equipmentValue; } set => SetValue(ref _equipmentValue, value); }
+        public string EquipmentValue { get => _equipmentValue;
+            set => SetValue(ref _equipmentValue, value); }
 
         private bool _isEnableLocation;
-        public bool IsEnableLocation { get { return _isEnableLocation; } set => SetValue(ref _isEnableLocation, value); }
+        public bool IsEnableLocation { get => _isEnableLocation;
+            set => SetValue(ref _isEnableLocation, value); }
 
         private bool _isEnableEquippment;
-        public bool IsEnableEquippment { get { return _isEnableEquippment; } set => SetValue(ref _isEnableEquippment, value); }
+        public bool IsEnableEquippment { get => _isEnableEquippment;
+            set => SetValue(ref _isEnableEquippment, value); }
 
          private bool _isVisibleLocation;
-        public bool IsVisibleLocation { get { return _isVisibleLocation; } set => SetValue(ref _isVisibleLocation, value); }
+        public bool IsVisibleLocation { get => _isVisibleLocation;
+            set => SetValue(ref _isVisibleLocation, value); }
 
         private bool _isVisibleEquippment;
-        public bool IsVisibleEquippment { get { return _isVisibleEquippment; } set => SetValue(ref _isVisibleEquippment, value); }
+        public bool IsVisibleEquippment { get => _isVisibleEquippment;
+            set => SetValue(ref _isVisibleEquippment, value); }
 
         public NewTicketVM(IPageService pageService,ICameraService cameraService, IDataService dataService, IDialogService dialogService)
         {
@@ -83,52 +98,84 @@ namespace QRApp.ViewModel
             _dataService = dataService;
             _dialogService = dialogService;
             _pageService = pageService;
+
             _ticketsDetails = new Ticket();
             SelecteDictEquipments = new DictEquipment();
             SelecteDictLocation = new DictLocation();
             _dictEmailAdressNotify = new DictEmailAdress();
+
             _ = ListLocations();
             _ = ListEquipment();
             _ = ListEmailAdress();
+
             IsEnableLocation = true;
             IsVisibleLocation = true;
             IsEnableEquippment = true;
             IsVisibleEquippment = true;
 
-            MessagingCenter.Subscribe<ScanService, string>(this, "ResultScanSender", (sender, args) =>
+            var SplitResult = Application.Current.Properties["scanResult"].ToString().Split(':');
+
+            LocationValue = SplitResult[0];
+            EquipmentValue = SplitResult[1];
+
+            if (LocationValue != null)
             {
-                ScanResul = args;
+                IsEnableLocation = false;
+                IsVisibleLocation = false;
+            }
+            else
+            {
+                LocationValue = null;
+                IsEnableLocation = true;
+                IsVisibleLocation = true;
+            }
 
-                var SplitResult = ScanResul.Split(':');
+            if (EquipmentValue != null)
+            {
+                IsEnableEquippment = false;
+                IsVisibleEquippment = false;
+            }
+            else
+            {
+                EquipmentValue = null;
+                IsEnableEquippment = true;
+                IsVisibleEquippment = true;
+            }
 
-                LocationValue = SplitResult[0];
-                EquipmentValue = SplitResult[1];
+            //MessagingCenter.Subscribe<ScanService, string>(this, "ResultScanSender", (sender, args) =>
+            //{
+            //    ScanResul = args;
 
-                if (LocationValue != null)
-                {
-                    IsEnableLocation = false;
-                    IsVisibleLocation = false;
-                }
-                else
-                {
-                    LocationValue = null;
-                    IsEnableLocation = true;
-                    IsVisibleLocation = true;
-                }
+            //    //var SplitResult = ScanResul.Split(':');
+            //    var SplitResult =  Application.Current.Properties["userName"].ToString().Split(':');
 
-                if (EquipmentValue != null)
-                {
-                    IsEnableEquippment = false;
-                    IsVisibleEquippment = false;
-                }
-                else
-                {
-                    EquipmentValue = null;
-                    IsEnableEquippment = true;
-                    IsVisibleEquippment = true;
-                }
+            //    LocationValue = SplitResult[0];
+            //    EquipmentValue = SplitResult[1];
 
-            });
+            //    if (LocationValue != null)
+            //    {
+            //        IsEnableLocation = false;
+            //        IsVisibleLocation = false;
+            //    }
+            //    else
+            //    {
+            //        LocationValue = null;
+            //        IsEnableLocation = true;
+            //        IsVisibleLocation = true;
+            //    }
+
+            //    if (EquipmentValue != null)
+            //    {
+            //        IsEnableEquippment = false;
+            //        IsVisibleEquippment = false;
+            //    }
+            //    else
+            //    {
+            //        EquipmentValue = null;
+            //        IsEnableEquippment = true;
+            //        IsVisibleEquippment = true;
+            //    }
+            //});
 
         }
 

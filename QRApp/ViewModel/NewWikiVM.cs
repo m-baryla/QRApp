@@ -20,28 +20,83 @@ namespace QRApp.ViewModel
     {
 
         private Wiki _wikisDetails;
-        public Wiki WikisDetails { get { return _wikisDetails; } set => SetValue(ref _wikisDetails, value); }
+        public Wiki WikisDetails { get => _wikisDetails;
+            set => SetValue(ref _wikisDetails, value); }
 
         private List<DictLocation> _locations;
-        public List<DictLocation> Locations { get { return _locations; } set => SetValue(ref _locations, value); }
+        public List<DictLocation> Locations { get => _locations;
+            set => SetValue(ref _locations, value); }
 
         private List<DictEquipment> _euipments;
-        public List<DictEquipment> Equipments { get { return _euipments; } set => SetValue(ref _euipments, value); }
+        public List<DictEquipment> Equipments { get => _euipments;
+            set => SetValue(ref _euipments, value); }
 
         private DictLocation _selecteDictLocation = null;
-        public DictLocation SelecteDictLocation { get { return _selecteDictLocation; } set => SetValue(ref _selecteDictLocation, value); }
+        public DictLocation SelecteDictLocation { get => _selecteDictLocation;
+            set => SetValue(ref _selecteDictLocation, value); }
 
         private DictEquipment _selecteDictEquipments = null;
-        public DictEquipment SelecteDictEquipments { get { return _selecteDictEquipments; } set => SetValue(ref _selecteDictEquipments, value); }
+        public DictEquipment SelecteDictEquipments { get => _selecteDictEquipments;
+            set => SetValue(ref _selecteDictEquipments, value); }
 
         private readonly ICameraService _cameraService;
         private readonly IDataService _dataService;
         private readonly IDialogService _dialogService;
 
         public ICommand _CreatePhotoAsync { get; private set; }
-        public byte[] PhotoBytes { get { return _cameraService.PhotoBytes; } }
+        public byte[] PhotoBytes => _cameraService.PhotoBytes;
 
         public ICommand _SendNewWiki { get; private set; }
+
+        private string _scanResul;
+        public string ScanResul
+        {
+            get => _scanResul;
+            set => SetValue(ref _scanResul, value);
+        }
+
+        private string _locationValue;
+        public string LocationValue
+        {
+            get => _locationValue;
+            set => SetValue(ref _locationValue, value);
+        }
+
+        private string _equipmentValue;
+
+        public string EquipmentValue
+        {
+            get => _equipmentValue;
+            set => SetValue(ref _equipmentValue, value);
+        }
+
+        private bool _isEnableLocation;
+        public bool IsEnableLocation
+        {
+            get => _isEnableLocation;
+            set => SetValue(ref _isEnableLocation, value);
+        }
+
+        private bool _isEnableEquippment;
+        public bool IsEnableEquippment
+        {
+            get => _isEnableEquippment;
+            set => SetValue(ref _isEnableEquippment, value);
+        }
+
+        private bool _isVisibleLocation;
+        public bool IsVisibleLocation
+        {
+            get => _isVisibleLocation;
+            set => SetValue(ref _isVisibleLocation, value);
+        }
+
+        private bool _isVisibleEquippment;
+        public bool IsVisibleEquippment
+        {
+            get => _isVisibleEquippment;
+            set => SetValue(ref _isVisibleEquippment, value);
+        }
 
         public NewWikiVM(ICameraService cameraService, IDataService dataService, IDialogService dialogService)
         {
@@ -51,10 +106,51 @@ namespace QRApp.ViewModel
             _cameraService = cameraService;
             _dialogService = dialogService;
             _dataService = dataService;
+
             _wikisDetails = new Wiki();
 
             _ = ListLocations();
             _ = ListEquipment();
+
+            IsEnableLocation = true;
+            IsVisibleLocation = true;
+            IsEnableEquippment = true;
+            IsVisibleEquippment = true;
+
+            MessagingCenter.Subscribe<ScanService, string>(this, "ResultScanSender", (sender, args) =>
+            {
+                ScanResul = args;
+
+                var SplitResult = ScanResul.Split(':');
+
+                LocationValue = SplitResult[0];
+                EquipmentValue = SplitResult[1];
+
+                if (LocationValue != null)
+                {
+                    IsEnableLocation = false;
+                    IsVisibleLocation = false;
+                }
+                else
+                {
+                    LocationValue = null;
+                    IsEnableLocation = true;
+                    IsVisibleLocation = true;
+                }
+
+                if (EquipmentValue != null)
+                {
+                    IsEnableEquippment = false;
+                    IsVisibleEquippment = false;
+                }
+                else
+                {
+                    EquipmentValue = null;
+                    IsEnableEquippment = true;
+                    IsVisibleEquippment = true;
+                }
+
+            });
         }
 
         private async Task ListLocations()
@@ -73,8 +169,26 @@ namespace QRApp.ViewModel
 
         private async Task SendNewWiki()
         {
-            _wikisDetails.LocationName = SelecteDictLocation.LocationName;
-            _wikisDetails.EquipmentName = SelecteDictEquipments.EquipmentName;
+            if (LocationValue == null)
+            {
+                _wikisDetails.LocationName = SelecteDictLocation.LocationName;
+            }
+            else
+            {
+                _wikisDetails.LocationName = LocationValue;
+            }
+
+            if (EquipmentValue == null)
+            {
+                _wikisDetails.EquipmentName = SelecteDictEquipments.EquipmentName;
+            }
+            else
+            {
+                _wikisDetails.EquipmentName = EquipmentValue;
+            }
+
+            //_wikisDetails.LocationName = SelecteDictLocation.LocationName;
+            //_wikisDetails.EquipmentName = SelecteDictEquipments.EquipmentName;
             _wikisDetails.Photo = _cameraService.PhotoBytes;
 
             if (await _dataService.PostNewWiki(_wikisDetails))

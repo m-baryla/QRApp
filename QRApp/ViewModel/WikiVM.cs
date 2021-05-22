@@ -20,16 +20,19 @@ namespace QRApp.ViewModel
         private readonly IDataService _dataService;
         private bool _isRefreshing;
         public bool IsRefreshing
-        { get { return _isRefreshing; } set => SetValue(ref _isRefreshing, value); }
+        { get => _isRefreshing;
+            set => SetValue(ref _isRefreshing, value); }
 
         private List<Wiki> _wikiDetailsList;
-        public List<Wiki> WikiDetailsList { get { return _wikiDetailsList; } set => SetValue(ref _wikiDetailsList, value); }
+        public List<Wiki> WikiDetailsList { get => _wikiDetailsList;
+            set => SetValue(ref _wikiDetailsList, value); }
         public ICommand _GoToDetailPage { get; private set; }
         public ICommand _GoToNewWikiPage { get; private set; }
         public ICommand _RefereshWikis { get; private set; }
 
         private Wiki _selectedWikiDetail;
-        public Wiki SelectedWikiDetail {get { return _selectedWikiDetail; } set => SetValue(ref _selectedWikiDetail, value); }
+        public Wiki SelectedWikiDetail {get => _selectedWikiDetail;
+            set => SetValue(ref _selectedWikiDetail, value); }
 
         public WikiVM(IPageService pageService, IDataService dataService)
         {

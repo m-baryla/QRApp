@@ -11,9 +11,5 @@
         </x:Arguments>
     </NavigationPage>
 
-    <NavigationPage Title="New Ticket" IconImageSource="">
-        <x:Arguments>
-            <workPanel:NewTicketsPage/>
-        </x:Arguments>
-    </NavigationPage>
+   
 </TabbedPage>

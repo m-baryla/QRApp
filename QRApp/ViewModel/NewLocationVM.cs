@@ -19,7 +19,7 @@ namespace QRApp.ViewModel
 
         public DictLocation DictLocation
         {
-            get { return _dictLocation; }
+            get => _dictLocation;
             set => SetValue(ref _dictLocation, value);
         }
         public NewLocationVM(IDataService dataService, IDialogService dialogService)

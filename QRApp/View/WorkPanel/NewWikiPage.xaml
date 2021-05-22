@@ -20,22 +20,36 @@
         <TableView Grid.Row="0" Grid.Column="0" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <TableSection Title="Wybor lokalizacji">
                 <ViewCell>
-                    <Picker x:Name="pickerLocation" 
-                            Title="Lokalizacja" 
+                    <Picker  Title="Location" 
                             ItemsSource="{Binding Locations}"
                             ItemDisplayBinding="{Binding LocationName}"
-                            SelectedItem="{Binding SelecteDictLocation}"></Picker>
+                            SelectedItem="{Binding SelecteDictLocation}"
+                            IsEnabled="{Binding IsEnableLocation}"
+                            IsVisible="{Binding IsVisibleLocation}"></Picker>
+                </ViewCell>
+                <ViewCell>
+                    <Label Text="{Binding SelecteDictLocation.LocationName}" IsVisible="{Binding IsVisibleLocation}"></Label>
+                </ViewCell>
+                <ViewCell>
+                    <Label Text="{Binding LocationValue}" ></Label>
                 </ViewCell>
             </TableSection>
         </TableView>
         <TableView Grid.Row="0" Grid.Column="1" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
             <TableSection Title="Wybor maszyny">
                 <ViewCell>
-                    <Picker x:Name="pickerMaschine" 
-                            Title="Maszyna" 
+                    <Picker Title="Equipment" 
                             ItemsSource="{Binding Equipments}"
                             ItemDisplayBinding="{Binding EquipmentName}"
-                            SelectedItem="{Binding SelecteDictEquipments}"></Picker>
+                            SelectedItem="{Binding SelecteDictEquipments}"
+                            IsEnabled="{Binding IsEnableEquippment}"
+                            IsVisible="{Binding IsVisibleEquippment}"></Picker>
+                </ViewCell>
+                <ViewCell>
+                    <Label Text="{Binding SelecteDictEquipments.EquipmentName}" IsVisible="{Binding IsVisibleEquippment}"></Label>
+                </ViewCell>
+                <ViewCell>
+                    <Label Text="{Binding EquipmentValue}"></Label>
                 </ViewCell>
             </TableSection>
         </TableView>

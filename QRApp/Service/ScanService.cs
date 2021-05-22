@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using QRApp.Interface;
+using QRApp.View.WorkPanel;
 using QRApp.ViewModel;
 using Xamarin.Forms;
 using ZXing;
@@ -16,12 +17,14 @@ namespace QRApp.Service
         private readonly IPageService _pageService;
 
         private string barcode = string.Empty;
-        public string Barcode { get { return barcode; } set { barcode = value; } }
+        public string Barcode { get => barcode;
+            set => barcode = value;
+        }
 
         private bool _isAnalyzing = true;
         public bool IsAnalyzing
         { 
-            get { return _isAnalyzing; }
+            get => _isAnalyzing;
             set
             {
                 if (!Equals(_isAnalyzing, value))
@@ -34,7 +37,7 @@ namespace QRApp.Service
         private bool _isScanning = true;
         public bool IsScanning
         {
-            get { return _isScanning; }
+            get => _isScanning;
             set
             {
                 if (!Equals(_isScanning, value))
@@ -59,6 +62,10 @@ namespace QRApp.Service
                         Barcode = Result.Text;
                         MessagingCenter.Send(this, "ResultScanSender", Barcode);
                         await _dialogService.DisplayAlert("Scanned Item", Result.Text, "Ok","Cancel");
+
+                        Application.Current.Properties["scanResult"] = Barcode;
+                        await Application.Current.SavePropertiesAsync();
+                        await _pageService.PushModalAsync(new NewTicketsPage());
                     });
 
                     IsAnalyzing = true;
@@ -71,7 +78,6 @@ namespace QRApp.Service
         {
             _dialogService = dialogService;
             _pageService = pageService;
-
         }
     }
 }

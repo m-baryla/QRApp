@@ -17,7 +17,7 @@ namespace QRApp.ViewModel
 
         public List<DictEquipment> EquipmentsList
         {
-            get { return _euipmentsList; } 
+            get => _euipmentsList;
             set => SetValue(ref _euipmentsList, value);
         }
         public ICommand _RefereshEquipments { get; private set; }
@@ -28,7 +28,8 @@ namespace QRApp.ViewModel
         private readonly IPageService _pageService;
 
         private bool _isRefreshing;
-        public bool IsRefreshing { get { return _isRefreshing; } set => SetValue(ref _isRefreshing, value); }
+        public bool IsRefreshing { get => _isRefreshing;
+            set => SetValue(ref _isRefreshing, value); }
 
         public EquipmentVM(IDataService dataService, IDialogService dialogService, IPageService pageService)
         {

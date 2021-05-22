@@ -14,13 +14,19 @@ namespace QRApp.Service
     {
 
         private ImageSource _photoSource;
-        public ImageSource PhotoSource { get { return _photoSource; } set { SetValue(ref _photoSource, value); } }
+        public ImageSource PhotoSource { get => _photoSource;
+            set => SetValue(ref _photoSource, value);
+        }
 
         private Image _photo;
-        public Image Photo { get { return _photo; } set { SetValue(ref _photo, value); } }
+        public Image Photo { get => _photo;
+            set => SetValue(ref _photo, value);
+        }
 
         private byte[] _photoBytes;
-        public byte[] PhotoBytes { get { return _photoBytes; } set { SetValue(ref _photoBytes, value); } }
+        public byte[] PhotoBytes { get => _photoBytes;
+            set => SetValue(ref _photoBytes, value);
+        }
 
 
         public async Task<ImageSource> CreatePhotoAsync()

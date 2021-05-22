@@ -27,19 +27,24 @@ namespace QRApp.ViewModel
         public byte[] PhotoBytes { get; set; }
 
         private bool _isRefreshing;
-        public bool IsRefreshing { get { return _isRefreshing; } set => SetValue(ref _isRefreshing, value); }
+        public bool IsRefreshing { get => _isRefreshing;
+            set => SetValue(ref _isRefreshing, value); }
 
         private List<Ticket> _ticketDetailsList;
-        public List<Ticket> TicketDetailsList { get { return _ticketDetailsList; } set => SetValue(ref _ticketDetailsList, value); }
+        public List<Ticket> TicketDetailsList { get => _ticketDetailsList;
+            set => SetValue(ref _ticketDetailsList, value); }
 
         private Ticket _selectedTicketDetail;
-        public Ticket SelectedTicketDetail { get { return _selectedTicketDetail; } set => SetValue(ref _selectedTicketDetail, value); }
+        public Ticket SelectedTicketDetail { get => _selectedTicketDetail;
+            set => SetValue(ref _selectedTicketDetail, value); }
 
         private List<DictStatu> _status;
-        public List<DictStatu> StatusList { get { return _status; } set => SetValue(ref _status, value); }
+        public List<DictStatu> StatusList { get => _status;
+            set => SetValue(ref _status, value); }
 
         private DictStatu _selecteDictStatu;
-        public DictStatu SelecteDictStatu { get { return _selecteDictStatu; } set => SetValue(ref _selecteDictStatu, value); }
+        public DictStatu SelecteDictStatu { get => _selecteDictStatu;
+            set => SetValue(ref _selecteDictStatu, value); }
 
         public TicketVM(IPageService pageService, IDataService dataService)
         {
@@ -108,15 +113,18 @@ namespace QRApp.ViewModel
 
             SelectedTicketDetail = null;
         }
+
         private async Task GetHistoryTickets()
         {
             TicketDetailsList = await _dataService.GetTicketHistoryDetailsList();
             IsRefreshing = false;
         }
+
         private async Task ListStatus()
         {
             StatusList = await _dataService.GetStatusList();
         }
+
         public async Task<IEnumerable<Ticket>> GetHistoryTicketsSearch(string searchString = null)
         {
             _ticketDetailsList = await _dataService.GetTicketHistoryDetailsList();

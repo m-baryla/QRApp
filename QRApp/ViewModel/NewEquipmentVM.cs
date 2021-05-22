@@ -19,7 +19,7 @@ namespace QRApp.ViewModel
         private DictEquipment _dictEquipments = null;
         public DictEquipment DictEquipments
         {
-            get { return _dictEquipments; }
+            get => _dictEquipments;
             set => SetValue(ref _dictEquipments, value);
         }
 

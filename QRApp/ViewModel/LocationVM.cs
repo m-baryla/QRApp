@@ -19,7 +19,7 @@ namespace QRApp.ViewModel
 
         public List<DictLocation> LocationsList
         {
-            get { return _locationsList; }
+            get => _locationsList;
             set => SetValue(ref _locationsList, value);
         }
 
@@ -32,7 +32,8 @@ namespace QRApp.ViewModel
 
 
         private bool _isRefreshing;
-        public bool IsRefreshing { get { return _isRefreshing; } set => SetValue(ref _isRefreshing, value); }
+        public bool IsRefreshing { get => _isRefreshing;
+            set => SetValue(ref _isRefreshing, value); }
 
         public LocationVM(IDataService dataService, IDialogService dialogService, IPageService pageService)
         {
