@@ -89,7 +89,7 @@ namespace QRApp.ViewModel
         public bool IsVisibleEquippment { get => _isVisibleEquippment;
             set => SetValue(ref _isVisibleEquippment, value); }
 
-        public NewTicketVM(IPageService pageService,ICameraService cameraService, IDataService dataService, IDialogService dialogService)
+        public NewTicketVM(IPageService pageService,ICameraService cameraService, IDataService dataService, IDialogService dialogService,string resultScan)
         {
             _CreatePhotoAsync = new Command(async _ => await CreatePhotoAsync());
             _SendNewTicket = new Command(async _=> await SendNewTicket());
@@ -113,70 +113,45 @@ namespace QRApp.ViewModel
             IsEnableEquippment = true;
             IsVisibleEquippment = true;
 
-            var SplitResult = Application.Current.Properties["scanResult"].ToString().Split(':');
+            ScanResult(resultScan);
+        }
 
-            LocationValue = SplitResult[0];
-            EquipmentValue = SplitResult[1];
+        private void ScanResult(string resultScan)
+        {
+            var SplitResult = resultScan;
 
-            if (LocationValue != null)
+            if (SplitResult != "")
             {
-                IsEnableLocation = false;
-                IsVisibleLocation = false;
+                var tempSplit = SplitResult.Split(':');
+
+                LocationValue = tempSplit[0];
+                EquipmentValue = tempSplit[1];
+
+                if (LocationValue != null)
+                {
+                    IsEnableLocation = false;
+                    IsVisibleLocation = false;
+                }
+                else
+                {
+                    LocationValue = null;
+                    IsEnableLocation = true;
+                    IsVisibleLocation = true;
+                }
+
+                if (EquipmentValue != null)
+                {
+                    IsEnableEquippment = false;
+                    IsVisibleEquippment = false;
+                }
+                else
+                {
+                    EquipmentValue = null;
+                    IsEnableEquippment = true;
+                    IsVisibleEquippment = true;
+                }
+                
             }
-            else
-            {
-                LocationValue = null;
-                IsEnableLocation = true;
-                IsVisibleLocation = true;
-            }
-
-            if (EquipmentValue != null)
-            {
-                IsEnableEquippment = false;
-                IsVisibleEquippment = false;
-            }
-            else
-            {
-                EquipmentValue = null;
-                IsEnableEquippment = true;
-                IsVisibleEquippment = true;
-            }
-
-            //MessagingCenter.Subscribe<ScanService, string>(this, "ResultScanSender", (sender, args) =>
-            //{
-            //    ScanResul = args;
-
-            //    //var SplitResult = ScanResul.Split(':');
-            //    var SplitResult =  Application.Current.Properties["userName"].ToString().Split(':');
-
-            //    LocationValue = SplitResult[0];
-            //    EquipmentValue = SplitResult[1];
-
-            //    if (LocationValue != null)
-            //    {
-            //        IsEnableLocation = false;
-            //        IsVisibleLocation = false;
-            //    }
-            //    else
-            //    {
-            //        LocationValue = null;
-            //        IsEnableLocation = true;
-            //        IsVisibleLocation = true;
-            //    }
-
-            //    if (EquipmentValue != null)
-            //    {
-            //        IsEnableEquippment = false;
-            //        IsVisibleEquippment = false;
-            //    }
-            //    else
-            //    {
-            //        EquipmentValue = null;
-            //        IsEnableEquippment = true;
-            //        IsVisibleEquippment = true;
-            //    }
-            //});
-
         }
 
         private async Task ListLocations()

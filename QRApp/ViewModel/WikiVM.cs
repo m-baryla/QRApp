@@ -47,7 +47,7 @@ namespace QRApp.ViewModel
         }
         private async Task GoToNewWikiPage()
         {
-            await _pageService.PushModalAsync(new WikisCreate());
+            await _pageService.PushModalAsync(new CreateFromScan());
         }
         private async Task GoToDetailPage()
         {

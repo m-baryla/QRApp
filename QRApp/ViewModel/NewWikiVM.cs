@@ -98,7 +98,7 @@ namespace QRApp.ViewModel
             set => SetValue(ref _isVisibleEquippment, value);
         }
 
-        public NewWikiVM(ICameraService cameraService, IDataService dataService, IDialogService dialogService)
+        public NewWikiVM(ICameraService cameraService, IDataService dataService, IDialogService dialogService, string resultScan)
         {
             _CreatePhotoAsync = new Command(async _ => await CreatePhotoAsync());
             _SendNewWiki = new Command(async _ => await SendNewWiki());
@@ -117,14 +117,20 @@ namespace QRApp.ViewModel
             IsEnableEquippment = true;
             IsVisibleEquippment = true;
 
-            MessagingCenter.Subscribe<ScanService, string>(this, "ResultScanSender", (sender, args) =>
+            ScanResult(resultScan);
+
+        }
+        private void ScanResult(string resultScan)
+        {
+
+            var SplitResult = resultScan;
+
+            if (SplitResult != "")
             {
-                ScanResul = args;
+                var tempSplit = SplitResult.Split(':');
 
-                var SplitResult = ScanResul.Split(':');
-
-                LocationValue = SplitResult[0];
-                EquipmentValue = SplitResult[1];
+                LocationValue = tempSplit[0];
+                EquipmentValue = tempSplit[1];
 
                 if (LocationValue != null)
                 {
@@ -149,8 +155,8 @@ namespace QRApp.ViewModel
                     IsEnableEquippment = true;
                     IsVisibleEquippment = true;
                 }
+            }
 
-            });
         }
 
         private async Task ListLocations()

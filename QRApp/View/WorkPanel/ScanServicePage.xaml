@@ -4,6 +4,10 @@
              xmlns:forms="clr-namespace:ZXing.Net.Mobile.Forms;assembly=ZXing.Net.Mobile.Forms"
              x:Class="QRApp.View.WorkPanel.ScanServicePage">
 
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Add New" Command="{Binding _AddNewManual}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
+
     <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
         <forms:ZXingScannerView                                      
             IsScanning="{Binding IsScanning}" 

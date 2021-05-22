@@ -43,7 +43,7 @@
     <EmbeddedResource Update="View\WorkPanel\ScanServicePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\WorkPanel\TicketsCreate.xaml">
+    <EmbeddedResource Update="View\WorkPanel\CreateFromScan.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="View\WorkPanel\TicketsDetailPage.xaml">
@@ -73,9 +73,6 @@
     <EmbeddedResource Update="View\WorkPanel\WikiDetailPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="View\WorkPanel\WikisCreate.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="View\WorkPanel\WorkPanelPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -96,6 +93,9 @@
     </Compile>
     <Compile Update="View\UserSettingsPanel\UserSettingsPanelPage.xaml.cs">
       <DependentUpon>UserSettingsPanelPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="View\WorkPanel\CreateFromScan.xaml.cs">
+      <DependentUpon>CreateFromScan.xaml</DependentUpon>
     </Compile>
     <Compile Update="View\WorkPanel\TicketsDetailPage.xaml.cs">
       <DependentUpon>TicketsDetailPage.xaml</DependentUpon>

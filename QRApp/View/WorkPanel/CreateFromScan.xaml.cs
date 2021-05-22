@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace QRApp.View.WorkPanel
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class TicketsCreate : TabbedPage
+    public partial class CreateFromScan : TabbedPage
     {
-        public TicketsCreate()
+        public CreateFromScan()
         {
             InitializeComponent();
         }

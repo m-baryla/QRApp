@@ -4,7 +4,7 @@
              x:Class="QRApp.View.WorkPanel.WikiPage">
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add New Wiki" Command="{Binding _GoToNewWikiPage}"></ToolbarItem>
+        <ToolbarItem Text="Add New" Command="{Binding _GoToNewWikiPage}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
         <ScrollView>

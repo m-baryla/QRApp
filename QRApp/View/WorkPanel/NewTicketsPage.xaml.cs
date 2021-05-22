@@ -9,10 +9,10 @@ namespace QRApp.View.WorkPanel
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewTicketsPage : ContentPage
     {
-        public NewTicketsPage()
+        public NewTicketsPage(string resultScan)
         { 
             InitializeComponent();
-            BindingContext = new NewTicketVM(new PageService(),new CameraService(),new DataService(),new DialogService());
+            BindingContext = new NewTicketVM(new PageService(),new CameraService(),new DataService(),new DialogService(),resultScan);
         }
 
         private void MenuItem_OnClicked(object sender, EventArgs e)

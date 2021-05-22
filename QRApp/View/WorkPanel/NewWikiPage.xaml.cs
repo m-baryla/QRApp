@@ -9,10 +9,10 @@ namespace QRApp.View.WorkPanel
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class NewWikiPage : ContentPage
     {
-        public NewWikiPage()
+        public NewWikiPage(string resultScan)
         {
             InitializeComponent();
-            BindingContext = new NewWikiVM(new CameraService(),new DataService(),new DialogService());
+            BindingContext = new NewWikiVM(new CameraService(),new DataService(),new DialogService(), resultScan);
         }
 
         private void MenuItem_OnClicked(object sender, EventArgs e)

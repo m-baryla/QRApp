@@ -27,7 +27,6 @@ namespace QRApp
                             .Build();
 
             MainPage = new NavigationPage(new MasterPage());
-
         }
 
         protected override void OnStart()

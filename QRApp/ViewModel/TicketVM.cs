@@ -101,7 +101,7 @@ namespace QRApp.ViewModel
         private async Task GoToNewTicketsPage()
         {
 
-            await _pageService.PushModalAsync(new TicketsCreate());
+            await _pageService.PushModalAsync(new CreateFromScan());
         }
 
         private async Task GoToDetailPage()

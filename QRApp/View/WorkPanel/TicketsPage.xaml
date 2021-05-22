@@ -5,7 +5,7 @@
 
 
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Add New Ticket" Command="{Binding _GoToNewTicketsPage}"></ToolbarItem>
+        <ToolbarItem Text="Add New" Command="{Binding _GoToNewTicketsPage}"></ToolbarItem>
     </ContentPage.ToolbarItems>
 
     <ScrollView>
