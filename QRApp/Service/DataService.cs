@@ -15,6 +15,36 @@ namespace QRApp.Service
 
     public class DataService : IDataService
     {
+        public async Task<List<DictPriority>> GetDictPrioritieList()
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync(Constants.Url + "/api/DictPriorities/");
+                var priority = JsonConvert.DeserializeObject<List<DictPriority>>(json);
+                return priority;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        public async Task<List<DictTicketType>> GetDictTicketTypeList()
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync(Constants.Url + "/api/DictTicketTypes/");
+                var type = JsonConvert.DeserializeObject<List<DictTicketType>>(json);
+                return type;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
         public async Task<List<DictStatu>> GetStatusList()
         {
             try

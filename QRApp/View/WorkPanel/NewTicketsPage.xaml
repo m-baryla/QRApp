@@ -23,14 +23,9 @@
             <TableSection Title="Type">
                 <ViewCell>
                     <Picker Title="Type" 
-                            ItemsSource="{Binding Locations}"
-                            ItemDisplayBinding="{Binding LocationName}"
-                            SelectedItem="{Binding SelecteDictLocation}"
-                            IsEnabled="{Binding IsEnableLocation}"
-                            IsVisible="{Binding IsVisibleLocation}"></Picker>
-                </ViewCell>
-                <ViewCell>
-                    <Label Text="{Binding SelecteDictLocation.LocationName}" IsVisible="{Binding IsVisibleLocation}"></Label>
+                            ItemsSource="{Binding TicketType}"
+                            ItemDisplayBinding="{Binding Type}"
+                            SelectedItem="{Binding SelecteDictTicketType}"></Picker>
                 </ViewCell>
             </TableSection>
         </TableView>
@@ -76,13 +71,14 @@
         <TableView Grid.Row="1" Grid.Column="0" >
             <TableSection Title="Priority">
                 <ViewCell>
-                    <Picker  Title="Priority" 
-                             ItemsSource="{Binding EmailAdresses}"
-                             ItemDisplayBinding="{Binding EmailAdressNotify }"
-                             SelectedItem="{Binding SelecteDictEmailAdress}"></Picker>
+                    <Picker Title="Priority" 
+                            ItemsSource="{Binding Priority}"
+                            ItemDisplayBinding="{Binding PriorityType}"
+                            SelectedItem="{Binding SelecteDictPriority}"></Picker>
                 </ViewCell>
             </TableSection>
         </TableView>
+
         <TableView Grid.Row="1" Grid.Column="1" Grid.ColumnSpan ="3">
             <TableSection Title="Email Adress Notify">
                 <ViewCell>
@@ -98,7 +94,7 @@
             <TableSection Title="Topic and description">
                 <EntryCell Label="Topic " Text="{Binding TicketsDetails.Topic}" Placeholder="Topic ticket"/>
                 <ViewCell>
-                    <Editor Text = "{Binding TicketsDetails.Description}" HeightRequest = "200" BackgroundColor="AliceBlue" Placeholder="Description ticket" />
+                    <Editor Text = "{Binding TicketsDetails.Description}" HeightRequest = "200" TextColor="Black" BackgroundColor="AliceBlue" Placeholder="Description ticket" />
                 </ViewCell>
             </TableSection>
         </TableView>

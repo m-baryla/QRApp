@@ -25,7 +25,6 @@
                                 <StackLayout Padding="12">
                                     <Label Text="Wiki" TextColor="Gray"></Label>
                                     <Label Text="{Binding Topic}" FontSize="Title" Padding="10" TextColor="CornflowerBlue"></Label>
-                                    <Label Text="{Binding Description}" FontSize="Small" Padding="20,0,0,0" TextColor="CornflowerBlue"></Label>
                                     <Label Text="{Binding LocationName}" FontSize="Small" Padding="20,0,0,0" TextColor="CornflowerBlue"></Label>
                                     <Label Text="{Binding EquipmentName}" FontSize="Small" Padding="20,0,0,0" TextColor="CornflowerBlue"></Label>
                                 </StackLayout>

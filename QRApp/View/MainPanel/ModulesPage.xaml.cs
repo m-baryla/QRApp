@@ -16,13 +16,13 @@ namespace QRApp.View.MainPanel
         {
             authenticatioResult = _authenticatioResult;
 
+            BindingContext = new ModulesPageVM(new PageService());
+            InitializeComponent();
+
             var userName = authenticatioResult.Account.Username;
 
             Application.Current.Properties["userName"] = userName;
             Application.Current.SavePropertiesAsync();
-
-            BindingContext = new ModulesPageVM(new PageService());
-            InitializeComponent();
         }
 
         private async void Button_Clicked(object sender, System.EventArgs e)

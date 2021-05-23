@@ -28,24 +28,19 @@ namespace QRApp.ViewModel
         public byte[] PhotoBytes { get; set; }
 
         private bool _isRefreshing;
-        public bool IsRefreshing { get => _isRefreshing;
-            set => SetValue(ref _isRefreshing, value); }
+        public bool IsRefreshing { get => _isRefreshing; set => SetValue(ref _isRefreshing, value); }
 
         private List<Ticket> _ticketDetailsList;
-        public List<Ticket> TicketDetailsList { get => _ticketDetailsList;
-            set => SetValue(ref _ticketDetailsList, value); }
+        public List<Ticket> TicketDetailsList { get => _ticketDetailsList; set => SetValue(ref _ticketDetailsList, value); }
 
         private Ticket _selectedTicketDetail;
-        public Ticket SelectedTicketDetail { get => _selectedTicketDetail;
-            set => SetValue(ref _selectedTicketDetail, value); }
+        public Ticket SelectedTicketDetail { get => _selectedTicketDetail; set => SetValue(ref _selectedTicketDetail, value); }
 
         private List<DictStatu> _status;
-        public List<DictStatu> StatusList { get => _status;
-            set => SetValue(ref _status, value); }
+        public List<DictStatu> StatusList { get => _status; set => SetValue(ref _status, value); }
 
         private DictStatu _selecteDictStatu;
-        public DictStatu SelecteDictStatu { get => _selecteDictStatu;
-            set => SetValue(ref _selecteDictStatu, value); }
+        public DictStatu SelecteDictStatu { get => _selecteDictStatu; set => SetValue(ref _selecteDictStatu, value); }
 
         public TicketVM(IPageService pageService, IDataService dataService)
         {

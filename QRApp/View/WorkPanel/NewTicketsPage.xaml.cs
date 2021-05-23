@@ -12,7 +12,7 @@ namespace QRApp.View.WorkPanel
         public NewTicketsPage(string resultScan)
         { 
             InitializeComponent();
-            BindingContext = new NewTicketVM(new PageService(),new CameraService(),new DataService(),new DialogService(),resultScan);
+            BindingContext = new NewTicketVM(new CameraService(),new DataService(),new DialogService(),resultScan);
         }
 
         private void MenuItem_OnClicked(object sender, EventArgs e)

@@ -14,6 +14,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
         </Grid.ColumnDefinitions>
 
 
@@ -33,7 +34,15 @@
             </TableSection>
         </TableView>
 
-        <TableView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan ="2" HasUnevenRows="True">
+        <TableView Grid.Row="0" Grid.Column="2" VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <TableSection Title="TicketType">
+                <ViewCell>
+                    <Label Text="{Binding Ticket.TicketType}" Padding="12"/>
+                </ViewCell>
+            </TableSection>
+        </TableView>
+
+        <TableView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan ="3" HasUnevenRows="True">
             <TableSection Title="Topic / description ticket">
                 <EntryCell Label="Topic" Text="{Binding Ticket.Topic}" Placeholder="topitc ticet" IsEnabled="False"/>
                 <ViewCell>
@@ -42,7 +51,7 @@
             </TableSection>
         </TableView>
 
-        <TableView Grid.Row="2" Grid.Column="0">
+        <TableView Grid.Row="2" Grid.Column="0" Grid.ColumnSpan ="2">
             <TableSection Title="User sender info">
                 <ViewCell>
                     <Label Text="UserName" Padding="12" FontSize="Medium" TextColor="CornflowerBlue"></Label>
@@ -60,7 +69,7 @@
         </TableView>
 
 
-        <TableView Grid.Row="2" Grid.Column="1">
+        <TableView Grid.Row="2" Grid.Column="2">
             <TableSection Title="Ticket status">
                 <ViewCell>
                     <Label Text="Status" Padding="12" FontSize="Medium" TextColor="CornflowerBlue"></Label>
@@ -80,7 +89,7 @@
             </TableSection>
         </TableView>
 
-        <TableView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan ="2" HasUnevenRows="True">
+        <TableView Grid.Row="3" Grid.Column="0" Grid.ColumnSpan ="3" HasUnevenRows="True">
             <TableSection Title="Photo">
                 <ViewCell>
                     <Image x:Name="resultImage" Aspect="Fill" HeightRequest="200" ></Image>

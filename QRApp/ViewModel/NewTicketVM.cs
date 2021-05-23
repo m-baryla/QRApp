@@ -1,19 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Reflection;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using QRApp.Interface;
 using QRApp.Model;
-using QRApp.Service;
-using QRApp.View;
-using QRApp.View.MainPanel;
-using Xamarin.Essentials;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 
 namespace QRApp.ViewModel
@@ -21,75 +11,68 @@ namespace QRApp.ViewModel
     public class NewTicketVM : BaseVM
     {
         private DictEmailAdress _dictEmailAdressNotify;
-        public DictEmailAdress DictEmailAdressNotify { get => _dictEmailAdressNotify;
-            set => SetValue(ref _dictEmailAdressNotify, value); }
+        public DictEmailAdress DictEmailAdressNotify { get => _dictEmailAdressNotify; set => SetValue(ref _dictEmailAdressNotify, value); }
 
         private Ticket _ticketsDetails;
-        public Ticket TicketsDetails { get => _ticketsDetails;
-            set => SetValue(ref _ticketsDetails, value); }
+        public Ticket TicketsDetails { get => _ticketsDetails; set => SetValue(ref _ticketsDetails, value); }
+
+        private List<DictPriority> _priority;
+        public List<DictPriority> Priority { get => _priority; set => SetValue(ref _priority, value); }
+
+        private List<DictTicketType> _ticketType;
+        public List<DictTicketType> TicketType { get => _ticketType; set => SetValue(ref _ticketType, value); }
 
         private List<DictLocation> _locations;
-        public List<DictLocation> Locations { get => _locations;
-            set => SetValue(ref _locations, value); }
+        public List<DictLocation> Locations { get => _locations; set => SetValue(ref _locations, value); }
 
         private List<DictEquipment> _euipments;
-        public List<DictEquipment> Equipments { get => _euipments;
-            set => SetValue(ref _euipments, value); }
+        public List<DictEquipment> Equipments { get => _euipments; set => SetValue(ref _euipments, value); }
 
-        private DictLocation _selecteDictLocation = null;
-        public DictLocation SelecteDictLocation { get => _selecteDictLocation;
-            set => SetValue(ref _selecteDictLocation, value); }
+        private DictTicketType _selecteDictTicketType ;
+        public DictTicketType SelecteDictTicketType { get => _selecteDictTicketType; set => SetValue(ref _selecteDictTicketType, value); }
+        private DictPriority _selecteDictPriority;
+        public DictPriority SelecteDictPriority { get => _selecteDictPriority; set => SetValue(ref _selecteDictPriority, value); }
 
-        private DictEquipment _selecteDictEquipments = null;
-        public DictEquipment SelecteDictEquipments { get => _selecteDictEquipments;
-            set => SetValue(ref _selecteDictEquipments, value); }
+        private DictLocation _selecteDictLocation ;
+        public DictLocation SelecteDictLocation { get => _selecteDictLocation; set => SetValue(ref _selecteDictLocation, value); }
+
+        private DictEquipment _selecteDictEquipments;
+        public DictEquipment SelecteDictEquipments { get => _selecteDictEquipments; set => SetValue(ref _selecteDictEquipments, value); }
 
         private List<DictEmailAdress> _emailAdresses;
-        public List<DictEmailAdress> EmailAdresses { get => _emailAdresses;
-            set => SetValue(ref _emailAdresses, value); }
+        public List<DictEmailAdress> EmailAdresses { get => _emailAdresses; set => SetValue(ref _emailAdresses, value); }
         
-        private DictEmailAdress _selecteDictEmailAdress = null;
-        public DictEmailAdress SelecteDictEmailAdress { get => _selecteDictEmailAdress;
-            set => SetValue(ref _selecteDictEmailAdress, value); }
+        private DictEmailAdress _selecteDictEmailAdress;
+        public DictEmailAdress SelecteDictEmailAdress { get => _selecteDictEmailAdress; set => SetValue(ref _selecteDictEmailAdress, value); }
+
 
         private readonly ICameraService _cameraService;
-        private readonly IPageService _pageService;
         private readonly IDialogService _dialogService;
         private readonly IDataService _dataService;
         public ICommand _CreatePhotoAsync { get; private set; }
         public ICommand _SendNewTicket { get; private set; }
 
-        private string _scanResul;
-        public string ScanResul { get => _scanResul;
-            set => SetValue(ref _scanResul, value); }
-
         public byte[] PhotoBytes => _cameraService.PhotoBytes;
 
         private string _locationValue;
-        public string LocationValue { get => _locationValue;
-            set => SetValue(ref _locationValue, value); }
+        public string LocationValue { get => _locationValue; set => SetValue(ref _locationValue, value); }
 
         private string _equipmentValue;
-        public string EquipmentValue { get => _equipmentValue;
-            set => SetValue(ref _equipmentValue, value); }
+        public string EquipmentValue { get => _equipmentValue; set => SetValue(ref _equipmentValue, value); }
 
         private bool _isEnableLocation;
-        public bool IsEnableLocation { get => _isEnableLocation;
-            set => SetValue(ref _isEnableLocation, value); }
+        public bool IsEnableLocation { get => _isEnableLocation; set => SetValue(ref _isEnableLocation, value); }
 
         private bool _isEnableEquippment;
-        public bool IsEnableEquippment { get => _isEnableEquippment;
-            set => SetValue(ref _isEnableEquippment, value); }
+        public bool IsEnableEquippment { get => _isEnableEquippment; set => SetValue(ref _isEnableEquippment, value); }
 
          private bool _isVisibleLocation;
-        public bool IsVisibleLocation { get => _isVisibleLocation;
-            set => SetValue(ref _isVisibleLocation, value); }
+        public bool IsVisibleLocation { get => _isVisibleLocation; set => SetValue(ref _isVisibleLocation, value); }
 
         private bool _isVisibleEquippment;
-        public bool IsVisibleEquippment { get => _isVisibleEquippment;
-            set => SetValue(ref _isVisibleEquippment, value); }
+        public bool IsVisibleEquippment { get => _isVisibleEquippment; set => SetValue(ref _isVisibleEquippment, value); }
 
-        public NewTicketVM(IPageService pageService,ICameraService cameraService, IDataService dataService, IDialogService dialogService,string resultScan)
+        public NewTicketVM(ICameraService cameraService, IDataService dataService, IDialogService dialogService,string resultScan)
         {
             _CreatePhotoAsync = new Command(async _ => await CreatePhotoAsync());
             _SendNewTicket = new Command(async _=> await SendNewTicket());
@@ -97,16 +80,19 @@ namespace QRApp.ViewModel
             _cameraService = cameraService;
             _dataService = dataService;
             _dialogService = dialogService;
-            _pageService = pageService;
 
             _ticketsDetails = new Ticket();
             SelecteDictEquipments = new DictEquipment();
             SelecteDictLocation = new DictLocation();
+            SelecteDictPriority = new DictPriority();
+            SelecteDictTicketType = new DictTicketType();
             _dictEmailAdressNotify = new DictEmailAdress();
 
             _ = ListLocations();
             _ = ListEquipment();
             _ = ListEmailAdress();
+            _ = ListPrioritie();
+            _ = ListTicketType();
 
             IsEnableLocation = true;
             IsVisibleLocation = true;
@@ -152,6 +138,15 @@ namespace QRApp.ViewModel
                 }
                 
             }
+        }
+
+        private async Task ListTicketType()
+        {
+            TicketType = await _dataService.GetDictTicketTypeList();
+        }
+        private async Task ListPrioritie()
+        {
+            Priority = await _dataService.GetDictPrioritieList();
         }
 
         private async Task ListLocations()
@@ -200,7 +195,8 @@ namespace QRApp.ViewModel
             _ticketsDetails.UserName = Application.Current.Properties["userName"].ToString();
 
             _ticketsDetails.Photo = _cameraService.PhotoBytes;
-
+            _ticketsDetails.Priority = SelecteDictPriority.PriorityType;
+            _ticketsDetails.TicketType = SelecteDictTicketType.Type;
             
             _dictEmailAdressNotify.EmailAdressNotify = SelecteDictEmailAdress.EmailAdressNotify;
             _dictEmailAdressNotify.Subject = _ticketsDetails.Topic;
