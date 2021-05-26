@@ -15,6 +15,66 @@ namespace QRApp.Service
 
     public class DataService : IDataService
     {
+        public async Task<List<DictTicketType>> GetDictTicketTypesAllActive()
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync(Constants.Url + "/api/DictTicketTypes/GetDictTicketTypesAllActive/");
+                var ticType = JsonConvert.DeserializeObject<List<DictTicketType>>(json);
+                return ticType;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        public async Task<List<DictTicketType>> GetDictTicketTypesAllNotActive()
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync(Constants.Url + "/api/DictTicketTypes/GetDictTicketTypesAllNotActive/");
+                var ticType = JsonConvert.DeserializeObject<List<DictTicketType>>(json);
+                return ticType;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        public async Task<List<DictTicketType>> GetDictTicketTypesNotActive()
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync(Constants.Url + "/api/DictTicketTypes/GetDictTicketTypesNotActive/");
+                var ticType = JsonConvert.DeserializeObject<List<DictTicketType>>(json);
+                return ticType;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+        public async Task<List<DictTicketType>> GetDictTicketTypesActive()
+        {
+            try
+            {
+                var httpClient = new HttpClient();
+                var json = await httpClient.GetStringAsync(Constants.Url + "/api/DictTicketTypes/GetDictTicketTypesActive/");
+                var ticType = JsonConvert.DeserializeObject<List<DictTicketType>>(json);
+                return ticType;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
         public async Task<List<DictPriority>> GetDictPrioritieList()
         {
             try

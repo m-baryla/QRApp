@@ -82,6 +82,8 @@ namespace QRApp.ViewModel
             _putTicket.EquipmentName = Ticket.EquipmentName;
             _putTicket.Status = SelecteDictStatu.Status;
             _putTicket.EmailAdress = Ticket.EmailAdress;
+            _putTicket.TicketType = Ticket.TicketType;
+            _putTicket.Priority = Ticket.Priority;
 
             if (await _dataService.PutTicket(Ticket.Id, _putTicket))
             {
@@ -125,6 +127,7 @@ namespace QRApp.ViewModel
             return _ticketDetailsList.Where(c => c.Topic.StartsWith(searchString) || 
                                                   c.LocationName.StartsWith(searchString) || 
                                                   c.EquipmentName.StartsWith(searchString) ||
+                                                  c.TicketType.StartsWith(searchString) ||
                                                   c.Status.StartsWith(searchString));
         }
     }

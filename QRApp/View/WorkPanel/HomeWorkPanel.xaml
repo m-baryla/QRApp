@@ -13,33 +13,36 @@
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
                         <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Label Text="Breakdowns" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
-                    <forms:ChartView x:Name="Breakdowns" HeightRequest="100" Grid.Row="0" Grid.Column="0" Margin="15"/>
 
-                    <Label Text="Repairs" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
-                    <forms:ChartView x:Name="Repairs" HeightRequest="100" Grid.Row="0" Grid.Column="1" Margin="15"/>
+                    <Label Text="All" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan ="2" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
+                    <forms:ChartView Chart="{Binding ChartAll}" HeightRequest="100" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan ="2" Margin="15"/>
 
-                    <Label Text="Maintenance" Grid.Row="0" Grid.Column="2" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
-                    <forms:ChartView x:Name="Maintenance" HeightRequest="100" Grid.Row="0" Grid.Column="2" Margin="15"/>
+                    <Label Text="Repairs" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan ="2" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
+                    <forms:ChartView Chart="{Binding ChartRepairs}" HeightRequest="100" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan ="2" Margin="15"/>
 
-                    <Label Text="Inspection" Grid.Row="1" Grid.Column="0" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
-                    <forms:ChartView x:Name="Inspection" HeightRequest="100" Grid.Row="1" Grid.Column="0" Margin="15"/>
+                    <Label Text="Maintenance" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan ="2" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
+                    <forms:ChartView Chart="{Binding ChartMaintenance}" HeightRequest="100" Grid.Row="2" Grid.Column="0"  Grid.ColumnSpan ="2" Margin="15"/>
 
-                    <Label Text="Cleaning" Grid.Row="1" Grid.Column="1" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
-                    <forms:ChartView x:Name="Cleaning" HeightRequest="100" Grid.Row="1" Grid.Column="1" Margin="15"/>
+                    <Label Text="Inspection" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan ="2" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
+                    <forms:ChartView Chart="{Binding ChartInspection}" HeightRequest="100" Grid.Row="0" Grid.Column="2" Grid.ColumnSpan ="2" Margin="15"/>
 
-                    <Label Text="All" Grid.Row="1" Grid.Column="2" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
-                    <forms:ChartView x:Name="All" HeightRequest="100" Grid.Row="1" Grid.Column="2" Margin="15"/>
+                    <Label Text="Cleaning" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan ="2" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
+                    <forms:ChartView Chart="{Binding ChartCleaning}" HeightRequest="100" Grid.Row="1" Grid.Column="2" Grid.ColumnSpan ="2" Margin="15"/>
+
+                    <Label Text="Breakdowns" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan ="2" HorizontalOptions="Center" Font="Bold" TextColor="Red" Padding="-5"></Label>
+                    <forms:ChartView Chart="{Binding ChartBreakdowns}" HeightRequest="100" Grid.Row="2" Grid.Column="2" Grid.ColumnSpan ="2" Margin="15"/>
 
 
-                    <StackLayout Grid.Row="2" Grid.Column="0" Grid.ColumnSpan ="3">
+                    <StackLayout Grid.Row="3" Grid.Column="0" Grid.ColumnSpan ="4">
                         <ContentView VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand" Padding="12">
                             <Button Text="Create new" 
                                     Style="{StaticResource buttonQRapp}" 
@@ -53,4 +56,7 @@
             </ScrollView>
         </StackLayout>
     </ContentPage.Content>
+
+
+
 </ContentPage>

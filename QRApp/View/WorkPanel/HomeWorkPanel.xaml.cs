@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microcharts;
+using Microsoft.Identity.Client;
+using QRApp.Interface;
+using QRApp.Model;
 using QRApp.Service;
 using QRApp.ViewModel;
 using SkiaSharp;
@@ -17,15 +20,9 @@ namespace QRApp.View.WorkPanel
     {
         public HomeWorkPanel()
         {
-            InitializeComponent();
-            BindingContext = new HomeWorkPanelVM(new DataService(),new PageService());
 
-            Breakdowns.Chart = new DonutChart { Entries = (BindingContext as HomeWorkPanelVM)._Breakdowns, HoleRadius = 0.5f };
-            Repairs.Chart = new DonutChart { Entries = (BindingContext as HomeWorkPanelVM)._Repairs, HoleRadius = 0.5f };
-            Maintenance.Chart = new DonutChart { Entries = (BindingContext as HomeWorkPanelVM)._Maintenance, HoleRadius = 0.5f };
-            Inspection.Chart = new DonutChart { Entries = (BindingContext as HomeWorkPanelVM)._Breakdowns, HoleRadius = 0.5f };
-            Cleaning.Chart = new DonutChart { Entries = (BindingContext as HomeWorkPanelVM)._Repairs, HoleRadius = 0.5f };
-            All.Chart = new DonutChart { Entries = (BindingContext as HomeWorkPanelVM)._All, HoleRadius = 0.5f };
+            InitializeComponent();
+            BindingContext = new HomeWorkPanelVM(new DataService(), new PageService());
 
         }
     }

@@ -9,6 +9,10 @@ namespace QRApp.Interface
 {
     public interface IDataService
     {
+        Task<List<DictTicketType>> GetDictTicketTypesAllActive();
+        Task<List<DictTicketType>> GetDictTicketTypesAllNotActive();
+        Task<List<DictTicketType>> GetDictTicketTypesNotActive();
+        Task<List<DictTicketType>> GetDictTicketTypesActive();
         Task<List<DictPriority>> GetDictPrioritieList();
         Task<List<DictTicketType>> GetDictTicketTypeList();
         Task<List<DictEmailAdress>> GetEmailAdressesList();
