@@ -162,12 +162,14 @@ namespace QRApp.ViewModel
 
         private async Task ListLocations()
         {
-            Locations = await _dataService.GetLocationsList(new HttpClient());
+            //Locations = await _dataService.GetLocationsList(new HttpClient());
+            Locations = await _dataService.GetAsync<DictLocation>(new HttpClient(), Constants.GetLocationsList);
         }
 
         private async Task ListEquipment()
         {
-            Equipments = await _dataService.GetEquipmentList(new HttpClient());
+            //Equipments = await _dataService.GetEquipmentList(new HttpClient());
+            Equipments = await _dataService.GetAsync<DictEquipment>(new HttpClient(), Constants.GetEquipmentList);
         }
         private Task<ImageSource> CreatePhotoAsync()
         {
@@ -198,7 +200,8 @@ namespace QRApp.ViewModel
             //_wikisDetails.EquipmentName = SelecteDictEquipments.EquipmentName;
             _wikisDetails.Photo = _cameraService.PhotoBytes;
 
-            if (await _dataService.PostNewWiki(_wikisDetails, new HttpClient()))
+
+            if (await _dataService.PostAsync(new HttpClient(), Constants.PostNewWiki, _wikisDetails))
             {
                 await _dialogService.DisplayAlert("Info", "Send New Wiki successful", "OK", "Cancel");
             }
@@ -206,6 +209,14 @@ namespace QRApp.ViewModel
             {
                 await _dialogService.DisplayAlert("Info", "Send New Wiki failed", "OK", "Cancel");
             }
+            //if (await _dataService.PostNewWiki(_wikisDetails, new HttpClient()))
+            //{
+            //    await _dialogService.DisplayAlert("Info", "Send New Wiki successful", "OK", "Cancel");
+            //}
+            //else
+            //{
+            //    await _dialogService.DisplayAlert("Info", "Send New Wiki failed", "OK", "Cancel");
+            //}
         }
     }
 }

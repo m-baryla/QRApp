@@ -47,7 +47,7 @@ namespace QRApp.ViewModel
 
         private async Task AddNewAdressEmail()
         {
-            if (await _dataService.PostNewEmail(_emailAdresses, new HttpClient()))
+            if (await _dataService.PostAsync(new HttpClient(), Constants.PostNewEmail, _emailAdresses))
             {
                 await _dialogService.DisplayAlert("Info", "Add New AdressEmail successful", "OK", "Cancel");
             }
@@ -55,17 +55,28 @@ namespace QRApp.ViewModel
             {
                 await _dialogService.DisplayAlert("Info", "Add New AdressEmail failed", "OK", "Cancel");
             }
+            //if (await _dataService.PostNewEmail(_emailAdresses, new HttpClient()))
+            //{
+            //    await _dialogService.DisplayAlert("Info", "Add New AdressEmail successful", "OK", "Cancel");
+            //}
+            //else
+            //{
+            //    await _dialogService.DisplayAlert("Info", "Add New AdressEmail failed", "OK", "Cancel");
+            //}
         }
 
         private async Task GetAdressEmails()
         {
-            EmailAdressesList =  await _dataService.GetEmailAdressesList(new HttpClient());
+            //EmailAdressesList =  await _dataService.GetEmailAdressesList(new HttpClient());
+            EmailAdressesList = await _dataService.GetAsync<DictEmailAdress>(new HttpClient(), Constants.GetEmailAdressesList);
+
             IsRefreshing = false;
         }
 
         public async Task<IEnumerable<DictEmailAdress>> GetAdressesEmailsSearch(string searchString = null)
         {
-            _emailAdressesList = await _dataService.GetEmailAdressesList(new HttpClient());
+            //_emailAdressesList = await _dataService.GetEmailAdressesList(new HttpClient());
+            _emailAdressesList = await _dataService.GetAsync<DictEmailAdress>(new HttpClient(), Constants.GetEmailAdressesList);
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _emailAdressesList;

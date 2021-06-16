@@ -36,7 +36,8 @@ namespace QRApp.ViewModel
 
         private async Task AddNewLocation()
         {
-            if (await _dataService.PostNewLocation(_dictLocation, new HttpClient()))
+
+            if (await _dataService.PostAsync(new HttpClient(), Constants.PostNewLocation, _dictLocation))
             {
                 await _dialogService.DisplayAlert("Info", "Add New Location successful", "OK", "Cancel");
             }
@@ -44,6 +45,15 @@ namespace QRApp.ViewModel
             {
                 await _dialogService.DisplayAlert("Info", "Add New Location failed", "OK", "Cancel");
             }
+
+            //if (await _dataService.PostNewLocation(_dictLocation, new HttpClient()))
+            //{
+            //    await _dialogService.DisplayAlert("Info", "Add New Location successful", "OK", "Cancel");
+            //}
+            //else
+            //{
+            //    await _dialogService.DisplayAlert("Info", "Add New Location failed", "OK", "Cancel");
+            //}
         }
     }
 }

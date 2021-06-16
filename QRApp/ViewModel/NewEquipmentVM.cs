@@ -36,7 +36,7 @@ namespace QRApp.ViewModel
         }
         private async Task AddNewEquipment()
         {
-            if (await _dataService.PostNewEquipment(_dictEquipments, new HttpClient()))
+            if (await _dataService.PostAsync(new HttpClient(), Constants.PostNewEquipment, _dictEquipments))
             {
                 await _dialogService.DisplayAlert("Info", "Add New Equipment successful", "OK", "Cancel");
             }
@@ -44,6 +44,15 @@ namespace QRApp.ViewModel
             {
                 await _dialogService.DisplayAlert("Info", "Add New Equipment failed", "OK", "Cancel");
             }
+
+            //if (await _dataService.PostNewEquipment(_dictEquipments, new HttpClient()))
+            //{
+            //    await _dialogService.DisplayAlert("Info", "Add New Equipment successful", "OK", "Cancel");
+            //}
+            //else
+            //{
+            //    await _dialogService.DisplayAlert("Info", "Add New Equipment failed", "OK", "Cancel");
+            //}
         }
     }
 }

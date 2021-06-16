@@ -72,10 +72,14 @@ namespace QRApp.ViewModel
 
         public async Task GetCountTicketType()
         {
-            TicketTypeListActive = await _dataService.GetDictTicketTypesActive(new HttpClient());
-            TicketTypeListNotActive = await _dataService.GetDictTicketTypesNotActive(new HttpClient());
-            TicketTypeListActiveAll = await _dataService.GetDictTicketTypesAllActive(new HttpClient());
-            TicketTypeListNotActiveAll = await _dataService.GetDictTicketTypesAllNotActive(new HttpClient());
+            //TicketTypeListActive = await _dataService.GetDictTicketTypesActive(new HttpClient());
+            TicketTypeListActive = await _dataService.GetAsync<DictTicketType>(new HttpClient(), Constants.GetDictTicketTypesActive);
+            //TicketTypeListNotActive = await _dataService.GetDictTicketTypesNotActive(new HttpClient());
+            TicketTypeListNotActive = await _dataService.GetAsync<DictTicketType>(new HttpClient(), Constants.GetDictTicketTypesNotActive);
+            //TicketTypeListActiveAll = await _dataService.GetDictTicketTypesAllActive(new HttpClient());
+            TicketTypeListActiveAll = await _dataService.GetAsync<DictTicketType>(new HttpClient(), Constants.GetDictTicketTypesAllActive);
+            //TicketTypeListNotActiveAll = await _dataService.GetDictTicketTypesAllNotActive(new HttpClient());
+            TicketTypeListNotActiveAll = await _dataService.GetAsync<DictTicketType>(new HttpClient(), Constants.GetDictTicketTypesAllNotActive);
 
             BreakdownsActiveCount = TicketTypeListActive.Where(t => t.Type == "Breakdowns").Select(t => t.Count).FirstOrDefault().ToString();
             RepairsActiveCount = TicketTypeListActive.Where(t => t.Type == "Repairs").Select(t => t.Count).FirstOrDefault().ToString();

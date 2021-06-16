@@ -56,12 +56,16 @@ namespace QRApp.ViewModel
 
         private async Task GetLocationsList()
         {
-            LocationsList = await _dataService.GetLocationsList(new HttpClient());
+            //LocationsList = await _dataService.GetLocationsList(new HttpClient());
+            LocationsList = await _dataService.GetAsync<DictLocation>(new HttpClient(), Constants.GetLocationsList);
+
             IsRefreshing = false;
         }
         public async Task<IEnumerable<DictLocation>> GetLocationsSearch(string searchString = null)
         {
-            _locationsList = await _dataService.GetLocationsList(new HttpClient());
+            //_locationsList = await _dataService.GetLocationsList(new HttpClient());
+            _locationsList = await _dataService.GetAsync<DictLocation>(new HttpClient(), Constants.GetLocationsList);
+
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _locationsList;

@@ -51,13 +51,17 @@ namespace QRApp.ViewModel
        
         private async Task GetEqipmentsList()
         {
-            EquipmentsList = await _dataService.GetEquipmentList(new HttpClient());
+            //EquipmentsList = await _dataService.GetEquipmentList(new HttpClient());
+            EquipmentsList = await _dataService.GetAsync<DictEquipment>(new HttpClient(), Constants.GetEquipmentList);
+
             IsRefreshing = false;
         }
 
         public async Task<IEnumerable<DictEquipment>> GetEqipmentsSearch(string searchString = null)
         {
-            _euipmentsList = await _dataService.GetEquipmentList(new HttpClient());
+            //_euipmentsList = await _dataService.GetEquipmentList(new HttpClient());
+            _euipmentsList = await _dataService.GetAsync<DictEquipment>(new HttpClient(), Constants.GetEquipmentList);
+
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _euipmentsList;

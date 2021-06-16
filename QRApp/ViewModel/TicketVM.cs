@@ -86,7 +86,7 @@ namespace QRApp.ViewModel
             _putTicket.TicketType = Ticket.TicketType;
             _putTicket.Priority = Ticket.Priority;
 
-            if (await _dataService.PutTicket(Ticket.Id, _putTicket, new HttpClient()))
+            if (await _dataService.PustAsync(new HttpClient(), Constants.PutTicket, _putTicket, Ticket.Id))
             {
                 await _dialogService.DisplayAlert("Info", "Update Status successful", "OK", "Cancel");
             }
@@ -94,6 +94,14 @@ namespace QRApp.ViewModel
             {
                 await _dialogService.DisplayAlert("Info", "Update Status failed", "OK", "Cancel");
             }
+            //if (await _dataService.PutTicket(Ticket.Id, _putTicket, new HttpClient()))
+            //{
+            //    await _dialogService.DisplayAlert("Info", "Update Status successful", "OK", "Cancel");
+            //}
+            //else
+            //{
+            //    await _dialogService.DisplayAlert("Info", "Update Status failed", "OK", "Cancel");
+            //}
         }
 
 
@@ -109,18 +117,23 @@ namespace QRApp.ViewModel
 
         private async Task GetHistoryTickets()
         {
-            TicketDetailsList = await _dataService.GetTicketHistoryDetailsList(new HttpClient());
+            //TicketDetailsList = await _dataService.GetTicketHistoryDetailsList(new HttpClient());
+            TicketDetailsList = await _dataService.GetAsync<Ticket>(new HttpClient(), Constants.GetTicketHistoryDetailsList);
             IsRefreshing = false;
         }
 
         private async Task ListStatus()
         {
-            StatusList = await _dataService.GetStatusList(new HttpClient());
+            //StatusList = await _dataService.GetStatusList(new HttpClient());
+            StatusList = await _dataService.GetAsync<DictStatu>(new HttpClient(), Constants.GetStatusList);
+
         }
 
         public async Task<IEnumerable<Ticket>> GetHistoryTicketsSearch(string searchString = null)
         {
-            _ticketDetailsList = await _dataService.GetTicketHistoryDetailsList(new HttpClient());
+            //_ticketDetailsList = await _dataService.GetTicketHistoryDetailsList(new HttpClient());
+            _ticketDetailsList = await _dataService.GetAsync<Ticket>(new HttpClient(), Constants.GetTicketHistoryDetailsList);
+
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _ticketDetailsList;

@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using QRApp.Interface;
 using QRApp.Model;
+using QRApp.Service;
 using Xamarin.Forms;
 
 
@@ -143,25 +144,30 @@ namespace QRApp.ViewModel
 
         private async Task ListTicketType()
         {
-            TicketType = await _dataService.GetDictTicketTypeList(new HttpClient());
+            //TicketType = await _dataService.GetDictTicketTypeList(new HttpClient());
+            TicketType = await _dataService.GetAsync<DictTicketType>(new HttpClient(), Constants.GetDictTicketTypeList);
         }
         private async Task ListPrioritie()
         {
-            Priority = await _dataService.GetDictPrioritieList(new HttpClient());
+            //Priority = await _dataService.GetDictPrioritieList(new HttpClient());
+            Priority = await _dataService.GetAsync<DictPriority>(new HttpClient(), Constants.GetDictPrioritieList);
         }
 
         private async Task ListLocations()
         {
-            Locations = await _dataService.GetLocationsList(new HttpClient());
+            //Locations = await _dataService.GetLocationsList(new HttpClient());
+            Locations = await _dataService.GetAsync<DictLocation>(new HttpClient(), Constants.GetLocationsList);
         }
 
         private async Task ListEquipment()
         {
-            Equipments = await _dataService.GetEquipmentList(new HttpClient());
+            //Equipments = await _dataService.GetEquipmentList(new HttpClient());
+            Equipments = await _dataService.GetAsync<DictEquipment>(new HttpClient(), Constants.GetEquipmentList);
         }
         private async Task ListEmailAdress()
         {
-            EmailAdresses = await _dataService.GetEmailAdressesList(new HttpClient());
+            //EmailAdresses = await _dataService.GetEmailAdressesList(new HttpClient());
+            EmailAdresses = await _dataService.GetAsync<DictEmailAdress>(new HttpClient(), Constants.GetEmailAdressesList);
         }
 
         private Task<ImageSource> CreatePhotoAsync()
@@ -206,11 +212,12 @@ namespace QRApp.ViewModel
             _dictEmailAdressNotify.Content_part3 = "Description: " + _ticketsDetails.Description;
             _dictEmailAdressNotify.UserSender = "UserSender: " + _ticketsDetails.UserName;
 
-            if (await _dataService.PostNewTicket(_ticketsDetails, new HttpClient()))
+
+            if (await _dataService.PostAsync(new HttpClient(),Constants.PostNewTicket, _ticketsDetails))
             {
                 await _dialogService.DisplayAlert("Info", "Send New Ticket successful", "OK", "Cancel");
 
-                if (await _dataService.PostEmailAdressNotify(_dictEmailAdressNotify, new HttpClient()))
+                if (await _dataService.PostAsync(new HttpClient(), Constants.PostEmailAdressNotify, _dictEmailAdressNotify))
                 {
                     await _dialogService.DisplayAlert("Info", "Email Adress Notifyt successful", "OK", "Cancel");
                 }
@@ -223,6 +230,24 @@ namespace QRApp.ViewModel
             {
                 await _dialogService.DisplayAlert("Info", "Send New Ticket failed", "OK", "Cancel");
             }
+
+            //if (await _dataService.PostNewTicket(_ticketsDetails, new HttpClient()))
+            //{
+            //    await _dialogService.DisplayAlert("Info", "Send New Ticket successful", "OK", "Cancel");
+
+            //    if (await _dataService.PostEmailAdressNotify(_dictEmailAdressNotify, new HttpClient()))
+            //    {
+            //        await _dialogService.DisplayAlert("Info", "Email Adress Notifyt successful", "OK", "Cancel");
+            //    }
+            //    else
+            //    {
+            //        await _dialogService.DisplayAlert("Info", "Email Adress Notifyt failed", "OK", "Cancel");
+            //    }
+            //}
+            //else
+            //{
+            //    await _dialogService.DisplayAlert("Info", "Send New Ticket failed", "OK", "Cancel");
+            //}
 
         }
     }
