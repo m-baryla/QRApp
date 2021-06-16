@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Microcharts;
-using Microcharts.Forms;
 using QRApp.Interface;
 using QRApp.Model;
 using QRApp.View.WorkPanel;
@@ -72,13 +70,9 @@ namespace QRApp.ViewModel
 
         public async Task GetCountTicketType()
         {
-            //TicketTypeListActive = await _dataService.GetDictTicketTypesActive(new HttpClient());
             TicketTypeListActive = await _dataService.GetAsync<DictTicketType>(new HttpClient(), Constants.GetDictTicketTypesActive);
-            //TicketTypeListNotActive = await _dataService.GetDictTicketTypesNotActive(new HttpClient());
             TicketTypeListNotActive = await _dataService.GetAsync<DictTicketType>(new HttpClient(), Constants.GetDictTicketTypesNotActive);
-            //TicketTypeListActiveAll = await _dataService.GetDictTicketTypesAllActive(new HttpClient());
             TicketTypeListActiveAll = await _dataService.GetAsync<DictTicketType>(new HttpClient(), Constants.GetDictTicketTypesAllActive);
-            //TicketTypeListNotActiveAll = await _dataService.GetDictTicketTypesAllNotActive(new HttpClient());
             TicketTypeListNotActiveAll = await _dataService.GetAsync<DictTicketType>(new HttpClient(), Constants.GetDictTicketTypesAllNotActive);
 
             BreakdownsActiveCount = TicketTypeListActive.Where(t => t.Type == "Breakdowns").Select(t => t.Count).FirstOrDefault().ToString();

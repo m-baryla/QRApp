@@ -1,8 +1,6 @@
 ﻿using Microsoft.Identity.Client;
 using QRApp.Service;
 using QRApp.ViewModel;
-using System.IdentityModel.Tokens.Jwt;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 

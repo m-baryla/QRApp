@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using QRApp.Interface;
 using QRApp.Model;
-using QRApp.View;
 using QRApp.View.WorkPanel;
-using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace QRApp.ViewModel
@@ -56,14 +52,12 @@ namespace QRApp.ViewModel
         }
         private async Task GetWikis()
         {
-            //WikiDetailsList = await _dataService.GetWikiDetailList(new HttpClient());
             WikiDetailsList = await _dataService.GetAsync<Wiki>(new HttpClient(), Constants.GetWikiDetailList);
 
             IsRefreshing = false;
         }
         public async Task<IEnumerable<Wiki>> GetWikiSearch(string searchString = null)
         {
-            //_wikiDetailsList = await _dataService.GetWikiDetailList(new HttpClient());
             _wikiDetailsList = await _dataService.GetAsync<Wiki>(new HttpClient(), Constants.GetWikiDetailList);
 
 

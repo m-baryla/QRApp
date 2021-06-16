@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
+﻿using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using QRApp.Interface;
@@ -44,15 +41,6 @@ namespace QRApp.ViewModel
             {
                 await _dialogService.DisplayAlert("Info", "Add New Equipment failed", "OK", "Cancel");
             }
-
-            //if (await _dataService.PostNewEquipment(_dictEquipments, new HttpClient()))
-            //{
-            //    await _dialogService.DisplayAlert("Info", "Add New Equipment successful", "OK", "Cancel");
-            //}
-            //else
-            //{
-            //    await _dialogService.DisplayAlert("Info", "Add New Equipment failed", "OK", "Cancel");
-            //}
         }
     }
 }

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 using QRApp.Interface;
 using QRApp.ViewModel;
@@ -56,12 +54,6 @@ namespace QRApp.Service
             }
         }
 
-        private void ImageToByte(Stream stream, out byte[] photoBytes)
-        {
-            var ms = new MemoryStream();
-            stream.CopyTo(ms);
-            photoBytes = ms.ToArray();
-        }
 
         public void ByteToImage(Image resultImage,byte[] photo)
         {
@@ -69,31 +61,3 @@ namespace QRApp.Service
         }
     }
 }
-
-
-//public async Task<ImageSource> CreatePhotoAsync()
-//{
-//    try
-//    {
-//        var result = await MediaPicker.CapturePhotoAsync();
-//        var ms = new MemoryStream();
-
-//        if (result != null)
-//        {
-//            var stream = await result.OpenReadAsync();
-
-//            PhotoSource = ImageSource.FromStream(() => stream);
-
-//            //stream.CopyTo(ms);
-//            //PhotoBytes = ms.ToArray();
-
-//            return PhotoSource;
-//        }
-
-//        return PhotoSource;
-//    }
-//    catch (Exception)
-//    {
-//        throw;
-//    }
-//}

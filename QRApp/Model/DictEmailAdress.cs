@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-
-
-namespace QRApp.Model
+﻿namespace QRApp.Model
 {
     public partial class DictEmailAdress
     {

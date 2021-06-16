@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Windows.Input;
 using QRApp.Model;
 using Xamarin.Forms;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
-using Microcharts;
 using QRApp.Interface;
-using QRApp.Service;
 using QRApp.View.WorkPanel;
-using SkiaSharp;
 
 namespace QRApp.ViewModel
 {
@@ -94,14 +89,6 @@ namespace QRApp.ViewModel
             {
                 await _dialogService.DisplayAlert("Info", "Update Status failed", "OK", "Cancel");
             }
-            //if (await _dataService.PutTicket(Ticket.Id, _putTicket, new HttpClient()))
-            //{
-            //    await _dialogService.DisplayAlert("Info", "Update Status successful", "OK", "Cancel");
-            //}
-            //else
-            //{
-            //    await _dialogService.DisplayAlert("Info", "Update Status failed", "OK", "Cancel");
-            //}
         }
 
 
@@ -117,21 +104,18 @@ namespace QRApp.ViewModel
 
         private async Task GetHistoryTickets()
         {
-            //TicketDetailsList = await _dataService.GetTicketHistoryDetailsList(new HttpClient());
             TicketDetailsList = await _dataService.GetAsync<Ticket>(new HttpClient(), Constants.GetTicketHistoryDetailsList);
             IsRefreshing = false;
         }
 
         private async Task ListStatus()
         {
-            //StatusList = await _dataService.GetStatusList(new HttpClient());
             StatusList = await _dataService.GetAsync<DictStatu>(new HttpClient(), Constants.GetStatusList);
 
         }
 
         public async Task<IEnumerable<Ticket>> GetHistoryTicketsSearch(string searchString = null)
         {
-            //_ticketDetailsList = await _dataService.GetTicketHistoryDetailsList(new HttpClient());
             _ticketDetailsList = await _dataService.GetAsync<Ticket>(new HttpClient(), Constants.GetTicketHistoryDetailsList);
 
 

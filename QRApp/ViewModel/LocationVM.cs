@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using QRApp.Interface;
 using QRApp.Model;
 using QRApp.View.UserSettingsPanel;
-using QRApp.View.WorkPanel;
 using Xamarin.Forms;
 
 namespace QRApp.ViewModel
@@ -56,14 +54,12 @@ namespace QRApp.ViewModel
 
         private async Task GetLocationsList()
         {
-            //LocationsList = await _dataService.GetLocationsList(new HttpClient());
             LocationsList = await _dataService.GetAsync<DictLocation>(new HttpClient(), Constants.GetLocationsList);
 
             IsRefreshing = false;
         }
         public async Task<IEnumerable<DictLocation>> GetLocationsSearch(string searchString = null)
         {
-            //_locationsList = await _dataService.GetLocationsList(new HttpClient());
             _locationsList = await _dataService.GetAsync<DictLocation>(new HttpClient(), Constants.GetLocationsList);
 
 

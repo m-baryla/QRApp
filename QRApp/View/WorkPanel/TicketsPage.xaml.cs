@@ -1,8 +1,6 @@
 ﻿using QRApp.Service;
 using QRApp.ViewModel;
-using SkiaSharp;
 using Xamarin.Forms;
-using Microcharts;
 using Xamarin.Forms.Xaml;
 
 namespace QRApp.View.WorkPanel

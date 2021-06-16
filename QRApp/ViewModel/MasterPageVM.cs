@@ -1,15 +1,10 @@
-﻿using QRApp.View;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using QRApp.Interface;
 using QRApp.Model;
 using QRApp.View.MainPanel;
 using Xamarin.Forms;
 using Microsoft.Identity.Client;
-using System.Linq;
 
 namespace QRApp.ViewModel
 {

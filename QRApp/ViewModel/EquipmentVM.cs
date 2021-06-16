@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using QRApp.Interface;
@@ -51,7 +50,6 @@ namespace QRApp.ViewModel
        
         private async Task GetEqipmentsList()
         {
-            //EquipmentsList = await _dataService.GetEquipmentList(new HttpClient());
             EquipmentsList = await _dataService.GetAsync<DictEquipment>(new HttpClient(), Constants.GetEquipmentList);
 
             IsRefreshing = false;
@@ -59,7 +57,6 @@ namespace QRApp.ViewModel
 
         public async Task<IEnumerable<DictEquipment>> GetEqipmentsSearch(string searchString = null)
         {
-            //_euipmentsList = await _dataService.GetEquipmentList(new HttpClient());
             _euipmentsList = await _dataService.GetAsync<DictEquipment>(new HttpClient(), Constants.GetEquipmentList);
 
 

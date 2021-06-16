@@ -1,19 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Plugin.Media;
 using QRApp.Interface;
 using QRApp.Model;
-using QRApp.Service;
-using Xamarin.Essentials;
 using Xamarin.Forms;
-using ZXing;
 
 namespace QRApp.ViewModel
 {
@@ -162,13 +153,11 @@ namespace QRApp.ViewModel
 
         private async Task ListLocations()
         {
-            //Locations = await _dataService.GetLocationsList(new HttpClient());
             Locations = await _dataService.GetAsync<DictLocation>(new HttpClient(), Constants.GetLocationsList);
         }
 
         private async Task ListEquipment()
         {
-            //Equipments = await _dataService.GetEquipmentList(new HttpClient());
             Equipments = await _dataService.GetAsync<DictEquipment>(new HttpClient(), Constants.GetEquipmentList);
         }
         private Task<ImageSource> CreatePhotoAsync()
@@ -196,8 +185,6 @@ namespace QRApp.ViewModel
                 _wikisDetails.EquipmentName = EquipmentValue;
             }
 
-            //_wikisDetails.LocationName = SelecteDictLocation.LocationName;
-            //_wikisDetails.EquipmentName = SelecteDictEquipments.EquipmentName;
             _wikisDetails.Photo = _cameraService.PhotoBytes;
 
 
@@ -209,14 +196,6 @@ namespace QRApp.ViewModel
             {
                 await _dialogService.DisplayAlert("Info", "Send New Wiki failed", "OK", "Cancel");
             }
-            //if (await _dataService.PostNewWiki(_wikisDetails, new HttpClient()))
-            //{
-            //    await _dialogService.DisplayAlert("Info", "Send New Wiki successful", "OK", "Cancel");
-            //}
-            //else
-            //{
-            //    await _dialogService.DisplayAlert("Info", "Send New Wiki failed", "OK", "Cancel");
-            //}
         }
     }
 }

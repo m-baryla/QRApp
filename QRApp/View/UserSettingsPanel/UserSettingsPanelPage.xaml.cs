@@ -1,6 +1,4 @@
-﻿using QRApp.Service;
-using QRApp.ViewModel;
-using Xamarin.Forms;
+﻿using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace QRApp.View.UserSettingsPanel

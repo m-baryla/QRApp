@@ -1,15 +1,10 @@
-﻿using System;
-using System.ComponentModel;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Windows.Input;
 using QRApp.Interface;
-using QRApp.View.UserSettingsPanel;
 using QRApp.View.WorkPanel;
 using QRApp.ViewModel;
 using Xamarin.Forms;
 using ZXing;
-using ZXing.Mobile;
-using ZXing.Net.Mobile.Forms;
 
 namespace QRApp.Service
 {

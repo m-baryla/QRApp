@@ -1,9 +1,4 @@
-﻿using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace QRApp.Model
+﻿namespace QRApp.Model
 {
     public static class Constants
     {
