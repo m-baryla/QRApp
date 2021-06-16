@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -55,12 +56,12 @@ namespace QRApp.ViewModel
 
         private async Task GetLocationsList()
         {
-            LocationsList = await _dataService.GetLocationsList();
+            LocationsList = await _dataService.GetLocationsList(new HttpClient());
             IsRefreshing = false;
         }
         public async Task<IEnumerable<DictLocation>> GetLocationsSearch(string searchString = null)
         {
-            _locationsList = await _dataService.GetLocationsList();
+            _locationsList = await _dataService.GetLocationsList(new HttpClient());
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _locationsList;

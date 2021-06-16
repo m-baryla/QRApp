@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -71,10 +72,10 @@ namespace QRApp.ViewModel
 
         public async Task GetCountTicketType()
         {
-            TicketTypeListActive = await _dataService.GetDictTicketTypesActive();
-            TicketTypeListNotActive = await _dataService.GetDictTicketTypesNotActive();
-            TicketTypeListActiveAll = await _dataService.GetDictTicketTypesAllActive();
-            TicketTypeListNotActiveAll = await _dataService.GetDictTicketTypesAllNotActive();
+            TicketTypeListActive = await _dataService.GetDictTicketTypesActive(new HttpClient());
+            TicketTypeListNotActive = await _dataService.GetDictTicketTypesNotActive(new HttpClient());
+            TicketTypeListActiveAll = await _dataService.GetDictTicketTypesAllActive(new HttpClient());
+            TicketTypeListNotActiveAll = await _dataService.GetDictTicketTypesAllNotActive(new HttpClient());
 
             BreakdownsActiveCount = TicketTypeListActive.Where(t => t.Type == "Breakdowns").Select(t => t.Count).FirstOrDefault().ToString();
             RepairsActiveCount = TicketTypeListActive.Where(t => t.Type == "Repairs").Select(t => t.Count).FirstOrDefault().ToString();

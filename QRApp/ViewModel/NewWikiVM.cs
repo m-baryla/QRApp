@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -161,12 +162,12 @@ namespace QRApp.ViewModel
 
         private async Task ListLocations()
         {
-            Locations = await _dataService.GetLocationsList();
+            Locations = await _dataService.GetLocationsList(new HttpClient());
         }
 
         private async Task ListEquipment()
         {
-            Equipments = await _dataService.GetEquipmentList();
+            Equipments = await _dataService.GetEquipmentList(new HttpClient());
         }
         private Task<ImageSource> CreatePhotoAsync()
         {
@@ -197,7 +198,7 @@ namespace QRApp.ViewModel
             //_wikisDetails.EquipmentName = SelecteDictEquipments.EquipmentName;
             _wikisDetails.Photo = _cameraService.PhotoBytes;
 
-            if (await _dataService.PostNewWiki(_wikisDetails))
+            if (await _dataService.PostNewWiki(_wikisDetails, new HttpClient()))
             {
                 await _dialogService.DisplayAlert("Info", "Send New Wiki successful", "OK", "Cancel");
             }

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using QRApp.Interface;
@@ -142,25 +143,25 @@ namespace QRApp.ViewModel
 
         private async Task ListTicketType()
         {
-            TicketType = await _dataService.GetDictTicketTypeList();
+            TicketType = await _dataService.GetDictTicketTypeList(new HttpClient());
         }
         private async Task ListPrioritie()
         {
-            Priority = await _dataService.GetDictPrioritieList();
+            Priority = await _dataService.GetDictPrioritieList(new HttpClient());
         }
 
         private async Task ListLocations()
         {
-            Locations = await _dataService.GetLocationsList();
+            Locations = await _dataService.GetLocationsList(new HttpClient());
         }
 
         private async Task ListEquipment()
         {
-            Equipments = await _dataService.GetEquipmentList();
+            Equipments = await _dataService.GetEquipmentList(new HttpClient());
         }
         private async Task ListEmailAdress()
         {
-            EmailAdresses = await _dataService.GetEmailAdressesList();
+            EmailAdresses = await _dataService.GetEmailAdressesList(new HttpClient());
         }
 
         private Task<ImageSource> CreatePhotoAsync()
@@ -205,11 +206,11 @@ namespace QRApp.ViewModel
             _dictEmailAdressNotify.Content_part3 = "Description: " + _ticketsDetails.Description;
             _dictEmailAdressNotify.UserSender = "UserSender: " + _ticketsDetails.UserName;
 
-            if (await _dataService.PostNewTicket(_ticketsDetails))
+            if (await _dataService.PostNewTicket(_ticketsDetails, new HttpClient()))
             {
                 await _dialogService.DisplayAlert("Info", "Send New Ticket successful", "OK", "Cancel");
 
-                if (await _dataService.PostEmailAdressNotify(_dictEmailAdressNotify))
+                if (await _dataService.PostEmailAdressNotify(_dictEmailAdressNotify, new HttpClient()))
                 {
                     await _dialogService.DisplayAlert("Info", "Email Adress Notifyt successful", "OK", "Cancel");
                 }

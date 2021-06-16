@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using QRApp.Model;
@@ -9,25 +10,25 @@ namespace QRApp.Interface
 {
     public interface IDataService
     {
-        Task<List<DictTicketType>> GetDictTicketTypesAllActive();
-        Task<List<DictTicketType>> GetDictTicketTypesAllNotActive();
-        Task<List<DictTicketType>> GetDictTicketTypesNotActive();
-        Task<List<DictTicketType>> GetDictTicketTypesActive();
-        Task<List<DictPriority>> GetDictPrioritieList();
-        Task<List<DictTicketType>> GetDictTicketTypeList();
-        Task<List<DictEmailAdress>> GetEmailAdressesList();
-        Task<List<DictStatu>> GetStatusList();
-        Task<List<Ticket>> GetTicketHistoryDetailsList();        
-        Task<List<DictLocation>> GetLocationsList();
-        Task<List<DictEquipment>> GetEquipmentList();
-        Task<List<Wiki>> GetWikiDetailList();
-        Task<bool> PostNewTicket(Ticket ticketsDetails);
-        Task<bool> PostNewWiki(Wiki wikiDetails);
-        Task<bool> PutTicket(int id, Ticket ticketsDetails);
-        Task<bool> PostNewEmail(DictEmailAdress emailAdress);
-        Task<bool> PostNewLocation(DictLocation location);
-        Task<bool> PostNewEquipment(DictEquipment equipment);
-        Task<bool> PostEmailAdressNotify(DictEmailAdress emailAdressNotify);
+        Task<List<DictTicketType>> GetDictTicketTypesAllActive(HttpClient httpClient);
+        Task<List<DictTicketType>> GetDictTicketTypesAllNotActive(HttpClient httpClient);
+        Task<List<DictTicketType>> GetDictTicketTypesNotActive(HttpClient httpClient);
+        Task<List<DictTicketType>> GetDictTicketTypesActive(HttpClient httpClient);
+        Task<List<DictPriority>> GetDictPrioritieList(HttpClient httpClient);
+        Task<List<DictTicketType>> GetDictTicketTypeList(HttpClient httpClient);
+        Task<List<DictEmailAdress>> GetEmailAdressesList(HttpClient httpClient);
+        Task<List<DictStatu>> GetStatusList(HttpClient httpClient);
+        Task<List<Ticket>> GetTicketHistoryDetailsList(HttpClient httpClient);        
+        Task<List<DictLocation>> GetLocationsList(HttpClient httpClient);
+        Task<List<DictEquipment>> GetEquipmentList(HttpClient httpClient);
+        Task<List<Wiki>> GetWikiDetailList(HttpClient httpClient);
+        Task<bool> PostNewTicket(Ticket ticketsDetails, HttpClient httpClient);
+        Task<bool> PostNewWiki(Wiki wikiDetails, HttpClient httpClient);
+        Task<bool> PutTicket(int id, Ticket ticketsDetails, HttpClient httpClient);
+        Task<bool> PostNewEmail(DictEmailAdress emailAdress, HttpClient httpClient);
+        Task<bool> PostNewLocation(DictLocation location, HttpClient httpClient);
+        Task<bool> PostNewEquipment(DictEquipment equipment, HttpClient httpClient);
+        Task<bool> PostEmailAdressNotify(DictEmailAdress emailAdressNotify, HttpClient httpClient);
 
 
     }

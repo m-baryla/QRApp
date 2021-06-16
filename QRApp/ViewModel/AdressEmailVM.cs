@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -46,7 +47,7 @@ namespace QRApp.ViewModel
 
         private async Task AddNewAdressEmail()
         {
-            if (await _dataService.PostNewEmail(_emailAdresses))
+            if (await _dataService.PostNewEmail(_emailAdresses, new HttpClient()))
             {
                 await _dialogService.DisplayAlert("Info", "Add New AdressEmail successful", "OK", "Cancel");
             }
@@ -58,13 +59,13 @@ namespace QRApp.ViewModel
 
         private async Task GetAdressEmails()
         {
-            EmailAdressesList =  await _dataService.GetEmailAdressesList();
+            EmailAdressesList =  await _dataService.GetEmailAdressesList(new HttpClient());
             IsRefreshing = false;
         }
 
         public async Task<IEnumerable<DictEmailAdress>> GetAdressesEmailsSearch(string searchString = null)
         {
-            _emailAdressesList = await _dataService.GetEmailAdressesList();
+            _emailAdressesList = await _dataService.GetEmailAdressesList(new HttpClient());
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _emailAdressesList;

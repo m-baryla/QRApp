@@ -6,6 +6,7 @@ using QRApp.Model;
 using Xamarin.Forms;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microcharts;
 using QRApp.Interface;
@@ -85,7 +86,7 @@ namespace QRApp.ViewModel
             _putTicket.TicketType = Ticket.TicketType;
             _putTicket.Priority = Ticket.Priority;
 
-            if (await _dataService.PutTicket(Ticket.Id, _putTicket))
+            if (await _dataService.PutTicket(Ticket.Id, _putTicket, new HttpClient()))
             {
                 await _dialogService.DisplayAlert("Info", "Update Status successful", "OK", "Cancel");
             }
@@ -108,18 +109,18 @@ namespace QRApp.ViewModel
 
         private async Task GetHistoryTickets()
         {
-            TicketDetailsList = await _dataService.GetTicketHistoryDetailsList();
+            TicketDetailsList = await _dataService.GetTicketHistoryDetailsList(new HttpClient());
             IsRefreshing = false;
         }
 
         private async Task ListStatus()
         {
-            StatusList = await _dataService.GetStatusList();
+            StatusList = await _dataService.GetStatusList(new HttpClient());
         }
 
         public async Task<IEnumerable<Ticket>> GetHistoryTicketsSearch(string searchString = null)
         {
-            _ticketDetailsList = await _dataService.GetTicketHistoryDetailsList();
+            _ticketDetailsList = await _dataService.GetTicketHistoryDetailsList(new HttpClient());
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _ticketDetailsList;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -35,7 +36,7 @@ namespace QRApp.ViewModel
 
         private async Task AddNewLocation()
         {
-            if (await _dataService.PostNewLocation(_dictLocation))
+            if (await _dataService.PostNewLocation(_dictLocation, new HttpClient()))
             {
                 await _dialogService.DisplayAlert("Info", "Add New Location successful", "OK", "Cancel");
             }

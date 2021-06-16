@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -55,12 +56,12 @@ namespace QRApp.ViewModel
         }
         private async Task GetWikis()
         {
-            WikiDetailsList = await _dataService.GetWikiDetailList();
+            WikiDetailsList = await _dataService.GetWikiDetailList(new HttpClient());
             IsRefreshing = false;
         }
         public async Task<IEnumerable<Wiki>> GetWikiSearch(string searchString = null)
         {
-            _wikiDetailsList = await _dataService.GetWikiDetailList();
+            _wikiDetailsList = await _dataService.GetWikiDetailList(new HttpClient());
 
             if (String.IsNullOrWhiteSpace(searchString))
                 return _wikiDetailsList;
