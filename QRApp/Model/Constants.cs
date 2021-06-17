@@ -21,12 +21,15 @@
         public static readonly string GetLocationsList = "/api/DictLocations/";
         public static readonly string GetEquipmentList = "/api/DictEquipments/";
         public static readonly string GetWikiDetailList = "/api/Wikis/GetWikiDetail/";
+
         public static readonly string PostNewTicket = "/api/Tickets/";
         public static readonly string PostNewWiki = "/api/Wikis/";
-        public static readonly string PutTicket = "/api/Tickets/";
         public static readonly string PostNewEmail = "/api/DictEmailAdresses/";
         public static readonly string PostNewLocation = "/api/DictLocations/";
         public static readonly string PostNewEquipment = "/api/DictEquipments/";
-        public static readonly string PostEmailAdressNotify = "/api/DictEmailAdresses/SendEmail/";
+        public static readonly string PostEmailAdressNotify = "/api/EmailSender/SendEmail/";
+
+        public static readonly string PutTicket = "/api/Tickets/";
+
     }
 }

@@ -11,6 +11,5 @@ namespace QRApp.Interface
         bool IsScanning { get; set; }
         Command ScanCommand { get; }
         Result Result { get; set; }
-        event PropertyChangedEventHandler PropertyChanged;
     }
 }
