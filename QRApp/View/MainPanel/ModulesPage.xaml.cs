@@ -1,8 +1,15 @@
-﻿using Microsoft.Identity.Client;
+﻿using System;
+using System.Diagnostics;
+using System.Linq;
+using System.Net.Http.Headers;
+using System.Threading.Tasks;
+using Microsoft.Graph;
+using Microsoft.Identity.Client;
 using QRApp.Service;
 using QRApp.ViewModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Application = Xamarin.Forms.Application;
 
 namespace QRApp.View.MainPanel
 {
@@ -17,9 +24,10 @@ namespace QRApp.View.MainPanel
             BindingContext = new ModulesPageVM(new PageService());
             InitializeComponent();
 
-            var userName = authenticatioResult.Account.Username;
+            //var aaa = authenticatioResult.IdToken;
 
-            Application.Current.Properties["userName"] = userName;
+            Application.Current.Properties["userName"] = authenticatioResult.Account.Username;
+            Application.Current.Properties["AccessToken"] = authenticatioResult.AccessToken;
             Application.Current.SavePropertiesAsync();
         }
 

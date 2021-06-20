@@ -26,6 +26,12 @@ namespace QRApp
                             .WithIosKeychainSecurityGroup(Constants.IosKeychainSecurityGroups)
                             .Build();
 
+
+            AuthenticationClient = PublicClientApplicationBuilder.Create(Constants.ClientId)
+                .WithRedirectUri($"msal{Constants.ClientId}://auth")
+                .Build();
+
+
             MainPage = new NavigationPage(new MasterPage());
         }
 

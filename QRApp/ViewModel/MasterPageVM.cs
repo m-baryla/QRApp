@@ -1,4 +1,9 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using QRApp.Interface;
 using QRApp.Model;
@@ -24,11 +29,11 @@ namespace QRApp.ViewModel
             try
             {
                 var result = await App.AuthenticationClient
-                                      .AcquireTokenInteractive(Constants.Scopes)
-                                      .WithPrompt(Prompt.ForceLogin)
-                                      .WithParentActivityOrWindow(App.UIParent)
-                                      .WithUseEmbeddedWebView(true)
-                                      .ExecuteAsync();
+                    .AcquireTokenInteractive(Constants.Scopes)
+                    .WithPrompt(Prompt.ForceLogin)
+                    .WithParentActivityOrWindow(App.UIParent)
+                    .WithUseEmbeddedWebView(true)
+                    .ExecuteAsync();
 
                 await _pageService.PushAsync(new ModulesPage(result));
             }
@@ -37,6 +42,7 @@ namespace QRApp.ViewModel
 
                 throw;
             }
+
         }
     }
 }
